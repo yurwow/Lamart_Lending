@@ -1,0 +1,142 @@
+.page_icon {
+    margin-top: 60px;
+    margin-left: 120px;
+    height: 69px;
+}
+
+.header {
+    display: flex;
+    gap: 16px;
+}
+
+.header_span_container {
+    width: 180px;
+    padding-top: 65px;
+}
+
+.header_span {
+    font-family: "Montserrat Alternates", serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 24px;
+    color: rgba(30, 77, 194, 1);
+}
+
+.section_one {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.h1 {
+
+    font-family: Poppins, sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 76.8px;
+}
+
+.span_container {
+    display: flex;
+}
+
+.span {
+    background: rgba(30, 77, 194, 1);
+    color: rgba(255, 255, 255, 1);
+    border-radius: 20px;
+    padding: 6px 37px;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 76.8px;
+}
+
+.section_one_span {
+    width: 900px;
+    margin-top: 60px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: center;
+}
+
+.btn {
+    margin-top: 60px;
+    width: 300px;
+    height: 70px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 600;
+    font-size: 20px;
+    background: white;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.section_two {
+    margin-top: 225px;
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+
+}
+
+.section_two_container {
+    width: 860px;
+}
+
+.h2 {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 76.8px;
+}
+
+.text {
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    text-align: left;
+    margin-bottom: 48px;
+}
+
+.monitorIcon_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.monitorIcon {
+    /*width: 1450px;*/
+}
+
+.megapolis_icon {
+    /*width: 320px;*/
+}
+
+.section_three {
+    margin-top: 225px;
+}
+
+.h3 {
+    display: inline-block;
+    margin-left: 285px;
+    width: 1010px;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 76.8px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.section_three_widgets {
+    margin-top: 100px;
+    display: flex;
+    gap: 35px;
+    justify-content: center;
+}

@@ -1,0 +1,33 @@
+.widget_container {
+    background: rgba(255, 255, 255, 1);
+    width: 447px;
+    height: 594px;
+    border-radius: 60px;
+}
+
+.widget_icon {
+    display: flex;
+    justify-content: end;
+    margin-top: 30px;
+    margin-right: 30px;
+}
+
+.widget_text_container {
+    width: 387px;
+    margin: 154px 30px 60px 30px;
+}
+
+.widget_title {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 44.8px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.widget_text {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    width: 350px;
+}
