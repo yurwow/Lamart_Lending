@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 }
 
 .header_background {
@@ -40,6 +39,11 @@
     text-align: left;
     text-decoration-line: none;
 
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
 }
 
 .header_span {
@@ -292,6 +296,41 @@
     color: rgba(30, 77, 194, 1);
 }
 
+.section_reviews {
+    margin-top: 226px;
+}
+
+.section_reviews_title_container {
+    margin-left: 285px;
+}
+
+.section_reviews_title {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 76.8px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.section_reviews_p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.section_reviews_widget_container {
+    margin-top: 93px;
+    display: flex;
+    gap: 100px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+.section_reviews_widget_container::-webkit-scrollbar {
+    width: 0;
+}
+
 .section_faq {
     margin-top: 226px;
 }
@@ -319,36 +358,42 @@
     gap: 10px;
 }
 
-.question_widget {
-    background: rgba(240, 245, 255, 1);
-    display: flex;
-    border-radius: 40px;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.question_widget_text {
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 38.4px;
-    text-align: left;
-    width: 750px;
-    padding: 31px 0 31px 50px;
-}
-
-.question_widget_btn {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 50px;
-}
-
 .faq_speaker_img {
     display: flex;
     align-items: center;
+}
+
+.footer {
+    background-image: url("../../public/footerBackground.svg");
+    margin-top: 212px;
+    height: 378px;
+}
+
+.footer_container {
+    padding: 181px 285px 81px 285px;
+    display: flex;
+    gap: 263px;
+}
+
+.left_footer {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.footer_span {
+    color: rgba(255, 255, 255, 1);
+    font-family: Montserrat Alternates, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    opacity: 0.7;
+    margin-top: 20px;
+}
+
+.footer_center {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

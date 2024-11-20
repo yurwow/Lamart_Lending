@@ -1,16 +1,43 @@
 import styles from './Widget.module.css'
+import {useState} from "react";
+import ModalWindow from "../PopUpWindow/ModalWindow.jsx";
 
-const Widget = ({src, title, text}) => {
+const Widget = ({src, srcHover, title, text}) => {
+
+    const [isHovered, setIsHovered] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+
+    const onClose = () => {
+        setIsOpen(false)
+    }
     return (
-        <div className={styles.widget_container}>
-            <div className={styles.widget_icon}>
-                <img src={src} alt="widget icon"/>
+        <>
+            <div
+                className={isHovered ? `${styles.widget_container} ${styles.blue}` : `${styles.widget_container}`}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
+                <div className={styles.widget_icon}>
+                    <img src={isHovered ? srcHover : src} alt="widget icon"/>
+                </div>
+                <div className={isHovered ? `${styles.widget_text_container_blue}` : `${styles.widget_text_container}`}>
+                    <div
+                        className={isHovered ? `${styles.widget_title} ${styles.white}` : `${styles.widget_title}`}>{title}</div>
+                    <div
+                        className={isHovered ? `${styles.widget_text} ${styles.white}` : `${styles.widget_text}`}>{text}</div>
+                    {isHovered &&
+                        <button
+                            className={styles.widget_btn}
+                            onClick={() => setIsOpen(true)}
+                        >
+                            УЗНАТЬ ПОДРОБНЕЕ
+                        </button>
+                    }
+                    <ModalWindow isOpen={isOpen} onClose={onClose}/>
+                </div>
             </div>
-            <div className={styles.widget_text_container}>
-                <div className={styles.widget_title}>{title}</div>
-                <div className={styles.widget_text}>{text}</div>
-            </div>
-        </div>
+        </>
+
     );
 };
 

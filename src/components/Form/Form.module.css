@@ -37,8 +37,3 @@
     color: rgba(255, 255, 255, 1);
     line-height: 24px;
 }
-
-.btn {
-    display: flex;
-    justify-content: center;
-}

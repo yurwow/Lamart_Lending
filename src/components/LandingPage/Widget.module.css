@@ -5,6 +5,10 @@
     border-radius: 60px;
 }
 
+.blue {
+    background: rgba(30, 77, 194, 1);
+}
+
 .widget_icon {
     display: flex;
     justify-content: end;
@@ -17,6 +21,11 @@
     margin: 154px 30px 60px 30px;
 }
 
+.widget_text_container_blue {
+    width: 387px;
+    margin: 30px 30px 60px 30px;
+}
+
 .widget_title {
     font-size: 32px;
     font-weight: 600;
@@ -25,9 +34,31 @@
     margin-bottom: 20px;
 }
 
+.white {
+    color: #FFFFFF;
+}
+
 .widget_text {
     font-size: 20px;
     font-weight: 400;
     line-height: 28px;
     width: 350px;
+}
+
+.widget_btn {
+    width: 270px;
+    height: 70px;
+    border-radius: 50px;
+    background: #FFFFFF;
+    border: none;
+    color: #1E4DC2;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    margin-top: 86px;
+}
+
+.widget_btn:hover {
+    cursor: pointer;
 }

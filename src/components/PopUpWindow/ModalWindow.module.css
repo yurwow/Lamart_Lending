@@ -1,0 +1,44 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*z-index: 1000;*/
+    background: rgba(30, 77, 194, 1);
+    width: 1920px;
+    height: 1080px;
+}
+
+.content_container {
+    padding: 80px 80px 106px 286px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 76.8px;
+    text-align: left;
+    color: rgba(255, 255, 255, 1);
+}
+
+.form_container {
+    width: 902px;
+}
+
+.p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 1);
+    margin-top: 30px;
+}
+
+.close {
+    cursor: pointer;
+    width: 40px;
+}
+
+
