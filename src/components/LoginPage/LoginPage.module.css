@@ -1,0 +1,84 @@
+.background {
+    background: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(252.44deg, #4379FF 9.5%, rgba(30, 77, 194, 0.93) 87.5%);
+}
+
+.container {
+    background: #1E4DC2;
+    width: 500px;
+    height: 648px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+.title {
+    font-family: Montserrat Alternates, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28.8px;
+    color: #FFFFFF;
+}
+
+.logo_container {
+    display: flex;
+    align-items: center;
+    padding: 50px 126px 80px 126px;
+    gap: 20px;
+}
+
+.form {
+    padding: 0 50px 50px 50px;
+}
+
+.login_input {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid white;
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.login_input::placeholder {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.login_input:focus {
+    outline: none;
+}
+
+.btn_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+.btn {
+    width: 216px;
+    height: 60px;
+    background: #FFFFFF;
+    border-radius: 76px;
+    box-shadow: 0px 4px 15px 0px #00000026;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    border: none;
+    cursor: pointer;
+}
+
+.error {
+    color: #FFFB00;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+}

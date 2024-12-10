@@ -31,9 +31,21 @@ const LandingPage = () => {
     const [textBlocks, setTextBlocks] = useState([]);
 
     useEffect(() => {
-        // Получаем текстовые блоки при загрузке компонента
         getTextBlocks().then(setTextBlocks);
     }, []);
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://embed.tawk.to/674ed4c14304e3196aebb871/1ie5uu539";
+        script.async = true;
+        script.charset = "UTF-8";
+        script.setAttribute('crossorigin', '*');
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    },[])
     console.log(textBlocks[0])
     return (
         <div>
@@ -42,8 +54,8 @@ const LandingPage = () => {
                     <div className={styles.left_header_container}>
                         <img src={headerIcon} alt="Landing icon"/>
                         <div className={styles.header_span_container}>
-                            <span className={styles.header_span}>ОТКРЫТЫЕ ИДЕИ</span>
-                            {/*{textBlocks.length > 0 && (
+                            {/*<span className={styles.header_span}>ОТКРЫТЫЕ ИДЕИ</span>*/}
+                            {textBlocks.length > 0 && (
                                 <span
                                     style={{
                                         color: textBlocks[0].color || "#000000",
@@ -66,7 +78,7 @@ const LandingPage = () => {
                                     textBlocks[0].content || <span className={styles.header_span}>ОТКРЫТЫЕ ИДЕИ</span>
                                 )}
                             </span>
-                            )}*/}
+                            )}
                         </div>
                     </div>
                     <div className={styles.right_header_container}>
