@@ -1,9 +1,9 @@
 import {forwardRef} from 'react';
 import styles from "../../LandingPage/LandingPage.module.css";
 import Form from "../../Form/Form.jsx";
-import sunImage from "../../../public/Sun.svg";
 import lamp from '../../../public/lamp.svg'
 import iconDown from '../../../public/iconDown.svg'
+
 const FormFrame = forwardRef((props, ref) => {
     return (
         <div>

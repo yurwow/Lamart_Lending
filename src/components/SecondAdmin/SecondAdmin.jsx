@@ -48,9 +48,9 @@ const SecondAdmin = () => {
         const fetchFramesAndData = async () => {
             setIsLoading(true);
             try {
-                const framesResponse = await axios.get(`/content-blocks/`);
-                const textBlocksResponse = await axios.get(`/text-blocks/`);
-                const imagesResponse = await axios.get(`/images/`);
+                const framesResponse = await axios.get(`/api/content-blocks/`);
+                const textBlocksResponse = await axios.get(`/api/text-blocks/`);
+                const imagesResponse = await axios.get(`/api/images/`);
 
                 const framesWithData = framesResponse.data.map((frame) => ({
                     ...frame,
@@ -77,7 +77,7 @@ const SecondAdmin = () => {
                 order: Date.now(),
                 content: frame.description,
             };
-            const response = await axios.post(`/content-blocks/add/`, newFrame);
+            const response = await axios.post(`/api/content-blocks/add/`, newFrame);
             setSelectedFrames([...selectedFrames, response.data]);
         } catch (error) {
             console.error('Ошибка при добавлении фрейма:', error);
@@ -86,7 +86,7 @@ const SecondAdmin = () => {
 
     const removeFrame = async (id) => {
         try {
-            await axios.delete(`/content-blocks/${id}/delete/`);
+            await axios.delete(`/api/content-blocks/${id}/delete/`);
             setSelectedFrames(selectedFrames.filter((frame) => frame.id !== id));
         } catch (error) {
             console.error('Ошибка при удалении фрейма:', error);
@@ -95,7 +95,7 @@ const SecondAdmin = () => {
 
     const updateTextBlock = async (blockId, updatedContent, updatedStyles) => {
         try {
-            await axios.put(`/text-blocks/${blockId}/update/`, {
+            await axios.put(`/api/text-blocks/${blockId}/update/`, {
                 content: updatedContent,
                 styles: updatedStyles,
             });
@@ -120,7 +120,7 @@ const SecondAdmin = () => {
             const formData = new FormData();
             formData.append('image', newImageFile);
             formData.append('description', description);
-            const response = await axios.put(`/images/${imageId}/update/`, formData);
+            const response = await axios.put(`/api/images/${imageId}/update/`, formData);
 
             setSelectedFrames((prevFrames) =>
                 prevFrames.map((frame) => ({
@@ -290,7 +290,7 @@ const SecondAdmin = () => {
                                                     {frame.images.map((image) => (
                                                         <div key={image.id} className={styles.imageEditor}>
                                                             <img
-                                                                src={`/${image.image}`}
+                                                                src={`/api/${image.image}`}
                                                                 alt="Изображение"
                                                                 className={styles.imagePreview}
                                                             />

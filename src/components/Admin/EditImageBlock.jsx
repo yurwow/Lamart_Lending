@@ -108,7 +108,7 @@ const ImageUpload = () => {
                 {images.map((image) => (
                     <li key={image.id} className={styles.imageItem}>
                         <img
-                            src={`/${image.image}`}
+                            src={`/api/${image.image}`}
                             alt="Uploaded"
                             className={styles.uploadedImage}
                         />

@@ -4,7 +4,6 @@ import AddTextBlockForm from "./AddTextBlockForm.jsx";
 import ContentBlocks from "./ContentBlocks.jsx";
 import styles from './AdminPanel.module.css'
 import icon from "../../public/landIcon.svg";
-import ellipse from "../../public/Ellipse.svg";
 
 const AdminPanel = () => {
     return (

@@ -19,23 +19,23 @@ const AddTextBlockForm = () => {
         e.preventDefault();
 
         const newTextBlock = {
-            title, // Заголовок
-            content, // Содержимое
-            is_enabled: true, // Статус включения
-            font_family: 'Arial', // Пример значения по умолчанию
-            font_size: 16, // Пример значения по умолчанию
-            font_weight: 'normal', // Пример значения по умолчанию
-            font_style: 'normal', // Пример значения по умолчанию
-            color: '#000000', // Пример значения по умолчанию
-            line_height: '1.5', // Пример значения по умолчанию
-            text_align: 'left', // Пример значения по умолчанию
-            list_type: 'none', // Пример значения по умолчанию
-            link: '' // Пример значения по умолчанию
+            title,
+            content,
+            is_enabled: true,
+            font_family: 'Arial',
+            font_size: 16,
+            font_weight: 'normal',
+            font_style: 'normal',
+            color: '#000000',
+            line_height: '1.5',
+            text_align: 'left',
+            list_type: 'none',
+            link: ''
         };
 
         try {
             const response = await axios.post(
-                `$/text-blocks/add/`,
+                `$/api/text-blocks/add/`,
                 newTextBlock,
                 {
                     headers: {

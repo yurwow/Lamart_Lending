@@ -32,7 +32,7 @@ const AdminHome = () => {
             }
 
             const response = await axios.post(
-                `/auth/refresh`,
+                `/api/auth/refresh`,
                 {
                     refresh_token: refreshToken
                 },
@@ -63,7 +63,7 @@ const AdminHome = () => {
                 throw new Error("Access Token отсутствует.");
             }
 
-            const response = await axios.get(`/auth/user`, {
+            const response = await axios.get(`/api/auth/user`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 },

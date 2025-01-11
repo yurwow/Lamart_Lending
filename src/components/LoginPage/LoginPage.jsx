@@ -33,7 +33,7 @@ const LoginPage = () => {
 
         try {
             const response = await axios.post(
-                `/auth/login`,
+                `/api/auth/login`,
                 { email, password },
                 {
                     withCredentials: false,
