@@ -1,6 +1,6 @@
 import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import AdminPanel from "./components/Admin/AdminPanel.jsx";
-import { HashRouter, Route, Routes} from "react-router-dom";
+import {HashRouter, Route, Routes} from "react-router-dom";
 import LoginPage from "./components/LoginPage/LoginPage.jsx";
 import RegisterUser from "./components/Admin/Register.jsx";
 import AdminHome from "./components/AdminPanel/AdminHome/AdminHome.jsx";

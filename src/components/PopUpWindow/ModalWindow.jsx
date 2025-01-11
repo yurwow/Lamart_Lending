@@ -4,12 +4,12 @@ import Button from "../Button/Button.jsx";
 import Form from "../Form/Form.jsx";
 import IphoneIcon from '../../public/IphoneIcon.svg'
 import closeOne from '../../public/closeOne.svg'
-import closeTwo from '../../public/closeTwo.svg'
+// import closeTwo from '../../public/closeTwo.svg'
 import {useState} from "react";
 
 const ModalWindow = ({isOpen, onClose}) => {
 
-    const [isHovered, setIsHovered] = useState(false)
+    // const [isHovered, setIsHovered] = useState(false)
 
     if (!isOpen) return null;
     return createPortal(
@@ -24,10 +24,10 @@ const ModalWindow = ({isOpen, onClose}) => {
                 <a onClick={onClose}>
                     <img
                         className={styles.close}
-                        src={isHovered ? closeOne : closeTwo}
+                        src={ closeOne }
                         alt="close icon"
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
+                        // onMouseEnter={() => setIsHovered(true)}
+                        // onMouseLeave={() => setIsHovered(false)}
                     />
                 </a>
             </div>
