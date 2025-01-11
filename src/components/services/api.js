@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const API_BASE_URL = 'http://51.250.75.40:8000/api';
+// export const API_BASE_URL = 'http://51.250.75.40:8000/api';
 
 export const getTextBlocks = async () => {
-    const response = await axios.get(`${API_BASE_URL}/text-blocks/`);
+    const response = await axios.get(`/text-blocks/`);
     return response.data;
 };
 
@@ -14,13 +14,13 @@ export const addTextBlock = async (data) => {
 };*/
 
 export const updateTextBlock = async (id, data) => {
-    const response = await axios.put(`${API_BASE_URL}/text-blocks/${id}/update/`, data);
+    const response = await axios.put(`/text-blocks/${id}/update/`, data);
     return response.data;
 };
 
 export const deleteTextBlock = async (id) => {
     try {
-        const response = await axios.delete(`${API_BASE_URL}/text-blocks/${id}/delete/`);
+        const response = await axios.delete(`/text-blocks/${id}/delete/`);
         return response.data;
     } catch (error) {
         console.error('Error deleting text block:', error);
@@ -30,7 +30,7 @@ export const deleteTextBlock = async (id) => {
 
 
 export const getImages = async () => {
-    const response = await axios.get(`${API_BASE_URL}/images/`);
+    const response = await axios.get(`/images/`);
     return response.data;
 };
 
@@ -45,7 +45,7 @@ export const getImages = async () => {
 };*/
 
 export const addImage = async (formData) => {
-    const response = await axios.post(`${API_BASE_URL}/images/add/`, formData, {
+    const response = await axios.post(`/images/add/`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
@@ -58,7 +58,7 @@ export const updateImage = async (id, updatedFile) => {
         const formData = new FormData();
         formData.append('image', updatedFile);
 
-        const response = await axios.put(`${API_BASE_URL}/images/${id}/update/`, formData, {
+        const response = await axios.put(`/images/${id}/update/`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -73,7 +73,7 @@ export const updateImage = async (id, updatedFile) => {
 
 export const deleteImage = async (id) => {
     try {
-        const response = await axios.delete(`${API_BASE_URL}/images/${id}/delete/`);
+        const response = await axios.delete(`/images/${id}/delete/`);
         return response.data;
     } catch (error) {
         console.error('Error deleting image:', error);
@@ -83,7 +83,7 @@ export const deleteImage = async (id) => {
 
 export const submitApplication = async (data) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/submit-application/`, data, {
+        const response = await axios.post(`/submit-application/`, data, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -99,7 +99,7 @@ export const submitApplication = async (data) => {
 
 export const getFrames = async () => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/content-blocks/`);
+        const response = await axios.get(`/content-blocks/`);
         return response.data;
     } catch (error) {
         console.error('Error fetching frames:', error);
@@ -109,7 +109,7 @@ export const getFrames = async () => {
 
 export const addFrame = async (frameData) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/content-blocks/add/`, frameData);
+        const response = await axios.post(`/content-blocks/add/`, frameData);
         return response.data;
     } catch (error) {
         console.error('Error adding frame:', error);
@@ -129,7 +129,7 @@ export const addFrame = async (frameData) => {
 
 export const updateFrame = async (id, updatedData) => {
     try {
-        const response = await axios.put(`${API_BASE_URL}/content-blocks/${id}/update/`, updatedData);
+        const response = await axios.put(`/content-blocks/${id}/update/`, updatedData);
         return response.data;
     } catch (error) {
         console.error(`Error updating frame with ID ${id}:`, error);
@@ -139,7 +139,7 @@ export const updateFrame = async (id, updatedData) => {
 
 export const deleteFrame = async (id) => {
     try {
-        const response = await axios.delete(`${API_BASE_URL}/content-blocks/${id}/delete/`);
+        const response = await axios.delete(`/content-blocks/${id}/delete/`);
         return response.data;
     } catch (error) {
         console.error('Error deleting frame:', error);

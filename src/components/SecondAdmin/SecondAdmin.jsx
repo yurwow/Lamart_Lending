@@ -11,7 +11,6 @@ import ReviewsFrame from "../Frames/ReviewsFrame/ReviewsFrame.jsx";
 import FAQFrame from "../Frames/FAQFrame/FAQFrame.jsx";
 import styles from './SecondAdmin.module.css';
 import icon from "../../public/landIcon.svg";
-import { API_BASE_URL } from "../services/api.js";
 
 const frameComponents = {
     Header: HeaderFrame,
@@ -37,7 +36,7 @@ const frameTemplates = [
     { id: 9, name: 'Footer', description: 'Футер страницы' },
 ];
 
-const BASE_URL = 'http://51.250.75.40:8000/api';
+// const BASE_URL = 'http://51.250.75.40:8000/api';
 
 const SecondAdmin = () => {
     const [selectedFrames, setSelectedFrames] = useState([]);
@@ -49,14 +48,10 @@ const SecondAdmin = () => {
         const fetchFramesAndData = async () => {
             setIsLoading(true);
             try {
-                // Получаем фреймы
-                const framesResponse = await axios.get(`${API_BASE_URL}/content-blocks/`);
-                // Получаем текстовые блоки
-                const textBlocksResponse = await axios.get(`${API_BASE_URL}/text-blocks/`);
-                // Получаем изображения
-                const imagesResponse = await axios.get(`${API_BASE_URL}/images/`);
+                const framesResponse = await axios.get(`/content-blocks/`);
+                const textBlocksResponse = await axios.get(`/text-blocks/`);
+                const imagesResponse = await axios.get(`/images/`);
 
-                // Привязываем текстовые блоки и изображения к фреймам
                 const framesWithData = framesResponse.data.map((frame) => ({
                     ...frame,
                     textBlocks: textBlocksResponse.data.filter((block) => block.title === frame.name),
@@ -82,7 +77,7 @@ const SecondAdmin = () => {
                 order: Date.now(),
                 content: frame.description,
             };
-            const response = await axios.post(`${API_BASE_URL}/content-blocks/add/`, newFrame);
+            const response = await axios.post(`/content-blocks/add/`, newFrame);
             setSelectedFrames([...selectedFrames, response.data]);
         } catch (error) {
             console.error('Ошибка при добавлении фрейма:', error);
@@ -91,7 +86,7 @@ const SecondAdmin = () => {
 
     const removeFrame = async (id) => {
         try {
-            await axios.delete(`${API_BASE_URL}/content-blocks/${id}/delete/`);
+            await axios.delete(`/content-blocks/${id}/delete/`);
             setSelectedFrames(selectedFrames.filter((frame) => frame.id !== id));
         } catch (error) {
             console.error('Ошибка при удалении фрейма:', error);
@@ -100,12 +95,11 @@ const SecondAdmin = () => {
 
     const updateTextBlock = async (blockId, updatedContent, updatedStyles) => {
         try {
-            await axios.put(`${API_BASE_URL}/text-blocks/${blockId}/update/`, {
+            await axios.put(`/text-blocks/${blockId}/update/`, {
                 content: updatedContent,
                 styles: updatedStyles,
             });
 
-            // Обновляем текстовый блок в состоянии
             setSelectedFrames((prevFrames) =>
                 prevFrames.map((frame) => ({
                     ...frame,
@@ -126,7 +120,7 @@ const SecondAdmin = () => {
             const formData = new FormData();
             formData.append('image', newImageFile);
             formData.append('description', description);
-            const response = await axios.put(`${API_BASE_URL}/images/${imageId}/update/`, formData);
+            const response = await axios.put(`/images/${imageId}/update/`, formData);
 
             setSelectedFrames((prevFrames) =>
                 prevFrames.map((frame) => ({
@@ -296,7 +290,7 @@ const SecondAdmin = () => {
                                                     {frame.images.map((image) => (
                                                         <div key={image.id} className={styles.imageEditor}>
                                                             <img
-                                                                src={`${BASE_URL}${image.image}`}
+                                                                src={`/${image.image}`}
                                                                 alt="Изображение"
                                                                 className={styles.imagePreview}
                                                             />

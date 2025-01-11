@@ -4,7 +4,6 @@ import settindIcon from '../../../public/settings.svg'
 import logoutIcon from '../../../public/logout.svg'
 import {useState} from "react";
 import ModalLogout from "../ModalLogout/ModalLogout.jsx";
-import {useNavigate} from "react-router-dom";
 
 const ProfileModal = () => {
     const [open, setOpen] = useState(false)
@@ -20,8 +19,8 @@ const ProfileModal = () => {
         <div className={styles.container}>
             <div className={styles.logo}>
                 <img src={elipseAcc} alt="ellipse icon"/>
-                <div className={styles.name}>yura</div>
-                <div className={styles.mail}>yura_kuzin_03@mail.ru</div>
+                <div className={styles.name}>admin</div>
+                <div className={styles.mail}>admin@admin.admin</div>
             </div>
             <div>
                 <div className={styles.settings}>
@@ -38,7 +37,6 @@ const ProfileModal = () => {
                 isOpen={open}
                 onClose={handleCloseModal}
             />
-
         </div>
     );
 };

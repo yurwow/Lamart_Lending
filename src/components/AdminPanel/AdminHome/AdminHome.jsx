@@ -15,7 +15,7 @@ const AdminHome = () => {
     const [username, setUsername] = useState("");
     const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
-    const API_URL = "http://51.250.75.40:8000/api/"
+    // const API_URL = "http://51.250.75.40:8000/api/"
     const clickMenu = () => {
         setOpenMenu((prev) => !prev);
     };
@@ -24,56 +24,53 @@ const AdminHome = () => {
         setOpen((prev) => !prev);
     };
 
-    // Обновление access токена
     const refreshAccessToken = async () => {
         try {
-            const refreshToken = localStorage.getItem("refreshToken"); // Забираем токен из localStorage
+            const refreshToken = localStorage.getItem("refreshToken");
             if (!refreshToken) {
                 throw new Error("Refresh Token отсутствует.");
             }
 
             const response = await axios.post(
-                `${API_URL}auth/refresh`,
+                `/auth/refresh`,
                 {
-                    refresh_token: refreshToken // Передаем токен в теле запроса
+                    refresh_token: refreshToken
                 },
                 {
                     withCredentials: false,
                     headers: {
-                        Authorization: `Bearer ${refreshToken}`, // Или в заголовке, если API требует
+                        Authorization: `Bearer ${refreshToken}`,
                         "Content-Type": "application/json"
                     }
                 }
             );
 
-            const { access } = response.data; // Новый access токен
-            localStorage.setItem("accessToken", access); // Сохраняем новый токен в localStorage
+            const { access } = response.data;
+            localStorage.setItem("accessToken", access);
             return access;
         } catch (error) {
             console.error("Ошибка обновления токена:", error.response?.data || error.message);
-            // navigate("/login"); // Перенаправляем на логин, если необходимо
+            // navigate("/login");
             return null;
         }
     };
 
 
-    // Получение данных пользователя
     const fetchUserData = async () => {
         try {
-            // Получаем токен из localStorage
             const accessToken = localStorage.getItem("accessToken");
             if (!accessToken) {
                 throw new Error("Access Token отсутствует.");
             }
 
-            const response = await axios.get(`${API_URL}auth/user`, {
+            const response = await axios.get(`/auth/user`, {
                 headers: {
-                    Authorization: `Bearer ${accessToken}` // Добавляем токен в заголовок
+                    Authorization: `Bearer ${accessToken}`
                 },
                 withCredentials: false
             });
 
-            setUsername(response.data.username); // Устанавливаем имя пользователя
+            setUsername(response.data.username);
             console.log("Успешное получение данных пользователя");
         } catch (error) {
             console.error("Ошибка получения данных пользователя:", error);
@@ -81,24 +78,21 @@ const AdminHome = () => {
             // Если токен истек, обновляем его
             const newAccessToken = await refreshAccessToken();
             if (newAccessToken) {
-                localStorage.setItem("accessToken", newAccessToken); // Сохраняем новый токен
-                fetchUserData(); // Повторный вызов
+                localStorage.setItem("accessToken", newAccessToken);
+                fetchUserData();
             } else {
                 console.error("Не удалось обновить токен");
-                // navigate("/login"); // Если не удалось обновить токен, перенаправляем на логин
+                // navigate("/login");
             }
         }
     };
 
-    // Инициализация
     useEffect(() => {
         const initialize = async () => {
             try {
-                // Пытаемся получить данные пользователя
                 await fetchUserData();
             } catch (error) {
                 console.error("Ошибка авторизации:", error);
-                // Перенаправляем на страницу логина, если данные получить не удалось
                 // navigate("/login");
             }
         };

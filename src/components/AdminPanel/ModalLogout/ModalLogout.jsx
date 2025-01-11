@@ -6,7 +6,7 @@ import styles from "./ModalLogout.module.css";
 const ModalLogout = ({ isOpen, onClose }) => {
     const modalRef = useRef(null);
     const navigate = useNavigate();
-    const API_URL = "http://51.250.75.40:8000/api/";
+    // const API_URL = "http://51.250.75.40:8000/api/";
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -20,22 +20,19 @@ const ModalLogout = ({ isOpen, onClose }) => {
     }, [onClose]);
 
 
-    // Логика выхода из профиля
     const handleLogout = async () => {
         try {
             await axios.post(
-                `${API_URL}auth/logout`,
+                `/auth/logout`,
                 {},
                 { withCredentials: true }
             );
 
-            // Очистка токенов в куках
             document.cookie = "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT";
             document.cookie = "refresh_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT";
 
             console.log("Logout successful");
 
-            // Перенаправление на страницу входа
             navigate("/login");
         } catch (error) {
             console.error("Logout failed:", error);

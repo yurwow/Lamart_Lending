@@ -9,13 +9,12 @@ const ImageUpload = () => {
     const [images, setImages] = useState([]);
     const [editingImageId, setEditingImageId] = useState(null);
 
-    const BASE_URL = 'http://51.250.75.40:8000/api/';
+    // const BASE_URL = 'http://51.250.75.40:8000/api/';
 
     useEffect(() => {
         fetchImages();
     }, []);
 
-    // Получаем список изображений
     const fetchImages = async () => {
         try {
             const imagesData = await getImages();
@@ -25,16 +24,14 @@ const ImageUpload = () => {
         }
     };
 
-    // Обрабатываем изменение файла
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
             setImageFile(file);
-            setImageUrl(URL.createObjectURL(file)); // Предпросмотр изображения
+            setImageUrl(URL.createObjectURL(file));
         }
     };
 
-    // Сохраняем изображение
     const handleSaveImage = async () => {
         if (imageFile) {
             const formData = new FormData();
@@ -43,7 +40,7 @@ const ImageUpload = () => {
 
             try {
                 const newImage = await addImage(formData);
-                setImages([...images, newImage]); // Добавляем новое изображение в список
+                setImages([...images, newImage]);
                 resetForm();
             } catch (error) {
                 console.error('Error uploading image:', error);
@@ -61,7 +58,7 @@ const ImageUpload = () => {
                 const updatedImage = await updateImage(editingImageId, formData);
                 setImages(images.map((image) =>
                     image.id === editingImageId ? updatedImage : image
-                )); // Обновляем список с измененным изображением
+                ));
                 resetForm();
             } catch (error) {
                 console.error('Error updating image:', error);
@@ -71,8 +68,8 @@ const ImageUpload = () => {
 
     const handleDeleteImage = async (id) => {
         try {
-            await deleteImage(id); // Вызов API для удаления
-            setImages(images.filter((image) => image.id !== id)); // Обновляем список изображений
+            await deleteImage(id);
+            setImages(images.filter((image) => image.id !== id));
         } catch (error) {
             console.error('Error deleting image:', error);
         }
@@ -111,7 +108,7 @@ const ImageUpload = () => {
                 {images.map((image) => (
                     <li key={image.id} className={styles.imageItem}>
                         <img
-                            src={`${BASE_URL}${image.image}`}
+                            src={`/${image.image}`}
                             alt="Uploaded"
                             className={styles.uploadedImage}
                         />
