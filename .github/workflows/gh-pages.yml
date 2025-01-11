@@ -1,9 +1,11 @@
 name: GitHub Pages
 run-name: ${{ github.actor }} landing app 🚀
+
 on:
   push:
     branches:
       - master
+
 jobs:
   Build-and-Deploy:
     runs-on: ubuntu-latest
@@ -14,12 +16,10 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install npm deps
-        working-directory: ./src
+      - name: Install npm dependencies
         run: npm ci
 
       - name: Build app
-        working-directory: ./src
         run: npm run build
 
       - name: Deploy
