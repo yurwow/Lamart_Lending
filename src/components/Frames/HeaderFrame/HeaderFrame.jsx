@@ -17,8 +17,8 @@ const HeaderFrame = ({textBlocks, scrollToForm, images, }) => {
                          alt="Landing icon"/>
 
                     <div className={styles.header_span_container}>
-                        {/*<span className={styles.header_span}>ОТКРЫТЫЕ ИДЕИ</span>*/}
-                        {textBlocks?.length > 0 && (
+                        <span className={styles.header_span}>ОТКРЫТЫЕ ИДЕИ</span>
+                        {/*{textBlocks?.length > 0 && (
                             <span
                                 style={{
                                     color: textBlocks[0].styles?.color || "#000000",
@@ -41,12 +41,12 @@ const HeaderFrame = ({textBlocks, scrollToForm, images, }) => {
                                     textBlocks[0].content || <span className={styles.header_span}>ОТКРЫТЫЕ ИДЕИ</span>
                                 )}
                             </span>
-                        )}
+                        )}*/}
                     </div>
                 </div>
                 <div className={styles.right_header_container}>
-                    {/*<a className={styles.email} href="mailto:inbox@aratrum.ru">inbox@aratrum.ru</a>*/}
-                    {textBlocks.length > 0 && (
+                    <a className={styles.email} href="mailto:inbox@aratrum.ru">inbox@aratrum.ru</a>
+                    {/*{textBlocks.length > 0 && (
                         <a
                             style={{
                                 color: textBlocks[1]?.styles?.color || "#000000",
@@ -69,14 +69,14 @@ const HeaderFrame = ({textBlocks, scrollToForm, images, }) => {
                                 textBlocks[1].content || <span className={styles.header_span}>inbox@aratrum.ru</span>
                             )}
                         </a>
-                    )}
+                    )}*/}
                     <img src={mailIcon} alt="mail"/>
                 </div>
             </header>
             <section>
                 <div className={styles.section_one}>
-                    {/*<span className={styles.h1}>ИТ-ПРОДУКТ ДЛЯ ПОДАЧИ ПРЕДЛОЖЕНИЙ</span>*/}
-                    {textBlocks.length > 0 && (
+                    <span className={styles.h1}>ИТ-ПРОДУКТ ДЛЯ ПОДАЧИ ПРЕДЛОЖЕНИЙ</span>
+                    {/*{textBlocks.length > 0 && (
                         <span
                             style={{
                                 color: textBlocks[2].styles.color || "#000000",
@@ -101,9 +101,9 @@ const HeaderFrame = ({textBlocks, scrollToForm, images, }) => {
                                     <span className={styles.header_span}>ИТ-ПРОДУКТ ДЛЯ ПОДАЧИ ПРЕДЛОЖЕНИЙ</span>
                                 )}
                             </span>
-                    )}
-                    {/*<span className={styles.span}>ПО УЛУЧШЕНИЮ ПРОЦЕССОВ В КОМПАНИИ</span>*/}
-                    {textBlocks.length > 0 && (
+                    )}*/}
+                    <span className={styles.span}>ПО УЛУЧШЕНИЮ ПРОЦЕССОВ В КОМПАНИИ</span>
+                    {/*{textBlocks.length > 0 && (
                         <span
                             style={{
                                 color: textBlocks[3].styles.color || "#000000",
@@ -128,7 +128,7 @@ const HeaderFrame = ({textBlocks, scrollToForm, images, }) => {
                                     <span className={styles.header_span}>ПО УЛУЧШЕНИЮ ПРОЦЕССОВ В КОМПАНИИ</span>
                                 )}
                             </span>
-                    )}
+                    )}*/}
                     <span className={styles.section_one_span}>Информационная система, разработанная для сбора, оценки и управления предложениями сотрудников по оптимизации различных процессов в компании</span>
                     <Button onClick={scrollToForm} text="ПОЛУЧИТЬ ДЕМОДОСТУП"/>
                 </div>
