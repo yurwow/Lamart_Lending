@@ -1,117 +1,155 @@
 import { useState, useEffect } from 'react';
-import { getTextBlocks, updateTextBlock } from '../services/api';
+import { deleteTextBlock, getTextBlocks, updateTextBlock } from '../services/api';
+import styles from './EditTextBlock.module.css';
 
 function EditTextBlock() {
     const [textBlocks, setTextBlocks] = useState([]);
     const [selectedBlock, setSelectedBlock] = useState(null);
     const [content, setContent] = useState('');
-    const [color, setColor] = useState('#000000');
-    const [fontSize, setFontSize] = useState(14);
-    const [fontFamily, setFontFamily] = useState('Arial');
-    const [fontWeight, setFontWeight] = useState('normal');
-    const [fontStyle, setFontStyle] = useState('normal');
-    const [lineHeight, setLineHeight] = useState(1.5);
-    const [textAlign, setTextAlign] = useState('left');
-    const [listType, setListType] = useState('none');
-    const [hyperlink, setHyperlink] = useState('');
+    const [blockStyles, setBlockStyles] = useState({
+        color: '#000000',
+        fontSize: '14px',
+        fontFamily: 'Arial',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        lineHeight: 1.5,
+        textAlign: 'left',
+        listType: 'none',
+        hyperlink: '',
+    });
 
     useEffect(() => {
-        // Загружаем текстовые блоки при загрузке компонента
         getTextBlocks().then(setTextBlocks);
     }, []);
 
     const handleSelectBlock = (block) => {
         setSelectedBlock(block);
         setContent(block.content);
-        setColor(block.color);
-        setFontSize(block.font_size);
-        setFontFamily(block.font_family || 'Arial');
-        setFontWeight(block.font_weight || 'normal');
-        setFontStyle(block.font_style || 'normal');
-        setLineHeight(block.line_height || 1.5);
-        setTextAlign(block.text_align || 'left');
-        setListType(block.list_type || 'none');
+        setBlockStyles(block.styles || {
+            color: '#000000',
+            fontSize: '14px',
+            fontFamily: 'Arial',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            lineHeight: 1.5,
+            textAlign: 'left',
+            listType: 'none',
+            hyperlink: '',
+        });
+    };
+
+    const handleStyleChange = (key, value) => {
+        setBlockStyles((prevStyles) => ({
+            ...prevStyles,
+            [key]: value,
+        }));
     };
 
     const handleSaveChanges = () => {
         if (selectedBlock) {
             const updatedData = {
                 content,
-                color,
-                font_size: fontSize,
-                font_family: fontFamily,
-                font_weight: fontWeight,
-                font_style: fontStyle,
-                line_height: lineHeight,
-                text_align: textAlign,
-                list_type: listType,
-                hyperlink
+                styles: blockStyles,
             };
-            updateTextBlock(selectedBlock.id, updatedData).then(updatedBlock => {
-                setTextBlocks(textBlocks.map(block => (block.id === updatedBlock.id ? updatedBlock : block)));
+            updateTextBlock(selectedBlock.id, updatedData).then((updatedBlock) => {
+                setTextBlocks(
+                    textBlocks.map((block) =>
+                        block.id === updatedBlock.id ? updatedBlock : block
+                    )
+                );
                 setSelectedBlock(null);
-                setContent('');
-                setColor('#000000');
-                setFontSize(14);
-                setFontFamily('Arial');
-                setFontWeight('normal');
-                setFontStyle('normal');
-                setLineHeight(1.5);
-                setTextAlign('left');
-                setListType('none');
-                setHyperlink('');
+                resetForm();
             });
         }
     };
 
+    const resetForm = () => {
+        setContent('');
+        setBlockStyles({
+            color: '#000000',
+            fontSize: '14px',
+            fontFamily: 'Arial',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            lineHeight: 1.5,
+            textAlign: 'left',
+            listType: 'none',
+            hyperlink: '',
+        });
+    };
+
+    const handleDeleteBlock = async (id) => {
+        try {
+            await deleteTextBlock(id);
+            setTextBlocks(textBlocks.filter((block) => block.id !== id));
+            if (selectedBlock?.id === id) {
+                setSelectedBlock(null);
+            }
+        } catch (error) {
+            console.error('Error deleting text block:', error);
+        }
+    };
+
     return (
-        <div>
-            <h2>Edit Text Block</h2>
-            <div>
-                <h3>Select a Text Block to Edit</h3>
-                <ul>
-                    {textBlocks.map(block => (
-                        <li key={block.id}>
-                            <button onClick={() => handleSelectBlock(block)}>
-                                {block.content.slice(0, 20)}... {/* Preview of content */}
+        <div className={styles.container}>
+            <h2 className={styles.title}>Изменить текстовый блок</h2>
+            <div className={styles.listContainer}>
+                <h3 className={styles.subtitle}>Выберите блок для редактирования</h3>
+                <ul className={styles.blockList}>
+                    {textBlocks.map((block) => (
+                        <li key={block.id} className={styles.blockItem}>
+                            <button
+                                className={styles.selectButton}
+                                onClick={() => handleSelectBlock(block)}
+                            >
+                                {block.content.slice(0, 20)}...
+                            </button>
+                            <button
+                                className={styles.deleteButton}
+                                onClick={() => handleDeleteBlock(block.id)}
+                            >
+                                Удалить
                             </button>
                         </li>
                     ))}
                 </ul>
             </div>
-
             {selectedBlock && (
-                <div>
-                    <h3>Editing Content</h3>
-                    <label>
+                <div className={styles.editorContainer}>
+                    <h3 className={styles.subtitle}>Редактирование</h3>
+                    <label className={styles.label}>
                         Content:
                         <textarea
+                            className={styles.textarea}
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
                         />
                     </label>
-                    <label>
+                    <label className={styles.label}>
                         Text Color:
                         <input
                             type="color"
-                            value={color}
-                            onChange={(e) => setColor(e.target.value)}
+                            value={blockStyles.color}
+                            onChange={(e) => handleStyleChange('color', e.target.value)}
+                            className={styles.input}
                         />
                     </label>
-                    <label>
+                    <label className={styles.label}>
                         Font Size:
                         <input
                             type="number"
-                            value={fontSize}
-                            onChange={(e) => setFontSize(parseInt(e.target.value))}
+                            value={parseInt(blockStyles.fontSize)}
+                            onChange={(e) => handleStyleChange('fontSize', `${e.target.value}px`)}
                             min="1"
+                            className={styles.input}
                         />
                     </label>
-                    <label>
+                    <label className={styles.label}>
                         Font Family:
                         <select
-                            value={fontFamily}
-                            onChange={(e) => setFontFamily(e.target.value)}
+                            value={blockStyles.fontFamily}
+                            onChange={(e) => handleStyleChange('fontFamily', e.target.value)}
+                            className={styles.select}
                         >
                             <option value="Poppins">Poppins</option>
                             <option value="Montserrat Alternates">Montserrat Alternates</option>
@@ -123,11 +161,12 @@ function EditTextBlock() {
                             <option value="Tahoma">Tahoma</option>
                         </select>
                     </label>
-                    <label>
+                    <label className={styles.label}>
                         Font Weight:
                         <select
-                            value={fontWeight}
-                            onChange={(e) => setFontWeight(e.target.value)}
+                            value={blockStyles.fontWeight}
+                            onChange={(e) => handleStyleChange('fontWeight', e.target.value)}
+                            className={styles.select}
                         >
                             <option value="normal">Normal</option>
                             <option value="bold">Bold</option>
@@ -135,32 +174,35 @@ function EditTextBlock() {
                             <option value="bolder">Bolder</option>
                         </select>
                     </label>
-                    <label>
+                    <label className={styles.label}>
                         Font Style:
                         <select
-                            value={fontStyle}
-                            onChange={(e) => setFontStyle(e.target.value)}
+                            value={blockStyles.fontStyle}
+                            onChange={(e) => handleStyleChange('fontStyle', e.target.value)}
+                            className={styles.select}
                         >
                             <option value="normal">Normal</option>
                             <option value="italic">Italic</option>
                             <option value="oblique">Oblique</option>
                         </select>
                     </label>
-                    <label>
+                    <label className={styles.label}>
                         Line Height:
                         <input
                             type="number"
                             step="0.1"
-                            value={lineHeight}
-                            onChange={(e) => setLineHeight(parseFloat(e.target.value))}
+                            value={blockStyles.lineHeight}
+                            onChange={(e) => handleStyleChange('lineHeight', parseFloat(e.target.value))}
                             min="1"
+                            className={styles.input}
                         />
                     </label>
-                    <label>
+                    <label className={styles.label}>
                         Text Align:
                         <select
-                            value={textAlign}
-                            onChange={(e) => setTextAlign(e.target.value)}
+                            value={blockStyles.textAlign}
+                            onChange={(e) => handleStyleChange('textAlign', e.target.value)}
+                            className={styles.select}
                         >
                             <option value="left">Left</option>
                             <option value="center">Center</option>
@@ -168,27 +210,31 @@ function EditTextBlock() {
                             <option value="justify">Justify</option>
                         </select>
                     </label>
-                    <label>
+                    <label className={styles.label}>
                         List Type:
                         <select
-                            value={listType}
-                            onChange={(e) => setListType(e.target.value)}
+                            value={blockStyles.listType}
+                            onChange={(e) => handleStyleChange('listType', e.target.value)}
+                            className={styles.select}
                         >
                             <option value="none">None</option>
                             <option value="ordered">Ordered</option>
                             <option value="unordered">Unordered</option>
                         </select>
                     </label>
-                    <label>
+                    <label className={styles.label}>
                         Add Hyperlink:
                         <input
                             type="text"
-                            value={hyperlink}
+                            value={blockStyles.hyperlink}
                             placeholder="Enter URL"
-                            onChange={(e) => setHyperlink(e.target.value)}
+                            onChange={(e) => handleStyleChange('hyperlink', e.target.value)}
+                            className={styles.input}
                         />
                     </label>
-                    <button onClick={handleSaveChanges}>Save Changes</button>
+                    <button className={styles.saveButton} onClick={handleSaveChanges}>
+                        Сохранить изменения
+                    </button>
                 </div>
             )}
         </div>

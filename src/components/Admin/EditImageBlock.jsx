@@ -1,15 +1,28 @@
-import { useState } from 'react';
-import { addImage, getImages } from '../services/api';
+import { useEffect, useState } from 'react';
+import { addImage, deleteImage, getImages, updateImage } from '../services/api';
+import styles from './EditImageBlock.module.css';
 
 const ImageUpload = () => {
     const [imageFile, setImageFile] = useState(null);
     const [imageUrl, setImageUrl] = useState('');
+    const [description, setDescription] = useState('');
     const [images, setImages] = useState([]);
+    const [editingImageId, setEditingImageId] = useState(null);
+
+    const BASE_URL = 'http://51.250.75.40:8000/api/';
+
+    useEffect(() => {
+        fetchImages();
+    }, []);
 
     // Получаем список изображений
     const fetchImages = async () => {
-        const imagesData = await getImages();
-        setImages(imagesData);
+        try {
+            const imagesData = await getImages();
+            setImages(imagesData);
+        } catch (error) {
+            console.error('Error fetching images:', error);
+        }
     };
 
     // Обрабатываем изменение файла
@@ -26,30 +39,98 @@ const ImageUpload = () => {
         if (imageFile) {
             const formData = new FormData();
             formData.append('image', imageFile);
+            formData.append('description', description);
 
             try {
                 const newImage = await addImage(formData);
                 setImages([...images, newImage]); // Добавляем новое изображение в список
-                setImageFile(null);
-                setImageUrl('');
+                resetForm();
             } catch (error) {
                 console.error('Error uploading image:', error);
             }
         }
     };
 
-    return (
-        <div>
-            <h3>Upload Image</h3>
-            <input type="file" onChange={handleImageChange} />
-            {imageUrl && <img src={imageUrl} alt="Preview" style={{ width: '200px', marginTop: '10px' }} />}
-            <button onClick={handleSaveImage}>Save Image</button>
+    const handleEditImage = async () => {
+        if (imageFile && editingImageId) {
+            const formData = new FormData();
+            formData.append('image', imageFile);
+            formData.append('description', description);
 
-            <h4>Uploaded Images</h4>
-            <ul>
+            try {
+                const updatedImage = await updateImage(editingImageId, formData);
+                setImages(images.map((image) =>
+                    image.id === editingImageId ? updatedImage : image
+                )); // Обновляем список с измененным изображением
+                resetForm();
+            } catch (error) {
+                console.error('Error updating image:', error);
+            }
+        }
+    };
+
+    const handleDeleteImage = async (id) => {
+        try {
+            await deleteImage(id); // Вызов API для удаления
+            setImages(images.filter((image) => image.id !== id)); // Обновляем список изображений
+        } catch (error) {
+            console.error('Error deleting image:', error);
+        }
+    };
+
+    const resetForm = () => {
+        setImageFile(null);
+        setImageUrl('');
+        setDescription('');
+        setEditingImageId(null);
+    };
+
+    console.log("images", images);
+    return (
+        <div className={styles.container}>
+            <h3 className={styles.title}>Загрузить изображение</h3>
+            <div className={styles.uploadSection}>
+                <input type="file" onChange={handleImageChange} className={styles.fileInput} />
+                <textarea
+                    placeholder="Введите описание изображения"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className={styles.descriptionInput}
+                />
+                {imageUrl && <img src={imageUrl} alt="Preview" className={styles.previewImage} />}
+                <button
+                    onClick={editingImageId ? handleEditImage : handleSaveImage}
+                    className={styles.saveButton}
+                >
+                    {editingImageId ? 'Заменить изображение' : 'Сохранить изображение'}
+                </button>
+            </div>
+
+            <h4 className={styles.subtitle}>Загруженные изображения</h4>
+            <ul className={styles.imageList}>
                 {images.map((image) => (
-                    <li key={image.id}>
-                        <img src={image.url} alt="Uploaded" style={{ width: '100px', margin: '5px' }} />
+                    <li key={image.id} className={styles.imageItem}>
+                        <img
+                            src={`${BASE_URL}${image.image}`}
+                            alt="Uploaded"
+                            className={styles.uploadedImage}
+                        />
+                        <p className={styles.imageDescription}>{image.description}</p>
+                        <button
+                            onClick={() => {
+                                setEditingImageId(image.id);
+                                setDescription(image.description || '');
+                            }}
+                            className={styles.editButton}
+                        >
+                            Изменить
+                        </button>
+                        <button
+                            onClick={() => handleDeleteImage(image.id)}
+                            className={styles.deleteButton}
+                        >
+                            Удалить
+                        </button>
                     </li>
                 ))}
             </ul>

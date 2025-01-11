@@ -1,0 +1,172 @@
+.adminPanel {
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f7fc;
+}
+
+.header {
+    background: #193D95;
+    height: 130px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 110px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.span {
+    font-family: Montserrat Alternates, sans-serif;
+    color: #FFFFFF;
+    width: 131px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+}
+
+.sidebar {
+    width: 300px;
+    /*height: 1100px;*/
+    background: #ffffff;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    transition: transform 0.3s ease, width 0.3s ease;
+    position: relative;
+}
+
+.sidebar.closed {
+    transform: translateX(-100%);
+    width: 0;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+    width: 300px;
+}
+
+.toggleButton {
+    position: absolute;
+    top: 10px;
+    right: -70px;
+    width: 70px;
+    height: 40px;
+    background: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.toggleButton:hover {
+    background: #0056b3;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.ul {
+    padding: 0;
+    margin: 0;
+}
+
+.frameItem {
+    padding: 15px;
+    margin-bottom: 15px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    list-style: none;
+}
+
+.frameItem:hover {
+    background: #eaeaea;
+}
+
+.framePreview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.previewImage {
+    width: 100%;
+    height: 80px;
+    background: #dfe6f3;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.contentArea {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.emptyState {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    margin-top: 50px;
+}
+
+.framesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.frameBlock {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.frameHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.deleteButton {
+    background: #ff4d4f;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.deleteButton:hover {
+    background: #ff7875;
+}
+
+.frameContent {
+    font-size: 14px;
+    color: #333;
+}
+

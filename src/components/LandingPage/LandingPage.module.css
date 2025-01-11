@@ -231,7 +231,20 @@
 .sunImage {
     width: 315px;
     height: 360px;
-    margin: -121px auto 51px auto;
+    margin: -121px 0 51px 0;
+}
+
+.sun_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon_down {
+    width: 23px;
+    margin-top: -400px;
+    margin-left: 20px;
+    /*padding-left: 40px;*/
 }
 
 .sun_text_container {
@@ -244,7 +257,7 @@
     font-size: 48px;
     font-weight: 600;
     line-height: 57.6px;
-    color: rgba(255, 221, 0, 1);
+    /*color: rgba(255, 221, 0, 1);*/
 }
 
 .sun_span {

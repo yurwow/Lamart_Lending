@@ -1,55 +1,89 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://127.0.0.1:8000/api'; // Обновленный базовый URL
+export const API_BASE_URL = 'http://51.250.75.40:8000/api';
 
-// Получение всех текстовых блоков
 export const getTextBlocks = async () => {
     const response = await axios.get(`${API_BASE_URL}/text-blocks/`);
     return response.data;
 };
 
-// Добавление нового текстового блока
+/*// Добавление нового текстового блока
 export const addTextBlock = async (data) => {
     const response = await axios.post(`${API_BASE_URL}/text-blocks/add/`, data);
     return response.data;
-};
+};*/
 
-// Обновление текстового блока по ID
 export const updateTextBlock = async (id, data) => {
     const response = await axios.put(`${API_BASE_URL}/text-blocks/${id}/update/`, data);
     return response.data;
 };
 
-// Получение всех изображений
+export const deleteTextBlock = async (id) => {
+    try {
+        const response = await axios.delete(`${API_BASE_URL}/text-blocks/${id}/delete/`);
+        return response.data;
+    } catch (error) {
+        console.error('Error deleting text block:', error);
+        throw error;
+    }
+};
+
+
 export const getImages = async () => {
     const response = await axios.get(`${API_BASE_URL}/images/`);
     return response.data;
 };
 
 // Обновление изображения по ID с использованием FormData
-export const updateImage = async (id, formData) => {
+/*export const updateImage = async (id, formData) => {
     const response = await axios.put(`${API_BASE_URL}/images/${id}/update/`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data', // Устанавливаем тип контента для файлов
         },
     });
     return response.data;
-};
+};*/
 
-// Добавление нового изображения
 export const addImage = async (formData) => {
-    const response = await axios.post(`${API_BASE_URL}/images/`, formData, {
+    const response = await axios.post(`${API_BASE_URL}/images/add/`, formData, {
         headers: {
-            'Content-Type': 'multipart/form-data', // Устанавливаем тип контента для файлов
+            'Content-Type': 'multipart/form-data',
         },
     });
     return response.data;
 };
 
-/// Отправка данных из формы
+export const updateImage = async (id, updatedFile) => {
+    try {
+        const formData = new FormData();
+        formData.append('image', updatedFile);
+
+        const response = await axios.put(`${API_BASE_URL}/images/${id}/update/`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        console.error('Error updating image:', error);
+        throw error;
+    }
+};
+
+export const deleteImage = async (id) => {
+    try {
+        const response = await axios.delete(`${API_BASE_URL}/images/${id}/delete/`);
+        return response.data;
+    } catch (error) {
+        console.error('Error deleting image:', error);
+        throw error;
+    }
+};
+
 export const submitApplication = async (data) => {
     try {
-        const response = await axios.post('http://127.0.0.1:8000/api/submit-application/', data, {
+        const response = await axios.post(`${API_BASE_URL}/submit-application/`, data, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -60,5 +94,55 @@ export const submitApplication = async (data) => {
     } catch (error) {
         console.error("Error:", error);
         throw new Error("Ошибка при отправке заявки.");
+    }
+};
+
+export const getFrames = async () => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/content-blocks/`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching frames:', error);
+        throw error;
+    }
+};
+
+export const addFrame = async (frameData) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/content-blocks/add/`, frameData);
+        return response.data;
+    } catch (error) {
+        console.error('Error adding frame:', error);
+        throw error;
+    }
+};
+
+// export const getFrameById = async (id) => {
+//     try {
+//         const response = await axios.get(`${API_BASE_URL}/content-blocks/${id}/`);
+//         return response.data;
+//     } catch (error) {
+//         console.error(`Error fetching frame with ID ${id}:`, error);
+//         throw error;
+//     }
+// };
+
+export const updateFrame = async (id, updatedData) => {
+    try {
+        const response = await axios.put(`${API_BASE_URL}/content-blocks/${id}/update/`, updatedData);
+        return response.data;
+    } catch (error) {
+        console.error(`Error updating frame with ID ${id}:`, error);
+        throw error;
+    }
+};
+
+export const deleteFrame = async (id) => {
+    try {
+        const response = await axios.delete(`${API_BASE_URL}/content-blocks/${id}/delete/`);
+        return response.data;
+    } catch (error) {
+        console.error('Error deleting frame:', error);
+        throw error;
     }
 };
