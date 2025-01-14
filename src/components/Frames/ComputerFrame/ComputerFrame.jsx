@@ -1,4 +1,4 @@
-import styles from "../../LandingPage/LandingPage.module.css";
+import styles from "./ComputerFrame.module.css";
 import megapolic from "../../../public/megapolis.svg";
 import monitorIcon from "../../../public/Celestial-Blue.svg";
 

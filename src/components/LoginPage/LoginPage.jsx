@@ -11,7 +11,7 @@ const LoginPage = () => {
     const [loading, setLoading] = useState(false);
     const focusRef = useRef(null);
     const navigate = useNavigate();
-    // const API_URL = "http://51.250.75.40:8000/api/"
+    const API_URL = "http://51.250.75.40:8000/api/"
     useEffect(() => {
         focusRef.current.focus();
     }, []);
@@ -33,7 +33,7 @@ const LoginPage = () => {
 
         try {
             const response = await axios.post(
-                `/api/auth/login`,
+                `${API_URL}auth/login`,
                 { email, password },
                 {
                     withCredentials: false,

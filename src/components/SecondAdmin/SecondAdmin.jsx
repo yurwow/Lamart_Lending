@@ -36,7 +36,8 @@ const frameTemplates = [
     { id: 9, name: 'Footer', description: 'Футер страницы' },
 ];
 
-// const BASE_URL = 'http://51.250.75.40:8000/api';
+const BASE_URL = 'http://51.250.75.40:8000/api';
+const URL = 'http://51.250.75.40:8000/';
 
 const SecondAdmin = () => {
     const [selectedFrames, setSelectedFrames] = useState([]);
@@ -48,9 +49,9 @@ const SecondAdmin = () => {
         const fetchFramesAndData = async () => {
             setIsLoading(true);
             try {
-                const framesResponse = await axios.get(`/api/content-blocks/`);
-                const textBlocksResponse = await axios.get(`/api/text-blocks/`);
-                const imagesResponse = await axios.get(`/api/images/`);
+                const framesResponse = await axios.get(`${BASE_URL}/content-blocks/`);
+                const textBlocksResponse = await axios.get(`${BASE_URL}/text-blocks/`);
+                const imagesResponse = await axios.get(`${BASE_URL}/images/`);
 
                 const framesWithData = framesResponse.data.map((frame) => ({
                     ...frame,
@@ -77,7 +78,7 @@ const SecondAdmin = () => {
                 order: Date.now(),
                 content: frame.description,
             };
-            const response = await axios.post(`/api/content-blocks/add/`, newFrame);
+            const response = await axios.post(`${BASE_URL}/content-blocks/add/`, newFrame);
             setSelectedFrames([...selectedFrames, response.data]);
         } catch (error) {
             console.error('Ошибка при добавлении фрейма:', error);
@@ -86,7 +87,7 @@ const SecondAdmin = () => {
 
     const removeFrame = async (id) => {
         try {
-            await axios.delete(`/api/content-blocks/${id}/delete/`);
+            await axios.delete(`${BASE_URL}/content-blocks/${id}/delete/`);
             setSelectedFrames(selectedFrames.filter((frame) => frame.id !== id));
         } catch (error) {
             console.error('Ошибка при удалении фрейма:', error);
@@ -95,7 +96,7 @@ const SecondAdmin = () => {
 
     const updateTextBlock = async (blockId, updatedContent, updatedStyles) => {
         try {
-            await axios.put(`/api/text-blocks/${blockId}/update/`, {
+            await axios.put(`${BASE_URL}/text-blocks/${blockId}/update/`, {
                 content: updatedContent,
                 styles: updatedStyles,
             });
@@ -120,7 +121,7 @@ const SecondAdmin = () => {
             const formData = new FormData();
             formData.append('image', newImageFile);
             formData.append('description', description);
-            const response = await axios.put(`/api/images/${imageId}/update/`, formData);
+            const response = await axios.put(`${BASE_URL}/images/${imageId}/update/`, formData);
 
             setSelectedFrames((prevFrames) =>
                 prevFrames.map((frame) => ({
@@ -290,7 +291,7 @@ const SecondAdmin = () => {
                                                     {frame.images.map((image) => (
                                                         <div key={image.id} className={styles.imageEditor}>
                                                             <img
-                                                                src={`/api/${image.image}`}
+                                                                src={`${URL}${image.image}`}
                                                                 alt="Изображение"
                                                                 className={styles.imagePreview}
                                                             />
@@ -300,7 +301,7 @@ const SecondAdmin = () => {
                                                                     updateImage(image.id, e.target.files[0], image.description)
                                                                 }
                                                             />
-                                                            <p>{image.description}</p>
+                                                            {/*<p>{image.description}</p>*/}
                                                         </div>
                                                     ))}
                                                 </div>

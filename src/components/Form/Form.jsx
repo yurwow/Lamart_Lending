@@ -12,12 +12,6 @@ const Form = ({classNameBtn}) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-        /*const data = {
-            full_name: name,
-            email: email,
-            organization: company,
-            message: message
-        }*/
         const data = {
             full_name: name,
             phone_number: message,

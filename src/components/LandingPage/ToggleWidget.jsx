@@ -13,7 +13,7 @@ const ToggleWidget = ({questions, answer}) => {
             <div className={styles.question_widget}>
                 <div className={styles.question_widget_text}>{questions}</div>
                 <button onClick={handleClick} className={styles.question_widget_btn}>
-                    <img src={plusIcon} alt="plus icon"/>
+                    <img className={styles.plus} src={plusIcon} alt="plus icon"/>
                 </button>
             </div>
             {showText &&

@@ -6,7 +6,7 @@ import styles from "./ModalLogout.module.css";
 const ModalLogout = ({ isOpen, onClose }) => {
     const modalRef = useRef(null);
     const navigate = useNavigate();
-    // const API_URL = "http://51.250.75.40:8000/api/";
+    const API_URL = "http://51.250.75.40:8000/api/";
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -23,7 +23,7 @@ const ModalLogout = ({ isOpen, onClose }) => {
     const handleLogout = async () => {
         try {
             await axios.post(
-                `/api/auth/logout`,
+                `${API_URL}auth/logout`,
                 {},
                 { withCredentials: true }
             );

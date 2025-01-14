@@ -15,7 +15,7 @@ const AdminHome = () => {
     const [username, setUsername] = useState("");
     const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
-    // const API_URL = "http://51.250.75.40:8000/api/"
+    const API_URL = "http://51.250.75.40:8000/api/"
     const clickMenu = () => {
         setOpenMenu((prev) => !prev);
     };
@@ -32,7 +32,7 @@ const AdminHome = () => {
             }
 
             const response = await axios.post(
-                `/api/auth/refresh`,
+                `${API_URL}auth/refresh`,
                 {
                     refresh_token: refreshToken
                 },
@@ -63,7 +63,7 @@ const AdminHome = () => {
                 throw new Error("Access Token отсутствует.");
             }
 
-            const response = await axios.get(`/api/auth/user`, {
+            const response = await axios.get(`${API_URL}auth/user`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 },
@@ -75,7 +75,6 @@ const AdminHome = () => {
         } catch (error) {
             console.error("Ошибка получения данных пользователя:", error);
 
-            // Если токен истек, обновляем его
             const newAccessToken = await refreshAccessToken();
             if (newAccessToken) {
                 localStorage.setItem("accessToken", newAccessToken);
@@ -112,7 +111,7 @@ const AdminHome = () => {
                     <div className={styles.span}>ОТКРЫТЫЕ ИДЕИ</div>
                 </div>
                 <div className={styles.logo} onClick={clickMenu}>
-                    <span className={styles.name}>{username || "yura"}</span>
+                    <span className={styles.name}>{username || "admin"}</span>
                     <img src={ellipse} alt="user icon" />
                 </div>
             </header>

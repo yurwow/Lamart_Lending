@@ -43,3 +43,40 @@
     padding: 0 0 31px 50px;
 }
 
+@media (max-width: 431px) {
+    .question_widget_container {
+        background: rgba(240, 245, 255, 1);
+        border-radius: 20px;
+        width: 350px;
+    }
+    .question_widget_text {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14.4px;
+        text-align: left;
+        width: 270px;
+        padding: 23px 0 23px 30px;
+    }
+    .question_widget_btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 16px;
+    }
+    .plus {
+        width: 15px;
+    }
+    .question_widget_answer {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14.4px;
+        text-align: left;
+        width: 350px;
+        padding: 0 0 23px 30px;
+    }
+}

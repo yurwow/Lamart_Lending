@@ -1,4 +1,4 @@
-.header {
+/*.header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -92,11 +92,11 @@
     line-height: 28px;
     text-align: center;
     color: rgba(255, 255, 255, 1);
-}
+}*/
 
 
 
-.section_two {
+/*.section_two {
     margin-top: 225px;
     display: flex;
     justify-content: center;
@@ -132,14 +132,14 @@
 }
 
 .monitorIcon {
-    /*width: 1450px;*/
+    !*width: 1450px;*!
 }
 
 .megapolis_icon {
-    /*width: 320px;*/
-}
+    !*width: 320px;*!
+}*/
 
-.section_three {
+/*.section_three {
     margin-top: 225px;
 }
 
@@ -157,9 +157,9 @@
     display: flex;
     gap: 35px;
     justify-content: center;
-}
+}*/
 
-.section_four {
+/*.section_four {
     margin-top: 226px;
     display: flex;
     justify-content: center;
@@ -168,7 +168,7 @@
 
 .puzzle_container {
     height: 270px;
-    /*width: 440px;*/
+    !*width: 440px;*!
     overflow: hidden;
     position: relative;
 }
@@ -183,9 +183,9 @@
     padding-left: 85px;
     display: flex;
     gap: 132px;
-}
+}*/
 
-.section_form_background {
+/*.section_form_background {
     background-image: url("../../public/backgroundForm.svg");
     height: 1392px;
     margin-top: 226px;
@@ -244,7 +244,7 @@
     width: 23px;
     margin-top: -400px;
     margin-left: 20px;
-    /*padding-left: 40px;*/
+    !*padding-left: 40px;*!
 }
 
 .sun_text_container {
@@ -257,7 +257,7 @@
     font-size: 48px;
     font-weight: 600;
     line-height: 57.6px;
-    /*color: rgba(255, 221, 0, 1);*/
+    !*color: rgba(255, 221, 0, 1);*!
 }
 
 .sun_span {
@@ -266,8 +266,8 @@
     line-height: 24px;
     text-align: center;
     margin-top: 51px;
-}
-
+}*/
+/*
 .section_clients {
     width: 1410px;
     margin: 226px auto 0 auto;
@@ -307,9 +307,9 @@
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
     color: rgba(30, 77, 194, 1);
-}
+}*/
 
-.section_reviews {
+/*.section_reviews {
     margin-top: 226px;
 }
 
@@ -342,9 +342,9 @@
 
 .section_reviews_widget_container::-webkit-scrollbar {
     width: 0;
-}
+}*/
 
-.section_faq {
+/*.section_faq {
     margin-top: 226px;
 }
 
@@ -374,9 +374,9 @@
 .faq_speaker_img {
     display: flex;
     align-items: center;
-}
+}*/
 
-.footer {
+/*.footer {
     background-image: url("../../public/footerBackground.svg");
     margin-top: 212px;
     height: 378px;
@@ -409,4 +409,4 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
+}*/

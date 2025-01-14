@@ -1,4 +1,4 @@
-import styles from "../../LandingPage/LandingPage.module.css";
+import styles from "./ReviewsFrame.module.css"
 import ScrollWidget from "../../LandingPage/ScrollWidget.jsx";
 
 const ReviewsFrame = () => {

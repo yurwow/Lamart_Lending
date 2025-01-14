@@ -1,11 +1,12 @@
-import styles from "../../LandingPage/LandingPage.module.css";
+import styles from "./ClientsFrame.module.css";
 import clickIcon from "../../../public/clickIcon.svg";
 
 const ClientsFrame = () => {
     return (
         <section className={styles.section_clients}>
-            <span className={styles.section_clients_title}>КЛИЕНТЫ, КОТОРЫЕ ВЫБРАЛИ</span>
-            <div className={styles.section_clients_title} style={{color: '#1E4DC2'}}>ОТКРЫТЫЕ ИДЕИ</div>
+            <span className={styles.section_clients_title}>КЛИЕНТЫ, КОТОРЫЕ ВЫБРАЛИ
+                <p   style={{color: '#1E4DC2'}}>ОТКРЫТЫЕ ИДЕИ</p>
+            </span>
             <div className={styles.section_clients_container}>
                 <div className={styles.section_clients_click}>
                     <img src={clickIcon} alt="click icon"/>

@@ -1,5 +1,5 @@
 import {forwardRef} from 'react';
-import styles from "../../LandingPage/LandingPage.module.css";
+import styles from "./FormFrame.module.css";
 import Form from "../../Form/Form.jsx";
 import lamp from '../../../public/lamp.svg'
 import iconDown from '../../../public/iconDown.svg'
@@ -13,7 +13,7 @@ const FormFrame = forwardRef((props, ref) => {
                         <span
                             className={styles.form_title}>НАСТРОИМ ОНЛАЙН-ПЛАТФОРМУ ОТКРЫТЫЕ ИДЕИ ПОД ВАШИ ЗАДАЧИ</span>
                         <p className={styles.form_p}>Ответим на вопросы, внедрим платформу, импортируем данные, научим
-                            решать любые задачи в одном окне браузера и получать аналитику с помощью отчетов</p>
+                            решать любые задачи в<br/> одном окне браузера и получать аналитику с помощью отчетов</p>
                         <Form classNameBtn={styles.btn}/>
                     </div>
                 </div>

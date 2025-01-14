@@ -11,14 +11,15 @@ const ScrollWidget = () => {
             </p>
             <div className={styles.scroll_widget_container}>
                 <div className={styles.scroll_widget_person}>
-                    <img src={girlIcon} alt="girl icon"/>
+                    <img className={styles.avatar} src={girlIcon} alt="girl icon"/>
                     <div>
                         <span className={styles.strong}>Черепанова Полина Сергеевна</span>
                         <p className={styles.p}>Руководитель отдела автоматизации</p>
                     </div>
                 </div>
-                <img src={clickIcon} alt="click icon"/>
+                <img className={styles.icon} src={clickIcon} alt="click icon"/>
             </div>
+
         </div>
     );
 };

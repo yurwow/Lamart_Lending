@@ -1,4 +1,4 @@
-import styles from "../../LandingPage/LandingPage.module.css";
+import styles from "./PrivilegeFrame.module.css"
 import Widget from "../../LandingPage/Widget.jsx";
 import widgetIconFirst from "../../../public/widgetIconFirst.svg";
 import firstIconHover from "../../../public/firstIconHover.svg";
@@ -10,7 +10,7 @@ import thirdIconHover from "../../../public/thirdIconHover.svg";
 const PrivilegeFrame = () => {
     return (
         <section className={styles.section_three}>
-            <span className={styles.h3}>ПРЕИМУЩЕСТВА УПРАВЛЕНИЯ ПРЕДЛОЖЕНИЯМИ</span>
+            <span className={styles.h3}>ПЛЮСЫ УПРАВЛЕНИЯ ПРЕДЛОЖЕНИЯМИ</span>
             <div className={styles.section_three_widgets}>
                 <Widget src={widgetIconFirst}
                         srcHover={firstIconHover}

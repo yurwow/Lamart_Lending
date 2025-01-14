@@ -1,4 +1,4 @@
-import styles from "../../LandingPage/LandingPage.module.css";
+import styles from "./WhyUsFrame.module.css";
 import puzzleIcon from "../../../public/puzzle.svg";
 import SecondWidget from "../../LandingPage/SecondWidget.jsx";
 
@@ -14,7 +14,7 @@ const WhyUsFrame = () => {
                     <img src={puzzleIcon} alt="puzzle icon"/>
                 </div>
             </section>
-            <section>
+            <section className={styles.widget_container}>
                 <div className={styles.section_four_widgets}>
                     <SecondWidget title="Функции"
                                   text="Платформа включает систему сбора и управления инициативами сотрудников, BI-аналитики и базу знаний"/>

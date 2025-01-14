@@ -9,7 +9,7 @@ const ImageUpload = () => {
     const [images, setImages] = useState([]);
     const [editingImageId, setEditingImageId] = useState(null);
 
-    // const BASE_URL = 'http://51.250.75.40:8000/api/';
+    const BASE_URL = 'http://51.250.75.40:8000/';
 
     useEffect(() => {
         fetchImages();
@@ -108,7 +108,7 @@ const ImageUpload = () => {
                 {images.map((image) => (
                     <li key={image.id} className={styles.imageItem}>
                         <img
-                            src={`/api/${image.image}`}
+                            src={`${BASE_URL}${image.image}`}
                             alt="Uploaded"
                             className={styles.uploadedImage}
                         />

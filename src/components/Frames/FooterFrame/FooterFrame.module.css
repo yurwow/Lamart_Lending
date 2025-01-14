@@ -1,0 +1,129 @@
+.footer {
+    background-image: url("../../../public/footerBackground.svg");
+    width: 100%;
+    margin-top: 212px;
+    height: 378px;
+}
+
+.footer_container {
+    padding: 181px 0px 81px 0px;
+    display: flex;
+    justify-content: center;
+    gap: 263px;
+}
+
+.left_footer {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.footer_span {
+    color: rgba(255, 255, 255, 1);
+    font-family: Montserrat Alternates, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    opacity: 0.7;
+    margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 263px;
+}
+
+.footer_center {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.header_span_container {
+    width: 180px;
+}
+
+.header_span {
+    font-family: "Montserrat Alternates", serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 1)
+}
+
+.email {
+    color: rgba(255, 255, 255, 1);
+    font-family: Montserrat Alternates, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28.8px;
+    text-align: left;
+    text-decoration-line: none;
+}
+
+@media (max-width: 431px) {
+    .footer {
+        background-image: url("../../../public/footerMIni.png");
+        background-repeat: no-repeat;
+        margin-top: 100px;
+        height: 306px;
+    }
+    .footer_container {
+        padding: 100px 20px 50px 20px;
+        display: flex;
+        gap: 54px;
+    }
+    .left_footer {
+        /*padding: 0;*/
+        /*margin: 0;*/
+        display: flex;
+        gap: 7px;
+        /*align-items: center;*/
+    }
+    .icon {
+        width: 30px;
+    }
+    .header_span {
+        font-family: "Montserrat Alternates", serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 12px;
+        /*line-height: 14.4px;*/
+        color: rgba(255, 255, 255, 1);
+        word-spacing: -12px;
+    }
+    .header_span_container {
+        width: 79px;
+    }
+    .footer_span {
+        color: rgba(255, 255, 255, 1);
+        font-family: Montserrat Alternates, sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        line-height: 12px;
+        text-align: left;
+        opacity: 0.7;
+        margin-top: 10px;
+        /*width: 100px;*/
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .footer_center {
+        display: flex;
+        flex-direction: column;
+        gap: 27px;
+        margin-top: 6px;
+    }
+    .email {
+        color: rgba(255, 255, 255, 1);
+        font-family: Montserrat Alternates, sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 14.4px;
+        text-align: left;
+    }
+}

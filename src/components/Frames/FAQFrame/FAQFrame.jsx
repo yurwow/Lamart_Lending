@@ -1,4 +1,4 @@
-import styles from "../../LandingPage/LandingPage.module.css";
+import styles from "./FAQFrame.module.css"
 import ToggleWidget from "../../LandingPage/ToggleWidget.jsx";
 import speakerImg from "../../../public/speakerImg.svg";
 
@@ -20,9 +20,9 @@ const FaqFrame = () => {
                     <ToggleWidget questions="Есть ли поддержка для пользователей?"
                                   answer="Стоимость использования зависит от выбранного тарифного плана и объема использования. "/>
                 </div>
-                <div className={styles.faq_speaker_img}>
+                {/*<div className={styles.faq_speaker_img}>
                     <img src={speakerImg} alt="Speaker Icon"/>
-                </div>
+                </div>*/}
             </div>
         </section>
     );

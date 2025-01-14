@@ -62,3 +62,36 @@
 .widget_btn:hover {
     cursor: pointer;
 }
+
+@media (max-width: 431px) {
+    .widget_container {
+        background: rgba(240, 245, 255, 1);
+        /*width: 447px;*/
+        width: 350px;
+        height: 334px;
+        border-radius: 30px;
+    }
+    .widget_text_container {
+        width: 290px;
+        margin: 30px 30px 50px 30px;
+    }
+    .widget_text_container_blue {
+        width: 290px;
+        margin: 30px 30px 50px 30px;
+    }
+    .widget_title {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28.8px;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    .widget_text {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16.8px;
+        width: 270px;
+    }
+
+
+}

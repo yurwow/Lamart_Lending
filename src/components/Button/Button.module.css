@@ -14,10 +14,6 @@
     justify-content: center;
     gap: 24px;
 
-
-    /*// On click*/
-    /*// Scroll to: "Rectangle 19";*/
-    /*// Animate: Animate;*/
     animation-timing-function: ease-out;
     animation-duration: 300ms;
 
@@ -28,10 +24,33 @@
     border-radius: 50%;
     width: 10px;
     height: 10px;
-    /*margin-right: 24px;*/
-    /*margin-top: 37.5px;*/
 }
 
 .btn:hover {
     cursor: pointer;
+}
+
+@media (max-width: 431px) {
+    .btn {
+        margin-top: 30px;
+        width: 200px;
+        height: 45px;
+        border-radius: 50px;
+        border: none;
+        font-weight: 600;
+        font-size: 12px;
+        color: rgba(30, 77, 194, 1);
+        background: white;
+        box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /*gap: 24px;*/
+
+        animation-timing-function: ease-out;
+        animation-duration: 300ms;
+    }
+    .rectangle {
+        display: none;
+    }
 }
