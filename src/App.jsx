@@ -7,13 +7,8 @@ import AdminHome from "./components/AdminPanel/AdminHome/AdminHome.jsx";
 import NotFound from "./components/NotFound/NotFound.jsx";
 import ForgotPasswordPage from "./components/ForgotPasswordPage/ForgotPasswordPage.jsx";
 import SecondAdmin from "./components/SecondAdmin/SecondAdmin.jsx";
-import PrivilegeFrame from "./components/Frames/PrivilegeFrame/PrivilegeFrame.jsx";
-import WhyUsFrame from "./components/Frames/WhyUsFrame/WhyUsFrame.jsx";
-import FormFrame from "./components/Frames/FormFrame/FormFrame.jsx";
-import ClientsFrame from "./components/Frames/ClientsFrame/ClientsFrame.jsx";
-import ReviewsFrame from "./components/Frames/ReviewsFrame/ReviewsFrame.jsx";
-import FAQFrame from "./components/Frames/FAQFrame/FAQFrame.jsx";
 import FooterFrame from "./components/Frames/FooterFrame/FooterFrame.jsx";
+import Adaptive from "./components/Frames/Adaptive.jsx";
 
 function App() {
     return (
@@ -27,6 +22,7 @@ function App() {
                 <Route path="/adminpanel" element={<AdminHome/>}/>
                 <Route path="/second" element={<SecondAdmin/>}/>
                 <Route path="/header" element={<FooterFrame/>}/>
+                <Route path="/adaptive" element={<Adaptive/>}/>
                 <Route path="*" element={<NotFound/>}/>
             </Routes>
         </HashRouter>
