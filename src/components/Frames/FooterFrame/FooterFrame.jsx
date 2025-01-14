@@ -1,5 +1,5 @@
 import styles from "./FooterFrame.module.css"
-import headerIcon from "../../../public/headerIcon.svg";
+import headerIcon from "@/headerIcon.svg";
 
 const FooterFrame = () => {
     return (

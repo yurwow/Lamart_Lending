@@ -1,11 +1,11 @@
 import styles from "./PrivilegeFrame.module.css"
 import Widget from "../../LandingPage/Widget.jsx";
-import widgetIconFirst from "../../../public/widgetIconFirst.svg";
-import firstIconHover from "../../../public/firstIconHover.svg";
-import widgetIconSecond from "../../../public/widgetIconSecond.svg";
-import secondIconHover from "../../../public/secondIconHover.svg";
-import widgetIconThird from "../../../public/widgetIconThird.svg";
-import thirdIconHover from "../../../public/thirdIconHover.svg";
+import widgetIconFirst from "@/widgetIconFirst.svg";
+import firstIconHover from "@/firstIconHover.svg";
+import widgetIconSecond from "@/widgetIconSecond.svg";
+import secondIconHover from "@/secondIconHover.svg";
+import widgetIconThird from "@/widgetIconThird.svg";
+import thirdIconHover from "@/thirdIconHover.svg";
 
 const PrivilegeFrame = () => {
     return (

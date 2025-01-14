@@ -1,6 +1,6 @@
 import styles from "./FAQFrame.module.css"
 import ToggleWidget from "../../LandingPage/ToggleWidget.jsx";
-import speakerImg from "../../../public/speakerImg.svg";
+import speakerImg from "@/speakerImg.svg";
 
 const FaqFrame = () => {
     return (

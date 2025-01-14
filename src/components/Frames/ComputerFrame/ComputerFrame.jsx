@@ -1,6 +1,6 @@
 import styles from "./ComputerFrame.module.css";
-import megapolic from "../../../public/megapolis.svg";
-import monitorIcon from "../../../public/Celestial-Blue.svg";
+import megapolic from "@/megapolis.svg";
+import monitorIcon from "@/Celestial-Blue.svg";
 
 const ComputerFrame = () => {
     return (

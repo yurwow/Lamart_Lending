@@ -1,5 +1,5 @@
 import styles from "./WhyUsFrame.module.css";
-import puzzleIcon from "../../../public/puzzle.svg";
+import puzzleIcon from "@/puzzle.svg";
 import SecondWidget from "../../LandingPage/SecondWidget.jsx";
 
 const WhyUsFrame = () => {

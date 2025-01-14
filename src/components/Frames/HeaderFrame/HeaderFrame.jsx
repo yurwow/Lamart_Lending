@@ -1,6 +1,6 @@
 import styles from './HeaderFrame.module.css'
-import headerIcon from "../../../public/headerIcon.svg";
-import mailIcon from "../../../public/mail.png";
+import headerIcon from "@/headerIcon.svg";
+import mailIcon from "@/mail.png";
 import Button from "../../Button/Button.jsx";
 
 const HeaderFrame = ({textBlocks, scrollToForm, images }) => {

@@ -1,5 +1,5 @@
 import styles from "./ClientsFrame.module.css";
-import clickIcon from "../../../public/clickIcon.svg";
+import clickIcon from "@/clickIcon.svg";
 
 const ClientsFrame = () => {
     return (
