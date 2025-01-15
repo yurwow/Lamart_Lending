@@ -30,10 +30,23 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    position: relative;
+
 }
 
 .monitorIcon {
     width: 88.5vw;
+    object-fit: cover;
+    display: block;
+    position: relative;
+}
+.video {
+    width: 66vw;
+    height: 70vh;
+    object-fit: cover;
+    position: absolute;
+    top: 5%;
 }
 
 .megapolis_icon {
@@ -53,7 +66,14 @@
         width: 325px;
     }
     .monitorIcon {
-        width: 371px;
+        width: 95vw;
+    }
+    .video {
+        width: 71.5vw;
+        height: 17vh;
+        object-fit: cover;
+        position: absolute;
+        top: 5%;
     }
     .h2 {
         font-size: 24px;
@@ -70,4 +90,34 @@
         margin-bottom: 48px;
         width: 300px;
     }
+}
+
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.controlButton {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.controlButton:hover {
+    background-color: #0056b3;
+}
+
+.seekBar {
+    flex-grow: 1;
+}
+
+.timeDisplay {
+    font-size: 14px;
+    color: #333;
 }

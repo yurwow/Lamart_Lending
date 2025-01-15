@@ -20,9 +20,9 @@ const FaqFrame = () => {
                     <ToggleWidget questions="Есть ли поддержка для пользователей?"
                                   answer="Стоимость использования зависит от выбранного тарифного плана и объема использования. "/>
                 </div>
-                {/*<div className={styles.faq_speaker_img}>
+                <div className={styles.faq_speaker_img}>
                     <img src={speakerImg} alt="Speaker Icon"/>
-                </div>*/}
+                </div>
             </div>
         </section>
     );
