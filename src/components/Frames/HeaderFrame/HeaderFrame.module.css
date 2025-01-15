@@ -6,8 +6,9 @@
 
 .header_background {
     background-image: url('../../../public/Rectangle_header.svg');
-    /*background: #333333;*/
     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     height: 1031px;
 }
 
@@ -49,7 +50,6 @@
 .header_span {
     font-family: "Montserrat Alternates", serif;
     font-weight: 600;
-    font-style: normal;
     font-size: 24px;
     color: rgba(255, 255, 255, 1)
 }
@@ -60,7 +60,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /*margin: 0 auto;*/
 }
 
 .h1 {
@@ -76,17 +75,13 @@
 }
 
 .span {
-    /*background: rgba(30, 77, 194, 1);*/
     color: rgba(255, 255, 255, 1);
-    /*border-radius: 20px;*/
-    /*padding: 6px 37px;*/
     font-size: 64px;
     font-weight: 600;
     line-height: 76.8px;
 }
 
 .section_one_span {
-    /*width: 900px;*/
     margin-top: 60px;
     font-size: 20px;
     font-weight: 500;
@@ -98,8 +93,10 @@
 @media (max-width: 431px) {
     .header_background {
         background-image: url('../../../public/RectangleMini.svg');
-        height: 535px;
         background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 535px;
     }
     .header {
         display: flex;
@@ -110,7 +107,6 @@
         display: flex;
         margin-top: 50px;
         margin-left: 20px;
-        /*align-items: center;*/
         gap: 7px;
     }
     .img {
@@ -119,13 +115,7 @@
     .header_span {
         font-family: "Montserrat Alternates", serif;
         font-weight: 600;
-        /*font-style: normal;*/
         font-size: 12px;
-        line-height: 14.4px;
-        /*color: rgba(255, 255, 255, 1)*/
-    }
-    .header_span_container {
-        width: 80px;
     }
     .right_header_container {
         margin-top: 50px;

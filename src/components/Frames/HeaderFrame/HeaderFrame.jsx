@@ -13,7 +13,7 @@ const HeaderFrame = ({textBlocks, scrollToForm, images }) => {
                          className={styles.img}
                     />
                     <div className={styles.header_span_container}>
-                        <span className={styles.header_span}>ОТКРЫТЫЕ ИДЕИ</span>
+                        <span className={styles.header_span}>ОТКРЫТЫЕ<br/> ИДЕИ</span>
                         {/*{(textBlocks?.length > 0 ? (
                             <span
                                 style={{

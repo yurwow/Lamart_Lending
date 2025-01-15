@@ -6,7 +6,6 @@
 }
 
 .section_two_container {
-    /*width: 860px;*/
     width: 44vw;
 }
 
@@ -34,12 +33,10 @@
 }
 
 .monitorIcon {
-    /*width: 1450px;*/
     width: 88.5vw;
 }
 
 .megapolis_icon {
-    /*width: 320px;*/
 }
 
 @media (max-width: 431px) {
@@ -54,7 +51,6 @@
     }
     .section_two_container {
         width: 325px;
-        /*width: 44vw;*/
     }
     .monitorIcon {
         width: 371px;

@@ -7,7 +7,6 @@
 
 .puzzle_container {
     height: 270px;
-    /*width: 440px;*/
     overflow: hidden;
     position: relative;
 }
@@ -49,11 +48,8 @@
         margin-top: 100px;
         display: flex;
         justify-content: center;
-        /*gap: 10px;*/
     }
     .widget_container {
-        /*display: flex;*/
-        /*justify-content: center;*/
     }
     .puzzle_container {
         display: none;
@@ -69,8 +65,8 @@
         border-radius: 30px;
         padding-top: 50px;
         padding-left: 0px;
+        padding-bottom: 50px;
         display: flex;
-        /*justify-content: center;*/
         align-items: center;
         flex-direction: column;
         gap: 50px;

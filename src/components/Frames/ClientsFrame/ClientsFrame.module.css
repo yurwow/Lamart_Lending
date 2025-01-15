@@ -3,6 +3,7 @@
 }
 
 .section_clients_title {
+    display: block;
     font-size: 64px;
     font-weight: 700;
     line-height: 76.8px;
@@ -44,15 +45,12 @@
         padding:0;
     }
     .section_clients_title {
+        display: block;
+        margin-left: 0px;
+        padding-left: 30px;
         font-size: 24px;
         font-weight: 700;
         line-height: 28.8px;
-        text-align: left;
-        /*padding: 0;*/
-        margin: 0;
-        /*padding-left: 20px;*/
-        /*margin-left: 20px;*/
-        /*width: 350px;*/
     }
     .section_clients_container {
         margin-top: 50px;

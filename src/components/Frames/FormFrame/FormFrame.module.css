@@ -1,11 +1,13 @@
 .section_form_background {
     background-image: url("../../../public/backgroundForm.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     height: 1392px;
     margin-top: 226px;
 }
 
 .section_form {
-
 }
 
 .section_form_container {
@@ -21,7 +23,6 @@
     text-align: center;
     color: rgba(255, 255, 255, 1);
     margin-bottom: 60px;
-    /*width: 1000px;*/
     padding: 0 227px;
 }
 
@@ -55,7 +56,6 @@
     width: 23px;
     margin-top: -400px;
     margin-left: 20px;
-    /*padding-left: 40px;*/
 }
 
 .sun_text_container {
@@ -68,7 +68,6 @@
     font-size: 48px;
     font-weight: 600;
     line-height: 57.6px;
-    /*color: rgba(255, 221, 0, 1);*/
 }
 
 .sun_span {
@@ -88,6 +87,8 @@
     .section_form_background {
         background-image: url("../../../public/FormMini.png");
         background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: center;
         height: 834px;
         margin-top: 100px;
     }
