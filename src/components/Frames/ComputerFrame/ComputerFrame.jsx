@@ -6,7 +6,7 @@ import video from "@/video.mp4";
 
 const ComputerFrame = () => {
     const videoRef = useRef(null);
-    const [isPlaying, setIsPlaying] = useState(true);
+    const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
 
