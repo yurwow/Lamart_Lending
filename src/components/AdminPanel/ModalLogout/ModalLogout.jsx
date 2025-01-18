@@ -7,6 +7,7 @@ const ModalLogout = ({ isOpen, onClose }) => {
     const modalRef = useRef(null);
     const navigate = useNavigate();
     const API_URL = "http://51.250.75.40:8000/api/";
+    // const API_URL = 'http://89.169.147.237:8000/api/'
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -31,11 +32,11 @@ const ModalLogout = ({ isOpen, onClose }) => {
             document.cookie = "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT";
             document.cookie = "refresh_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT";
 
-            console.log("Logout successful");
+            // console.log("Logout successful");
 
             navigate("/login");
-        } catch (error) {
-            console.error("Logout failed:", error);
+        } catch  {
+            // console.error("Logout failed:", error);
             navigate('/login')
         }
     };

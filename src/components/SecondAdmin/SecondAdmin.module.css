@@ -6,9 +6,8 @@
 
 .header {
     background: #193D95;
-    height: 130px;
-    display: flex;
-    justify-content: space-between;
+    height: 100px;
+    align-content: center;
     padding: 0 110px;
 }
 
@@ -27,8 +26,6 @@
     font-weight: 600;
     line-height: 24px;
     text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
 .container {
@@ -38,12 +35,9 @@
 }
 
 .sidebar {
-    width: 300px;
-    background: #ffffff;
-    border-right: 1px solid #ddd;
-    padding: 20px;
+    background: #F0F5FF;
     transition: transform 0.3s ease, width 0.3s ease;
-    position: relative;
+    z-index: 1000;
 }
 
 .sidebar.closed {
@@ -52,18 +46,21 @@
 }
 
 .sidebar.open {
+    padding: 0 30px;
+    position: absolute;
+    top: 0px;
+    left: 0;
     transform: translateX(0);
-    width: 300px;
+    width: 429px;
 }
 
 .toggleButton {
-    position: absolute;
+    position: fixed;
     top: 10px;
-    right: -70px;
-    width: 70px;
-    height: 40px;
-    background: #007bff;
-    color: #ffffff;
+    right: -30px;
+    width: 30px;
+    height: 60px;
+    background: #C0D5FF;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -74,12 +71,28 @@
     background: #0056b3;
 }
 
+.filter_container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
 .searchInput {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+    width: 294px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 64px;
+    box-shadow: 0px 0px 15px 0px #00000026;
+    padding: 18px 0 18px 20px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    outline: none;
+}
+
+.searchInput::placeholder {
+    color: #919191;
 }
 
 .ul {
@@ -88,14 +101,17 @@
 }
 
 .frameItem {
-    padding: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background 0.3s;
     list-style: none;
+}
+
+.miniIcon {
+    width: 368px;
+    border-radius: 10px;
 }
 
 .frameItem:hover {
@@ -117,16 +133,21 @@
 }
 
 .contentArea {
-    flex-grow: 1;
-    padding: 20px;
+    /*flex-grow: 1;*/
+    /*padding: 20px;*/
     overflow-y: auto;
+
 }
 
 .emptyState {
-    text-align: center;
+    /*text-align: center;*/
+    /*align-content: center;*/
+    display: flex;
+    justify-content: center;
     font-size: 16px;
     color: #666;
     margin-top: 50px;
+    /*background: #333333;*/
 }
 
 .framesContainer {
@@ -137,9 +158,11 @@
 
 .frameBlock {
     background: #ffffff;
+    /*background: black;*/
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 20px;
+    /*width: 100%;*/
+    /*padding: 20px;*/
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -147,7 +170,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+}
+
+.edit_container {
+    display: flex;
+    gap: 10px;
+}
+
+.frame_name {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.editButton {
+    background: #193D95;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
 .deleteButton {
@@ -169,3 +211,109 @@
     color: #333;
 }
 
+
+
+
+
+
+
+
+.editorContainer {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.textEditor, .imageEditor, .aiSection {
+    margin-bottom: 20px;
+}
+
+h4, h5, h6 {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.textBlock {
+    margin-bottom: 15px;
+}
+
+.imageBlock {
+    margin-bottom: 15px;
+    /*width: 100px;*/
+}
+
+.textPreview, .imagePreviewContainer {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+
+.textPreview:hover, .imagePreviewContainer:hover {
+    background-color: #f0f0f0;
+}
+
+.styleEditor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.styleEditor label {
+    flex-basis: 100%;
+    font-size: 14px;
+    color: #666;
+}
+
+.textarea, .aiInput {
+    /*width: 100%;*/
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    /*resize: none;*/
+}
+
+.aiButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.aiButton:hover {
+    background-color: #0056b3;
+}
+
+.aiResponse {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+}
+
+.buttonContainer {
+    margin-top: 1rem;
+}
+
+.saveButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.saveButton:hover {
+    background-color: #45a049;
+}

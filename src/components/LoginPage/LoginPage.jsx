@@ -12,6 +12,7 @@ const LoginPage = () => {
     const focusRef = useRef(null);
     const navigate = useNavigate();
     const API_URL = "http://51.250.75.40:8000/api/"
+    // const API_URL = 'http://89.169.147.237:8000/api/';
     useEffect(() => {
         focusRef.current.focus();
     }, []);
@@ -46,10 +47,10 @@ const LoginPage = () => {
             const { access_token, refresh_token } = response.data;
             localStorage.setItem('accessToken', access_token);
             localStorage.setItem('refreshToken', refresh_token);
-            // document.cookie = `access=${access_token}; path=/`;
-            // document.cookie = `refresh=${refresh_token}; path=/`;
+            document.cookie = `access=${access_token}; path=/`;
+            document.cookie = `refresh=${refresh_token}; path=/`;
 
-            console.log("Login successful:", response.data);
+            // console.log("Login successful:", response.data);
             navigate("/adminpanel");
         } catch (error) {
             console.error("Login error:", error.response ? error.response.data : error.message);

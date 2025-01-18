@@ -9,7 +9,8 @@ const ImageUpload = () => {
     const [images, setImages] = useState([]);
     const [editingImageId, setEditingImageId] = useState(null);
 
-    const BASE_URL = 'http://51.250.75.40:8000/';
+    // const BASE_URL = 'http://51.250.75.40:8000/';
+    const BASE_URL = 'http://89.169.147.237:8000/'
 
     useEffect(() => {
         fetchImages();

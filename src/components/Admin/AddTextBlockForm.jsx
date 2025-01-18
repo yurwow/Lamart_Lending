@@ -7,6 +7,8 @@ const AddTextBlockForm = () => {
     const [title, setTitle] = useState('');
     const [error, setError] = useState('');
     const API_URL = "http://51.250.75.40:8000/api/"
+    // const API_URL = "http://89.169.147.237:8000/api/"
+
     const handleContentChange = (e) => {
         setContent(e.target.value);
     };
@@ -43,12 +45,11 @@ const AddTextBlockForm = () => {
                     }
                 }
             );
-            console.log('Текстовый блок добавлен:', response.data);
             setContent('');
             setTitle('');
             setError('');
-        } catch (err) {
-            console.error('Ошибка при добавлении текстового блока:', err.response ? err.response.data : err);
+        } catch  {
+            // console.error('Ошибка при добавлении текстового блока:', err.response ? err.response.data : err);
             setError('Не удалось добавить текстовый блок');
         }
     };

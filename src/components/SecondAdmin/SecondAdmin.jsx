@@ -10,7 +10,19 @@ import ClientsFrame from "../Frames/ClientsFrame/ClientsFrame.jsx";
 import ReviewsFrame from "../Frames/ReviewsFrame/ReviewsFrame.jsx";
 import FAQFrame from "../Frames/FAQFrame/FAQFrame.jsx";
 import styles from './SecondAdmin.module.css';
-import icon from "../../public/landIcon.svg";
+import Breadcrumbs from "./Breadcrumbs/Breadcrumbs.jsx";
+import birdIcon from "../../public/birdIcon.svg"
+import filterIcon from "../../public/filterIcon.png"
+import miniHeader from "../../public/miniHeader.png"
+import miniComputer from "../../public/miniComputerFrame.png"
+import miniPriv from "../../public/miniPrevilege.png"
+import miniWhyUs from "../../public/miniWhyUs.png"
+import miniForm from "../../public/miniForm.png"
+import miniClients from "../../public/miniClients.png"
+import miniReview from "../../public/miniReview.png"
+import miniFAQ from "../../public/miniFAQ.png"
+import miniFooter from "../../public/miniFooter.png"
+import {fetchAiText} from "../services/api.js";
 
 const frameComponents = {
     Header: HeaderFrame,
@@ -25,15 +37,15 @@ const frameComponents = {
 };
 
 const frameTemplates = [
-    { id: 1, name: 'Header', description: 'Заголовок страницы' },
-    { id: 2, name: 'Computer', description: 'Блок "Демонстрация решения"' },
-    { id: 3, name: 'Privilege', description: 'Блок "Привилегии"' },
-    { id: 4, name: 'WhyUs', description: 'Блок "Почему мы"' },
-    { id: 5, name: 'Form', description: 'Форма для отправки данных' },
-    { id: 6, name: 'Clients', description: 'Блок "Наши клиенты"' },
-    { id: 7, name: 'Reviews', description: 'Блок "Отзывы"' },
-    { id: 8, name: 'FAQ', description: 'Блок "FAQ"' },
-    { id: 9, name: 'Footer', description: 'Футер страницы' },
+    { id: 1, name: 'Header', description: 'Блок Header', image: miniHeader },
+    { id: 2, name: 'Computer', description: 'Блок Демонстрация решения', image: miniComputer },
+    { id: 3, name: 'Privilege', description: 'Блок "Привилегии"', image: miniPriv },
+    { id: 4, name: 'WhyUs', description: 'Блок "Почему мы"', image: miniWhyUs },
+    { id: 5, name: 'Form', description: 'Форма для отправки данных', image: miniForm },
+    { id: 6, name: 'Clients', description: 'Блок "Наши клиенты"', image: miniClients },
+    { id: 7, name: 'Reviews', description: 'Блок "Отзывы"', image: miniReview },
+    { id: 8, name: 'FAQ', description: 'Блок "FAQ"', image: miniFAQ },
+    { id: 9, name: 'Footer', description: 'Подвал страницы', image: miniFooter },
 ];
 
 const BASE_URL = 'http://51.250.75.40:8000/api';
@@ -44,6 +56,18 @@ const SecondAdmin = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [editingFrameId, setEditingFrameId] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [aiPrompt, setAiPrompt] = useState('');
+    const [aiResponse, setAiResponse] = useState('');
+    const [editingTextBlockId, setEditingTextBlockId] = useState(null);
+    const [editedContent, setEditedContent] = useState({});
+    const [editedStyles, setEditedStyles] = useState({});
+
+    const toggleTextBlockEditor = (blockId) => {
+        setEditingTextBlockId((prevId) => (prevId === blockId ? null : blockId));
+        setEditedContent({});
+        setEditedStyles({});
+    };
 
     useEffect(() => {
         const fetchFramesAndData = async () => {
@@ -94,6 +118,48 @@ const SecondAdmin = () => {
         }
     };
 
+    const handleContentChange = (blockId, content) => {
+        setEditedContent(prev => ({
+            ...prev,
+            [blockId]: content
+        }));
+    };
+
+    const handleStyleChange = (blockId, styleKey, value) => {
+        setEditedStyles(prev => ({
+            ...prev,
+            [blockId]: {
+                ...(prev[blockId] || {}),
+                [styleKey]: value
+            }
+        }));
+    };
+
+    const handleSaveChanges = async (blockId, originalContent, originalStyles) => {
+        const newContent = editedContent[blockId] ?? originalContent;
+        const newStyles = {
+            ...originalStyles,
+            ...(editedStyles[blockId] || {})
+        };
+
+        try {
+            await updateTextBlock(blockId, newContent, newStyles);
+            setEditingTextBlockId(null);
+            setEditedContent(prev => {
+                const newState = { ...prev };
+                delete newState[blockId];
+                return newState;
+            });
+            setEditedStyles(prev => {
+                const newState = { ...prev };
+                delete newState[blockId];
+                return newState;
+            });
+        } catch (error) {
+            console.error('Ошибка при сохранении изменений:', error);
+        }
+    };
+
     const updateTextBlock = async (blockId, updatedContent, updatedStyles) => {
         try {
             await axios.put(`${BASE_URL}/text-blocks/${blockId}/update/`, {
@@ -136,13 +202,29 @@ const SecondAdmin = () => {
         }
     };
 
+    const filteredFrames = frameTemplates.filter((frame) => {
+        return frame.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            frame.description.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+
+    const handleAiPromptChange = (e) => {
+        const prompt = e.target.value;
+        setAiPrompt(prompt);
+    };
+
+    const handleAiRequest = async () => {
+        try {
+            const response = await fetchAiText(aiPrompt);
+            setAiResponse(response);
+        } catch {
+            setAiResponse("Произошла ошибка при запросе.");
+        }
+    };
+
     return (
         <div className={styles.adminPanel}>
             <header className={styles.header}>
-                <div className={styles.logo}>
-                    <img src={icon} alt="logo" />
-                    <div className={styles.span}>ОТКРЫТЫЕ ИДЕИ</div>
-                </div>
+                <Breadcrumbs/>
             </header>
             <div className={styles.container}>
                 <div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : styles.closed}`}>
@@ -150,24 +232,29 @@ const SecondAdmin = () => {
                         className={styles.toggleButton}
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                     >
-                        {isSidebarOpen ? 'Скрыть' : 'Открыть'}
+                        {isSidebarOpen ? <img src={birdIcon} alt="bird icon"/> : <img src={birdIcon} alt="bird icon"/>}
                     </button>
                     {isSidebarOpen && (
                         <>
-                            <input
-                                type="text"
-                                placeholder="Поиск..."
-                                className={styles.searchInput}
-                            />
+                            <div className={styles.filter_container}>
+                                <input
+                                    type="text"
+                                    placeholder="Поиск..."
+                                    className={styles.searchInput}
+                                    value={searchQuery}
+                                    onChange={event => setSearchQuery(event.target.value)}
+                                />
+                                <img src={filterIcon} alt="filter icon"/>
+                            </div>
                             <ul className={styles.ul}>
-                                {frameTemplates.map((frame) => (
+                                {(searchQuery ? filteredFrames : frameTemplates).map((frame) => (
                                     <li
                                         key={frame.id}
                                         onClick={() => addFrame(frame)}
                                         className={styles.frameItem}
                                     >
                                         <div className={styles.framePreview}>
-                                            <div className={styles.previewImage}></div>
+                                            <img className={styles.miniIcon} src={frame?.image} alt="icon"/>
                                             <strong>{frame.name}</strong>
                                             <p>{frame.description}</p>
                                         </div>
@@ -192,23 +279,21 @@ const SecondAdmin = () => {
                                 return (
                                     <div key={frame.id} className={styles.frameBlock}>
                                         <div className={styles.frameHeader}>
-                                            <strong>{frame.name}</strong>
-                                            <button
-                                                onClick={() => removeFrame(frame.id)}
-                                                className={styles.deleteButton}
-                                            >
-                                                Удалить
-                                            </button>
-                                            <button
-                                                onClick={() =>
-                                                    setEditingFrameId(
-                                                        isEditing ? null : frame.id
-                                                    )
-                                                }
-                                                className={styles.editButton}
-                                            >
-                                                {isEditing ? 'Закрыть' : 'Редактировать фрейм'}
-                                            </button>
+                                            <span className={styles.frame_name}>{frame.name}</span>
+                                            <div className={styles.edit_container}>
+                                                <button
+                                                    onClick={() => removeFrame(frame.id)}
+                                                    className={styles.deleteButton}
+                                                >
+                                                    Удалить
+                                                </button>
+                                                <button
+                                                    onClick={() => setEditingFrameId(isEditing ? null : frame.id)}
+                                                    className={styles.editButton}
+                                                >
+                                                    {isEditing ? 'Закрыть' : 'Редактировать'}
+                                                </button>
+                                            </div>
                                         </div>
                                         <div className={styles.frameContent}>
                                             {FrameComponent && (
@@ -221,89 +306,131 @@ const SecondAdmin = () => {
                                                 />
                                             )}
                                             {isEditing && (
-                                                <div className={styles.textEditor}>
-                                                    <h4>Редактирование текстов</h4>
-                                                    {frame.textBlocks.map((block) => (
-                                                        <div key={block.id} className={styles.textBlockEditor}>
-                                                            <textarea
-                                                                defaultValue={block.content}
-                                                                onBlur={(e) =>
-                                                                    updateTextBlock(block.id, e.target.value, block.styles)
-                                                                }
-                                                                className={styles.textarea}
-                                                            />
-                                                            <div className={styles.styleEditor}>
-                                                                <label>Шрифт:</label>
-                                                                <select
-                                                                    defaultValue={block.styles?.fontFamily || ''}
-                                                                    onBlur={(e) =>
-                                                                        updateTextBlock(block.id, block.content, {
-                                                                            ...block.styles,
-                                                                            fontFamily: e.target.value,
-                                                                        })
-                                                                    }
+                                                <div className={styles.editorContainer}>
+                                                    <h4>Редактирование</h4>
+
+                                                    <div className={styles.textEditor}>
+                                                        <h5>Тексты</h5>
+                                                        {frame.textBlocks.map((block) => (
+                                                            <div key={block.id} className={styles.textBlock}>
+                                                                <div
+                                                                    className={styles.textPreview}
+                                                                    onClick={() => toggleTextBlockEditor(block.id)}
                                                                 >
-                                                                    <option value="Poppins">Poppins</option>
-                                                                    <option value="Montserrat Alternates">Montserrat Alternates</option>
-                                                                    <option value="Arial">Arial</option>
-                                                                    <option value="Times New Roman">Times New Roman</option>
-                                                                </select>
-                                                                <label>Цвет текста:</label>
-                                                                <input
-                                                                    type="color"
-                                                                    defaultValue={block.styles?.color || '#000000'}
-                                                                    onBlur={(e) =>
-                                                                        updateTextBlock(block.id, block.content, {
-                                                                            ...block.styles,
-                                                                            color: e.target.value,
-                                                                        })
-                                                                    }
-                                                                />
-                                                                <label>Размер текста:</label>
-                                                                <input
-                                                                    type="number"
-                                                                    defaultValue={block.styles?.fontSize || ''}
-                                                                    onBlur={(e) =>
-                                                                        updateTextBlock(block.id, block.content, {
-                                                                            ...block.styles,
-                                                                            fontSize: `${e.target.value}px`,
-                                                                        })
-                                                                    }
-                                                                />
-                                                                <label>Толщина текста:</label>
-                                                                <select
-                                                                    defaultValue={block.styles?.fontWeight || 'normal'}
-                                                                    onBlur={(e) =>
-                                                                        updateTextBlock(block.id, block.content, {
-                                                                            ...block.styles,
-                                                                            fontWeight: e.target.value,
-                                                                        })
-                                                                    }
-                                                                >
-                                                                    <option value="normal">Обычный</option>
-                                                                    <option value="bold">Жирный</option>
-                                                                    <option value="lighter">Тонкий</option>
-                                                                </select>
+                                                                    <p>{block.content}</p>
+                                                                </div>
+
+                                                                {editingTextBlockId === block.id && (
+                                                                    <div className={styles.textBlockEditor}>
+                                                                        <textarea
+                                                                            defaultValue={block.content}
+                                                                            onChange={(e) => handleContentChange(block.id, e.target.value)}
+                                                                            className={styles.textarea}
+                                                                        />
+                                                                        <div className={styles.styleEditor}>
+                                                                            <label>Шрифт:</label>
+                                                                            <select
+                                                                                defaultValue={block.styles?.fontFamily || ''}
+                                                                                onChange={(e) => handleStyleChange(block.id, 'fontFamily', e.target.value)}
+                                                                            >
+                                                                                <option value="Poppins">Poppins</option>
+                                                                                <option
+                                                                                    value="Montserrat Alternates">Montserrat
+                                                                                    Alternates
+                                                                                </option>
+                                                                                <option value="Arial">Arial</option>
+                                                                                <option value="Times New Roman">Times
+                                                                                    New Roman
+                                                                                </option>
+                                                                            </select>
+                                                                            <label>Цвет текста:</label>
+                                                                            <input
+                                                                                type="color"
+                                                                                defaultValue={block.styles?.color || '#000000'}
+                                                                                onChange={(e) => handleStyleChange(block.id, 'color', e.target.value)}
+                                                                            />
+                                                                            <label>Размер текста:</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                defaultValue={block.styles?.fontSize || ''}
+                                                                                onChange={(e) => handleStyleChange(block.id, 'fontSize', e.target.value)}
+                                                                            />
+                                                                            <label>Размер текста для мобильной
+                                                                                версии:</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                defaultValue={block.styles?.mobileFontSize || ''}
+                                                                                onChange={(e) => handleStyleChange(block.id, 'mobileFontSize', e.target.value)}
+                                                                            />
+                                                                            <label>Толщина текста:</label>
+                                                                            <select
+                                                                                defaultValue={block.styles?.fontWeight || 'normal'}
+                                                                                onChange={(e) => handleStyleChange(block.id, 'fontWeight', e.target.value)}
+                                                                            >
+                                                                                <option value="normal">Обычный</option>
+                                                                                <option value="bold">Жирный</option>
+                                                                                <option value="lighter">Тонкий</option>
+                                                                            </select>
+
+
+                                                                        </div>
+                                                                        <div className={styles.buttonContainer}>
+                                                                            <button
+                                                                                onClick={() => handleSaveChanges(block.id, block.content, block.styles)}
+                                                                                className={styles.saveButton}
+                                                                            >
+                                                                                Сохранить изменения
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                )}
                                                             </div>
+                                                        ))}
+                                                    </div>
+
+                                                    <div className={styles.imageEditor}>
+                                                        <h5>Изображения</h5>
+                                                        {frame.images.map((image) => (
+                                                            <div key={image.id} className={styles.imageBlock}>
+                                                                <div className={styles.imagePreviewContainer}>
+                                                                <img
+                                                                        src={`${URL}${image.image}`}
+                                                                        alt="Изображение"
+                                                                        className={styles.imagePreview}
+                                                                    />
+                                                                </div>
+                                                                <input
+                                                                    type="file"
+                                                                    onChange={(e) =>
+                                                                        updateImage(image.id, e.target.files[0], image.description)
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        ))}
+                                                    </div>
+
+                                                    <div className={styles.aiSection}>
+                                                        <h5>Нейросеть</h5>
+                                                        <textarea
+                                                            placeholder="Введите запрос для нейросети..."
+                                                            value={aiPrompt}
+                                                            onChange={handleAiPromptChange}
+                                                            className={styles.aiInput}
+                                                        />
+                                                        <div>
+                                                            <button onClick={handleAiRequest}
+                                                                    className={styles.aiButton}>
+                                                                Отправить запрос
+                                                            </button>
                                                         </div>
-                                                    ))}
-                                                    <h4>Редактирование изображений</h4>
-                                                    {frame.images.map((image) => (
-                                                        <div key={image.id} className={styles.imageEditor}>
-                                                            <img
-                                                                src={`${URL}${image.image}`}
-                                                                alt="Изображение"
-                                                                className={styles.imagePreview}
-                                                            />
-                                                            <input
-                                                                type="file"
-                                                                onChange={(e) =>
-                                                                    updateImage(image.id, e.target.files[0], image.description)
-                                                                }
-                                                            />
-                                                            {/*<p>{image.description}</p>*/}
-                                                        </div>
-                                                    ))}
+
+                                                        {aiResponse && (
+                                                            <div className={styles.aiResponse}>
+                                                                <h6>Ответ нейросети:</h6>
+                                                                <p>{aiResponse.generated_text}</p>
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             )}
                                         </div>

@@ -22,40 +22,56 @@ const LandingPage = () => {
     };
 
     useEffect(() => {
-        getImages().then(setImages);
-        getTextBlocks().then(setTextBlocks);
-        getFrames().then(setFrames);
-        const script = document.createElement("script");
-        script.src = "https://embed.tawk.to/674ed4c14304e3196aebb871/1ie5uu539";
-        script.async = true;
-        script.charset = "UTF-8";
-        script.setAttribute("crossorigin", "*");
-        document.body.appendChild(script);
+        const fetchData = async () => {
+            try {
+                const framesData = await getFrames();
+                const textBlocksData = await getTextBlocks();
+                const imagesData = await getImages();
 
-        return () => {
-            document.body.removeChild(script);
+                const framesWithData = framesData.map((frame) => ({
+                    ...frame,
+                    textBlocks: textBlocksData.filter((block) => block.title === frame.name),
+                    images: imagesData.filter((image) => image.description === frame.name),
+                }));
+
+                setFrames(framesWithData);
+                setTextBlocks(textBlocksData);
+                setImages(imagesData);
+            } catch (error) {
+                console.error("Ошибка при загрузке данных:", error);
+            }
         };
+
+        fetchData();
     }, []);
 
-    console.log("frames", frames);
-
     const frameComponents = {
-        Header: <HeaderFrame images={images} textBlocks={textBlocks} scrollToForm={scrollToForm} />,
-        Computer: <ComputerFrame />,
-        Privilege: <PrivilegeFrame />,
-        WhyUs: <WhyUsFrame />,
-        Form: <FormFrame ref={formRef} />,
-        Clients: <ClientsFrame />,
-        Reviews: <ReviewsFrame />,
-        FAQ: <FAQFrame />,
-        Footer: <FooterFrame />,
+        Header: HeaderFrame,
+        Computer: ComputerFrame,
+        Privilege: PrivilegeFrame,
+        WhyUs: WhyUsFrame,
+        Form: FormFrame,
+        Clients: ClientsFrame,
+        Reviews: ReviewsFrame,
+        FAQ: FAQFrame,
+        Footer: FooterFrame,
     };
 
     return (
         <>
             {frames
                 .filter((frame) => frame.enabled)
-                .map((frame) => frameComponents[frame.name] || null)}
+                .map((frame) => {
+                    const FrameComponent = frameComponents[frame.name];
+                    return FrameComponent ? (
+                        <FrameComponent
+                            key={frame.id}
+                            images={frame.images}
+                            textBlocks={frame.textBlocks}
+                            scrollToForm={scrollToForm}
+                        />
+                    ) : null;
+                })}
             <CookiesWidget />
         </>
     );

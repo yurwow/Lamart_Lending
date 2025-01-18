@@ -1,5 +1,6 @@
 .second_widget_container {
-    width: 362px;
+    /*width: 362px;*/
+    width: 19vw;
 }
 
 .second_widget_icon {
@@ -28,8 +29,6 @@
     font-weight: 400;
     line-height: 28px;
     text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
 @media (max-width: 431px) {

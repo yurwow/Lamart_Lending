@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const API_BASE_URL = 'http://51.250.75.40:8000/api';
+// export const API_BASE_URL = 'http://89.169.147.237:8000/api';
 
 export const getTextBlocks = async () => {
     const response = await axios.get(`${API_BASE_URL}/text-blocks/`);
@@ -146,3 +147,23 @@ export const deleteFrame = async (id) => {
         throw error;
     }
 };
+
+export const fetchAiText = async (prompt) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/generate-text/`, {prompt})
+        return response.data
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
+export const fetchAiImage = async (prompt) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/generate-image/`, {prompt})
+        return response.data
+    }
+    catch (error) {
+        console.error(error)
+    }
+}

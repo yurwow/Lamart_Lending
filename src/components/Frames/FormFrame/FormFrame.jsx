@@ -5,15 +5,65 @@ import lamp from '@/lamp.svg'
 import iconDown from '@/iconDown.svg'
 
 const FormFrame = forwardRef((props, ref) => {
+    const textBlocks = props.textBlocks
+    const isMobileDevice = window.innerWidth <= 768;
     return (
         <div>
             <section ref={ref} className={styles.section_form_background}>
                 <div className={styles.section_form}>
                     <div className={styles.section_form_container}>
-                        <span
-                            className={styles.form_title}>НАСТРОИМ ОНЛАЙН-ПЛАТФОРМУ ОТКРЫТЫЕ ИДЕИ ПОД ВАШИ ЗАДАЧИ</span>
-                        <p className={styles.form_p}>Ответим на вопросы, внедрим платформу, импортируем данные, научим
-                            решать любые задачи в<br/> одном окне браузера и получать аналитику с помощью отчетов</p>
+                        {/*<span className={styles.form_title}>НАСТРОИМ ОНЛАЙН-ПЛАТФОРМУ ОТКРЫТЫЕ ИДЕИ ПОД ВАШИ ЗАДАЧИ</span>*/}
+                        {(textBlocks?.length > 0 ? (
+                            <span
+                                style={{
+                                    color: textBlocks[0].styles?.color || "#000000",
+
+                                    fontSize: isMobileDevice ? (textBlocks[0]?.styles?.mobileFontSize ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}px` : '14px'),
+
+                                    fontFamily: textBlocks[0]?.styles?.fontFamily || "Arial",
+                                    fontWeight: textBlocks[0]?.styles?.fontWeight || "normal",
+                                    fontStyle: textBlocks[0]?.styles?.fontStyle || "normal",
+                                    lineHeight: textBlocks[0]?.styles?.lineHeight || 1.5,
+                                    textAlign: isMobileDevice ? 'left' : textBlocks[0]?.styles?.textAlign || "center",
+                                    listStyleType: textBlocks[0]?.styles?.listType || "none",
+                                    display: 'inline-block',
+                                    padding: isMobileDevice ? '0px 37px 0px 20px' : '0 227px'
+                                }}
+                            >
+                            {textBlocks[0].content}
+                            </span>
+                        ) : (
+                            <span className={styles.form_title}>НАСТРОИМ ОНЛАЙН-ПЛАТФОРМУ ОТКРЫТЫЕ ИДЕИ ПОД ВАШИ ЗАДАЧИ</span>
+
+                        ))}
+                        {(textBlocks?.length > 0 ? (
+                            <span
+                                style={{
+                                    color: textBlocks[1].styles?.color || "#000000",
+
+                                    // fontSize: isMobileDevice ? (textBlocks[1]?.styles?.mobileFontSize ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[1]?.styles?.fontSize ? `${textBlocks[1]?.styles?.fontSize}px` : '14px'),
+                                    fontSize: isMobileDevice ? '12px' : '20px',
+                                    fontFamily: textBlocks[1]?.styles?.fontFamily || "Arial",
+                                    fontWeight: textBlocks[1]?.styles?.fontWeight || "normal",
+                                    fontStyle: textBlocks[1]?.styles?.fontStyle || "normal",
+                                    lineHeight: textBlocks[1]?.styles?.lineHeight || 1.5,
+                                    textAlign: isMobileDevice ? 'left' : textBlocks[1]?.styles?.textAlign || "center",
+                                    listStyleType: textBlocks[1]?.styles?.listType || "none",
+                                    display: 'inline-block',
+                                    padding: isMobileDevice ? '20px 37px 0px 20px' : '30px 49px 0px 20px'
+                                }}
+                            >
+                            {textBlocks[1].content}
+                            </span>
+                        ) : (
+                            <p className={styles.form_p}>Ответим на вопросы, внедрим платформу, импортируем данные,
+                                научим решать любые задачи в<br/> одном окне браузера и получать аналитику с помощью отчетов
+                            </p>
+
+                        ))}
+                        {/*<p className={styles.form_p}>Ответим на вопросы, внедрим платформу, импортируем данные, научим*/}
+                        {/*    решать любые задачи в<br/> одном окне браузера и получать аналитику с помощью отчетов</p>*/}
+
                         <Form classNameBtn={styles.btn}/>
                     </div>
                 </div>

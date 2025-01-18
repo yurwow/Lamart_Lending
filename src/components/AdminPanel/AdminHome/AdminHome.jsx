@@ -16,6 +16,7 @@ const AdminHome = () => {
     const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
     const API_URL = "http://51.250.75.40:8000/api/"
+    // const API_URL = 'http://89.169.147.237:8000/api/';
     const clickMenu = () => {
         setOpenMenu((prev) => !prev);
     };
@@ -48,8 +49,8 @@ const AdminHome = () => {
             const { access } = response.data;
             localStorage.setItem("accessToken", access);
             return access;
-        } catch (error) {
-            console.error("Ошибка обновления токена:", error.response?.data || error.message);
+        } catch  {
+            // console.error("Ошибка обновления токена:", error.response?.data || error.message);
             // navigate("/login");
             return null;
         }
@@ -59,28 +60,28 @@ const AdminHome = () => {
     const fetchUserData = async () => {
         try {
             const accessToken = localStorage.getItem("accessToken");
+            // const accessToken = document.cookie.getItem("accessToken");
+
             if (!accessToken) {
                 throw new Error("Access Token отсутствует.");
             }
 
-            const response = await axios.get(`${API_URL}auth/user`, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                },
+            const response = await axios.get(`${API_URL}auth/user`,
+                {}, {
                 withCredentials: false
             });
 
             setUsername(response.data.username);
             console.log("Успешное получение данных пользователя");
-        } catch (error) {
-            console.error("Ошибка получения данных пользователя:", error);
+        } catch  {
+            // console.error("Ошибка получения данных пользователя:", error);
 
             const newAccessToken = await refreshAccessToken();
             if (newAccessToken) {
                 localStorage.setItem("accessToken", newAccessToken);
                 fetchUserData();
             } else {
-                console.error("Не удалось обновить токен");
+                // console.error("Не удалось обновить токен");
                 // navigate("/login");
             }
         }

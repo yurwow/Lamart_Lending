@@ -2,13 +2,20 @@
     margin-top: 226px;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    /*gap: 1vw;*/
 }
 
 .puzzle_container {
     height: 270px;
+    /*width: 456px;*/
+    /*width: 23vw;*/
     overflow: hidden;
     position: relative;
+}
+
+.puzzleIcon {
+    /*width: 23vw;*/
+    /*height: 270px;*/
 }
 
 .widget_container {
@@ -18,11 +25,13 @@
 
 .section_four_widgets {
     background: rgba(240, 245, 255, 1);
-    width: 79vw;
+    /*width: 79vw;*/
+    /*width: 87vw;*/
     height: 477px;
     border-radius: 95px;
     padding-top: 70px;
     padding-left: 85px;
+    padding-right: 85px;
     display: flex;
     gap: 132px;
 }
@@ -41,6 +50,11 @@
     line-height: 28px;
     text-align: left;
     margin-bottom: 48px;
+}
+
+.section_two_container {
+    display: flex;
+    flex-direction: column;
 }
 
 @media (max-width: 431px) {
@@ -63,13 +77,16 @@
         width: 350px;
         height: 100%;
         border-radius: 30px;
-        padding-top: 50px;
-        padding-left: 0px;
+        /*padding-top: 50px;*/
+        /*padding-left: 0px;*/
         padding-bottom: 50px;
         display: flex;
         align-items: center;
         flex-direction: column;
         gap: 50px;
+        padding-top: 70px;
+        padding-left: 85px;
+        padding-right: 85px;
     }
     .h2 {
         font-size: 24px;

@@ -1,0 +1,61 @@
+.breadcrumbNav {
+    margin: 16px 0;
+}
+
+.breadcrumb {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+
+.breadcrumbItem {
+    margin-right: 8px;
+    font-family: Montserrat Alternates, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumbLink {
+    text-decoration: none;
+    color: #FFFFFF;
+    transition: color 0.3s ease;
+    font-family: Montserrat Alternates, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.houseIcon {
+    margin-right: 10px;
+}
+
+.breadcrumbLink:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbItem::after {
+    display: flex;
+    align-items: center;
+    content: '/';
+    margin-left: 8px;
+    color: #FFFFFF;
+}
+
+.breadcrumbItem:last-child::after {
+    content: '';
+}
+
+.active {
+    color: #FFFFFF;
+    pointer-events: none;
+    text-decoration: none;
+}

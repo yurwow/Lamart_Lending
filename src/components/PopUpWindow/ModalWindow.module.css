@@ -5,8 +5,15 @@
     right: 0;
     bottom: 0;
     background: rgba(30, 77, 194, 1);
-    width: 1920px;
-    height: 1080px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+.modal::-webkit-scrollbar {
+    display: none;
 }
 
 .content_container {
@@ -24,7 +31,7 @@
 }
 
 .form_container {
-    width: 902px;
+    /*width: 902px;*/
 }
 
 .p {
@@ -40,4 +47,7 @@
     width: 40px;
 }
 
-
+.iphoneIcon {
+    /*width: 40%;*/
+    /*height: 40%;*/
+}

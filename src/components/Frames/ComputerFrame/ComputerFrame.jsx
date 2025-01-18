@@ -4,7 +4,7 @@ import megapolic from "@/megapolis.svg";
 import monitorIcon from "@/Celestial-Blue.svg";
 import video from "@/video.mp4";
 
-const ComputerFrame = () => {
+const ComputerFrame = ({textBlocks, images}) => {
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -32,19 +32,47 @@ const ComputerFrame = () => {
     const handleLoadedMetadata = () => {
         setDuration(videoRef.current.duration);
     };
-
+    const isMobileDevice = window.innerWidth <= 768;
     return (
         <div>
             <section className={styles.section_two}>
                 <div className={styles.section_two_container}>
-                    <div className={styles.h2}>ИТ-РЕШЕНИЕ ДЛЯ ВАШЕЙ КОМПАНИИ</div>
+                    {/*<div className={styles.h2}>ИТ-РЕШЕНИЕ ДЛЯ ВАШЕЙ КОМПАНИИ</div>*/}
+                    {(textBlocks?.length > 0 ? (
+                        <span
+                            style={{
+                                color: textBlocks[0].styles?.color || "#000000",
+
+                                fontSize: isMobileDevice ? (textBlocks[0]?.styles?.mobileFontSize ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}px` : '14px'),
+
+                                fontFamily: textBlocks[0]?.styles?.fontFamily || "Arial",
+                                fontWeight: textBlocks[0]?.styles?.fontWeight || "normal",
+                                fontStyle: textBlocks[0]?.styles?.fontStyle || "normal",
+                                lineHeight: textBlocks[0]?.styles?.lineHeight || 1.5,
+                                textAlign: textBlocks[0]?.styles?.textAlign || "left",
+                                listStyleType: textBlocks[0]?.styles?.listType || "none",
+                                display: 'inline-block',
+                            }}
+                        >
+                            {textBlocks[0].content}
+                            </span>
+                    ) : (
+                        <div className={styles.h2}>ИТ-РЕШЕНИЕ ДЛЯ ВАШЕЙ КОМПАНИИ</div>
+                    ))}
+
                     <div className={styles.text}>
-                        С помощью этого решения, сотрудники могут предлагать идеи, рекомендации и предложения по улучшению работы
-                        компании, а экспертам и управляющим лицам предоставляется возможность эффективно оценивать и реализовывать
+                        С помощью этого решения, сотрудники могут предлагать идеи, рекомендации и предложения по
+                        улучшению работы
+                        компании, а экспертам и управляющим лицам предоставляется возможность эффективно оценивать и
+                        реализовывать
                         эти предложения
                     </div>
                 </div>
-                <img className={styles.megapolis_icon} src={megapolic} alt="иконка здание" />
+                {/*<img className={styles.megapolis_icon} src={megapolic} alt="иконка здание"/>*/}
+                <img src={images?.[0]?.image ? `http://51.250.75.40:8000/${images[0].image}` : megapolic}
+                     alt="иконка здание"
+                     className={styles.megapolis_icon}
+                />
             </section>
             <div className={styles.monitorIcon_container}>
                 <img className={styles.monitorIcon} src={monitorIcon} alt="monitor icon"/>
@@ -72,7 +100,7 @@ const ComputerFrame = () => {
                         className={styles.seekBar}
                     />
                     <span className={styles.timeDisplay}>
-                        {Math.floor(currentTime)} / {Math.floor(duration)} сек
+                        {Math.floor(currentTime)}:{Math.floor(duration)} сек
                     </span>
                 </div>
             </div>
