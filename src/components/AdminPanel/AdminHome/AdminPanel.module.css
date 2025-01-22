@@ -97,8 +97,8 @@
 .container_pages {
     display: flex;
     gap: 50px;
-    width: 1520px;
-    height: 610px;
+    width: 80vw;
+    height: 75vh;
     flex-wrap: wrap;
     margin: 0 200px 115px 200px;
 }

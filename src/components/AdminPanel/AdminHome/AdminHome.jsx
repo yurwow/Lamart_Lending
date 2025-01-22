@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ProfileModal from "../ProfileModal/ProfileModal.jsx";
 import { useNavigate } from "react-router-dom";
+import miniPageIcon from "@/miniPage.png"
 
 const AdminHome = () => {
     const [open, setOpen] = useState(false);
@@ -144,7 +145,14 @@ const AdminHome = () => {
                         </div>
                     </div>
                     <div className={styles.container_pages}>
-                        <AdminHomeWidget onClick={handleClickToPage} />
+                        <AdminHomeWidget text="Редактировано 5 минут назад" onClick={handleClickToPage} img={miniPageIcon}/>
+                        <AdminHomeWidget text="Редактировано неделю назад"/>
+                        <AdminHomeWidget text="Редактировано неделю назад"/>
+                        <AdminHomeWidget text="Редактировано неделю назад"/>
+                        <AdminHomeWidget text="Редактировано неделю назад"/>
+                        <AdminHomeWidget text="Редактировано неделю назад"/>
+                        <AdminHomeWidget text="Редактировано неделю назад"/>
+                        <AdminHomeWidget text="Редактировано неделю назад"/>
                     </div>
                 </section>
             </main>

@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // для github pages, для докера убрать
-  base: '/Lamart_Lending/',
+  // base: '/Lamart_Lending/',
   resolve: {
     alias: {
       '@': '../../../public'

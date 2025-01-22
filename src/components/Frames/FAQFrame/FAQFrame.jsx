@@ -31,7 +31,7 @@ const FaqFrame = () => {
                         answer="Стоимость использования зависит от выбранного тарифного плана и объема использования. "/>
                 </div>
                 <div className={styles.faq_speaker_img}>
-                    <img src={speakerImg} alt="Speaker Icon"/>
+                    <img className={styles.img} src={speakerImg} alt="Speaker Icon"/>
                 </div>
             </div>
         </section>
