@@ -1,12 +1,45 @@
-import {forwardRef} from 'react';
+import {forwardRef, useState} from 'react';
 import styles from "./FormFrame.module.css";
 import Form from "../../Form/Form.jsx";
 import lamp from '@/lamp.svg'
+import lamp2 from '@/lamp2.svg'
+import lamp3 from '@/lamp3.svg'
 import iconDown from '@/iconDown.svg'
 
 const FormFrame = forwardRef((props, ref) => {
     const textBlocks = props.textBlocks
     const isMobileDevice = window.innerWidth <= 768;
+    const [isMoved, setIsMoved] = useState(false)
+
+    const lampImages = [
+        lamp,
+        lamp2,
+        lamp,
+        lamp2,
+        lamp3
+    ]
+
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    const handleClick = () => {
+        setIsMoved(!isMoved)
+        if (!isAnimating) {
+            setIsAnimating(true);
+            let index = 0;
+            const animationInterval = setInterval(() => {
+                index++;
+                setCurrentImageIndex(index);
+                if (index === lampImages.length - 1) {
+                    clearInterval(animationInterval);
+                }
+            }, 1000);
+        } else {
+            setCurrentImageIndex(0);
+            setIsAnimating(false);
+        }
+    }
+
     return (
         <div>
             <section ref={ref} className={styles.section_form_background}>
@@ -70,8 +103,8 @@ const FormFrame = forwardRef((props, ref) => {
             </section>
             <section className={styles.section_sun}>
                 <div className={styles.sun_container}>
-                    <img className={styles.sunImage} src={lamp} alt="sun icon"/>
-                    <img className={styles.icon_down} src={iconDown} alt="icon down"/>
+                    <img className={styles.sunImage} src={lampImages[currentImageIndex]} alt="sun icon"/>
+                    <img onClick={handleClick} className={`${styles.icon_down} ${isMoved ? styles.active : ''}`} src={iconDown} alt="icon down"/>
                 </div>
                 <div className={styles.sun_text_container}>
                     <span className={styles.sun_text}>НОВЫЕ <span

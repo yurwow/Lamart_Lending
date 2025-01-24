@@ -16,7 +16,6 @@
 
     animation-timing-function: ease-out;
     animation-duration: 300ms;
-
 }
 
 .rectangle {
@@ -45,7 +44,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        /*gap: 24px;*/
 
         animation-timing-function: ease-out;
         animation-duration: 300ms;

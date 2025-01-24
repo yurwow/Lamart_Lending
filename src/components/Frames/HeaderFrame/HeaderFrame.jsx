@@ -133,7 +133,7 @@ const HeaderFrame = ({textBlocks, scrollToForm, images }) => {
                         <span className={styles.section_one_span}>Информационная система, разработанная для сбора, оценки и управления предложениями сотрудников по оптимизации различных процессов в компании</span>
                     ))}
                     {/*<span className={styles.section_one_span}>Информационная система, разработанная для сбора, оценки и управления предложениями<br/> сотрудников по оптимизации различных процессов в компании</span>*/}
-                    <Button onClick={scrollToForm} text="ПОЛУЧИТЬ ДЕМОДОСТУП"/>
+                    <Button onClick={scrollToForm} text="ПОЛУЧИТЬ ДЕМОДОСТУП" scaleOnHover={1.2}/>
                 </div>
             </section>
         </div>

@@ -9,8 +9,17 @@ const Form = ({classNameBtn}) => {
     const [company, setCompany] = useState("");
     const [message, setMessage] = useState("");
 
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault()
+
+        if (!validateEmail(email)) {
+            return;
+        }
 
         const data = {
             full_name: name,
@@ -42,11 +51,13 @@ const Form = ({classNameBtn}) => {
                     required
                 />
                 <input
+                    type="email"
                     className={styles.form_input}
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+
                 />
                 <input
                     className={styles.form_input}

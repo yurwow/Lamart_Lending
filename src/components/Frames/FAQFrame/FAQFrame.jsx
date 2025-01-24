@@ -1,8 +1,35 @@
 import styles from "./FAQFrame.module.css"
 import ToggleWidget from "../../LandingPage/ToggleWidget.jsx";
-import speakerImg from "@/speakerImg.svg";
+import speaker1 from "@/speaker1.svg";
+import speaker2 from "@/speaker2.svg"
+import speaker3 from "@/speaker3.svg"
+import speaker4 from "@/speaker4.svg"
+import speaker5 from "@/speaker5.svg"
+import speaker6 from "@/speaker6.svg"
+import speaker7 from "@/speaker7.svg"
+import {useEffect, useState} from "react";
 
 const FaqFrame = () => {
+
+    const images = [
+        speaker1,
+        speaker2,
+        speaker3,
+        speaker4,
+        speaker5,
+        speaker6,
+        speaker7
+    ]
+
+    const [imagesIndex, setImagesIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setImagesIndex((prev) => (prev + 1) % images.length)
+        }, 700)
+        return () => clearInterval(interval)
+    }, [])
+
     return (
         <section className={styles.section_faq}>
             <div className={styles.section_faq_title}>ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</div>
@@ -31,7 +58,7 @@ const FaqFrame = () => {
                         answer="Стоимость использования зависит от выбранного тарифного плана и объема использования. "/>
                 </div>
                 <div className={styles.faq_speaker_img}>
-                    <img className={styles.img} src={speakerImg} alt="Speaker Icon"/>
+                    <img className={styles.img} src={images[imagesIndex]} alt="Speaker Icon"/>
                 </div>
             </div>
         </section>
