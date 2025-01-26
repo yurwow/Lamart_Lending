@@ -11,12 +11,10 @@ const ClientsFrame = ({textBlocks}) => {
                 <span
                     style={{
                         color: textBlocks[0].styles?.color || "#000000",
-                        /*
-                                                            fontSize: textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}vw` : '14px',
-                        */
-                        fontSize: isMobileDevice ? (textBlocks[0]?.styles?.mobileFontSize ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}px` : '14px'),
-
-                        fontFamily: textBlocks[0]?.styles?.fontFamily || "Arial",
+                        fontSize: isMobileDevice ? (textBlocks[0]?.styles?.mobileFontSize
+                                ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px')
+                                : (textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}px` : '14px'),
+                        fontFamily: `${textBlocks[0]?.styles?.fontFamily}, sans-serif` || "Montserrat Alternates, sans-serif",
                         fontWeight: textBlocks[0]?.styles?.fontWeight || "normal",
                         fontStyle: textBlocks[0]?.styles?.fontStyle || "normal",
                         lineHeight: textBlocks[0]?.styles?.lineHeight || 1.5,
@@ -35,10 +33,10 @@ const ClientsFrame = ({textBlocks}) => {
                 <span
                     style={{
                         color: textBlocks[1].styles?.color || "#000000",
-
-                        fontSize: isMobileDevice ? (textBlocks[1]?.styles?.mobileFontSize ? `${textBlocks[1]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[1]?.styles?.fontSize ? `${textBlocks[1]?.styles?.fontSize}px` : '14px'),
-
-                        fontFamily: textBlocks[1]?.styles?.fontFamily || "Arial",
+                        fontSize: isMobileDevice ? (textBlocks[1]?.styles?.mobileFontSize ? `${textBlocks[1]?.styles?.mobileFontSize}px` : '14px')
+                                : (textBlocks[1]?.styles?.fontSize
+                                ? `${textBlocks[1]?.styles?.fontSize}px` : '14px'),
+                        fontFamily: `${textBlocks[1]?.styles?.fontFamily}, sans-serif` || "Montserrat Alternates, sans-serif",
                         fontWeight: textBlocks[1]?.styles?.fontWeight || "normal",
                         fontStyle: textBlocks[1]?.styles?.fontStyle || "normal",
                         lineHeight: textBlocks[1]?.styles?.lineHeight || 1.5,
@@ -76,10 +74,10 @@ const ClientsFrame = ({textBlocks}) => {
                         <span
                             style={{
                                 color: textBlocks[2].styles?.color || "#000000",
-
-                                fontSize: isMobileDevice ? (textBlocks[2]?.styles?.mobileFontSize ? `${textBlocks[1]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[2]?.styles?.fontSize ? `${textBlocks[2]?.styles?.fontSize}px` : '14px'),
-
-                                fontFamily: textBlocks[2]?.styles?.fontFamily || "Arial",
+                                fontSize: isMobileDevice
+                                    ? (textBlocks[2]?.styles?.mobileFontSize ? `${textBlocks[1]?.styles?.mobileFontSize}px` : '14px')
+                                    : (textBlocks[2]?.styles?.fontSize ? `${textBlocks[2]?.styles?.fontSize}px` : '14px'),
+                                fontFamily: `${textBlocks[2]?.styles?.fontFamily}, sans-serif` || "Montserrat Alternates, sans-serif",
                                 fontWeight: textBlocks[2]?.styles?.fontWeight || "normal",
                                 fontStyle: textBlocks[2]?.styles?.fontStyle || "normal",
                                 lineHeight: textBlocks[2]?.styles?.lineHeight || 1.5,

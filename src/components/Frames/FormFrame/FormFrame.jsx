@@ -50,10 +50,10 @@ const FormFrame = forwardRef((props, ref) => {
                             <span
                                 style={{
                                     color: textBlocks[0].styles?.color || "#000000",
-
-                                    fontSize: isMobileDevice ? (textBlocks[0]?.styles?.mobileFontSize ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}px` : '14px'),
-
-                                    fontFamily: textBlocks[0]?.styles?.fontFamily || "Arial",
+                                    fontSize: isMobileDevice
+                                        ? (textBlocks[0]?.styles?.mobileFontSize ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px')
+                                        : (textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}px` : '14px'),
+                                    fontFamily: `${textBlocks[0]?.styles?.fontFamily}, sans-serif` || "Montserrat Alternates, sans-serif",
                                     fontWeight: textBlocks[0]?.styles?.fontWeight || "normal",
                                     fontStyle: textBlocks[0]?.styles?.fontStyle || "normal",
                                     lineHeight: textBlocks[0]?.styles?.lineHeight || 1.5,
@@ -73,10 +73,9 @@ const FormFrame = forwardRef((props, ref) => {
                             <span
                                 style={{
                                     color: textBlocks[1].styles?.color || "#000000",
-
-                                    // fontSize: isMobileDevice ? (textBlocks[1]?.styles?.mobileFontSize ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[1]?.styles?.fontSize ? `${textBlocks[1]?.styles?.fontSize}px` : '14px'),
-                                    fontSize: isMobileDevice ? '12px' : '20px',
-                                    fontFamily: textBlocks[1]?.styles?.fontFamily || "Arial",
+                                    fontSize: isMobileDevice ? (textBlocks[1]?.styles?.mobileFontSize ? `${textBlocks[1]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[1]?.styles?.fontSize ? `${textBlocks[1]?.styles?.fontSize}px` : '14px'),
+                                    // fontSize: isMobileDevice ? '12px' : '20px',
+                                    fontFamily: `${textBlocks[1]?.styles?.fontFamily}, sans-serif` || "Montserrat Alternates, sans-serif",
                                     fontWeight: textBlocks[1]?.styles?.fontWeight || "normal",
                                     fontStyle: textBlocks[1]?.styles?.fontStyle || "normal",
                                     lineHeight: textBlocks[1]?.styles?.lineHeight || 1.5,

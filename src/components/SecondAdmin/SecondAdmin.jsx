@@ -334,14 +334,9 @@ const SecondAdmin = () => {
                                                                                 onChange={(e) => handleStyleChange(block.id, 'fontFamily', e.target.value)}
                                                                             >
                                                                                 <option value="Poppins">Poppins</option>
-                                                                                <option
-                                                                                    value="Montserrat Alternates">Montserrat
-                                                                                    Alternates
-                                                                                </option>
+                                                                                <option value="Montserrat Alternates">Montserrat Alternates</option>
                                                                                 <option value="Arial">Arial</option>
-                                                                                <option value="Times New Roman">Times
-                                                                                    New Roman
-                                                                                </option>
+                                                                                <option value="Times New Roman">Times New Roman</option>
                                                                             </select>
                                                                             <label>Цвет текста:</label>
                                                                             <input
@@ -371,7 +366,6 @@ const SecondAdmin = () => {
                                                                                 <option value="bold">Жирный</option>
                                                                                 <option value="lighter">Тонкий</option>
                                                                             </select>
-
 
                                                                         </div>
                                                                         <div className={styles.buttonContainer}>

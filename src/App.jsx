@@ -1,6 +1,6 @@
 import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import AdminPanel from "./components/Admin/AdminPanel.jsx";
-import {HashRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import LoginPage from "./components/LoginPage/LoginPage.jsx";
 import RegisterUser from "./components/Admin/Register.jsx";
 import AdminHome from "./components/AdminPanel/AdminHome/AdminHome.jsx";
@@ -12,7 +12,7 @@ import Adaptive from "./components/Frames/Adaptive.jsx";
 
 function App() {
     return (
-        <HashRouter>
+        <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LandingPage/>}/>
                 <Route path="/login" element={<LoginPage/>} />
@@ -25,7 +25,7 @@ function App() {
                 <Route path="/adaptive" element={<Adaptive/>}/>
                 <Route path="*" element={<NotFound/>}/>
             </Routes>
-        </HashRouter>
+        </BrowserRouter>
     );
 }
 

@@ -5,7 +5,7 @@ import Button from "../../Button/Button.jsx";
 
 const HeaderFrame = ({textBlocks, scrollToForm, images }) => {
     const isMobileDevice = window.innerWidth <= 768;
-
+    console.log(textBlocks)
     return (
         <div className={styles.header_background}>
             <header className={styles.header}>
@@ -20,12 +20,8 @@ const HeaderFrame = ({textBlocks, scrollToForm, images }) => {
                             <span
                                 style={{
                                     color: textBlocks[0].styles?.color || "#000000",
-/*
-                                    fontSize: textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}vw` : '14px',
-*/
                                     fontSize: isMobileDevice ? (textBlocks[0]?.styles?.mobileFontSize ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}px` : '14px'),
-
-                                    fontFamily: textBlocks[0]?.styles?.fontFamily || "Arial",
+                                    fontFamily: `${textBlocks[0]?.styles?.fontFamily}, sans-serif` || "Poppins, sans-serif",
                                     fontWeight: textBlocks[0]?.styles?.fontWeight || "normal",
                                     fontStyle: textBlocks[0]?.styles?.fontStyle || "normal",
                                     lineHeight: textBlocks[0]?.styles?.lineHeight || 1.5,
@@ -48,7 +44,7 @@ const HeaderFrame = ({textBlocks, scrollToForm, images }) => {
                             style={{
                                 color: textBlocks[1].styles?.color || "#000000",
                                 fontSize: isMobileDevice ? (textBlocks[1]?.styles?.mobileFontSize ? `${textBlocks[1]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[1]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}px` : '14px'),
-                                fontFamily: textBlocks[1]?.styles?.fontFamily || "Arial",
+                                fontFamily: `${textBlocks[1]?.styles?.fontFamily}, sans-serif` || "Poppins, sans-serif",
                                 fontWeight: textBlocks[1]?.styles?.fontWeight || "normal",
                                 fontStyle: textBlocks[1]?.styles?.fontStyle || "normal",
                                 lineHeight: textBlocks[1]?.styles?.lineHeight || 1.5,
@@ -73,6 +69,8 @@ const HeaderFrame = ({textBlocks, scrollToForm, images }) => {
                             style={{
                                 color: textBlocks[2].styles?.color || "#000000",
                                 // fontFamily: textBlocks[2]?.styles?.fontFamily || "Poppins, sans-serif",
+                                fontFamily: `${textBlocks[2]?.styles?.fontFamily}, sans-serif` || "Montserrat Alternates, sans-serif",
+
                                 fontSize: isMobileDevice ? (textBlocks[2]?.styles?.mobileFontSize ? `${textBlocks[2]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[2]?.styles?.fontSize ? `${textBlocks[2]?.styles?.fontSize}px` : '14px'),
                                 fontWeight: textBlocks[2]?.styles?.fontWeight || "normal",
                                 fontStyle: textBlocks[2]?.styles?.fontStyle || "normal",
@@ -92,8 +90,7 @@ const HeaderFrame = ({textBlocks, scrollToForm, images }) => {
                             style={{
                                 color: textBlocks[3].styles?.color || "#000000",
                                 fontSize: isMobileDevice ? (textBlocks[3]?.styles?.mobileFontSize ? `${textBlocks[3]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[3]?.styles?.fontSize ? `${textBlocks[3]?.styles?.fontSize}px` : '14px'),
-
-                                // fontFamily: textBlocks[2]?.styles?.fontFamily || "Poppins, sans-serif",
+                                fontFamily: `${textBlocks[3]?.styles?.fontFamily}, sans-serif` || "Montserrat Alternates, sans-serif",
                                 fontWeight: textBlocks[3]?.styles?.fontWeight || "normal",
                                 fontStyle: textBlocks[3]?.styles?.fontStyle || "normal",
                                 lineHeight: textBlocks[3]?.styles?.lineHeight || 1.5,
@@ -114,8 +111,8 @@ const HeaderFrame = ({textBlocks, scrollToForm, images }) => {
                             style={{
                                 color: textBlocks[4].styles?.color || "#000000",
                                 fontSize: isMobileDevice ? (textBlocks[4]?.styles?.mobileFontSize ? `${textBlocks[4]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[4]?.styles?.fontSize ? `${textBlocks[4]?.styles?.fontSize}px` : '14px'),
+                                fontFamily: `${textBlocks[4]?.styles?.fontFamily}, sans-serif` || "Montserrat Alternates, sans-serif",
 
-                                // fontFamily: textBlocks[2]?.styles?.fontFamily || "Poppins, sans-serif",
                                 fontWeight: textBlocks[4]?.styles?.fontWeight || "normal",
                                 fontStyle: textBlocks[4]?.styles?.fontStyle || "normal",
                                 lineHeight: textBlocks[4]?.styles?.lineHeight || 1.5,

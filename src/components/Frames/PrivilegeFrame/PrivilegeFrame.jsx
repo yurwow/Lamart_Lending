@@ -17,10 +17,10 @@ const PrivilegeFrame = ({textBlocks}) => {
                 <span
                     style={{
                         color: textBlocks[0].styles?.color || "#000000",
-
-                        fontSize: isMobileDevice ? (textBlocks[0]?.styles?.mobileFontSize ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px') : (textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}px` : '14px'),
-
-                        fontFamily: textBlocks[0]?.styles?.fontFamily || "Arial",
+                        fontSize: isMobileDevice
+                            ? (textBlocks[0]?.styles?.mobileFontSize ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px')
+                            : (textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}px` : '14px'),
+                        fontFamily: `${textBlocks[0]?.styles?.fontFamily}, sans-serif` || "Montserrat Alternates, sans-serif",
                         fontWeight: textBlocks[0]?.styles?.fontWeight || "normal",
                         fontStyle: textBlocks[0]?.styles?.fontStyle || "normal",
                         lineHeight: textBlocks[0]?.styles?.lineHeight || 1.5,
@@ -40,15 +40,18 @@ const PrivilegeFrame = ({textBlocks}) => {
                 <Widget src={widgetIconFirst}
                         srcHover={firstIconHover}
                         title="Централизация и структурирование"
-                        text="ИТ-решение централизует предложения, упрощая доступ и предотвращая их утрату. Оно также структурирует данные по категориям для удобного анализа и реализации."/>
+                        text="ИТ-решение централизует предложения, упрощая доступ и предотвращая их утрату.
+                         Оно также структурирует данные по категориям для удобного анализа и реализации."/>
                 <Widget src={widgetIconSecond}
                         srcHover={secondIconHover}
                         title="Прозрачность и отслеживаемость"
-                        text="ИТ-решение отслеживает статус предложений, позволяет ставить лайки и уведомляет о ходе процесса, улучшая взаимодействие между сотрудниками и руководством."/>
+                        text="ИТ-решение отслеживает статус предложений, позволяет ставить лайки и уведомляет о ходе процесса,
+                         улучшая взаимодействие между сотрудниками и руководством."/>
                 <Widget src={widgetIconThird}
                         srcHover={thirdIconHover}
                         title="Объективная оценка и приоритизация"
-                        text="Информационная система обеспечивает объективную оценку предложений по заданным критериям, что помогает выбирать лучшие для реализации."/>
+                        text="Информационная система обеспечивает объективную оценку предложений по заданным критериям,
+                         что помогает выбирать лучшие для реализации."/>
             </div>
         </section>
     );
