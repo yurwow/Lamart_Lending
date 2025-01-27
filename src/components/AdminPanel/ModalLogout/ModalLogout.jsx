@@ -6,8 +6,11 @@ import styles from "./ModalLogout.module.css";
 const ModalLogout = ({ isOpen, onClose }) => {
     const modalRef = useRef(null);
     const navigate = useNavigate();
-    const API_URL = "http://51.250.75.40:8000/api/";
+    // const API_URL = "http://51.250.75.40:8000/api/";
     // const API_URL = 'http://89.169.147.237:8000/api/'
+    // const API_URL = 'http://51.250.75.40:8000/';
+    const API_URL = import.meta.env.VITE_API_URL;
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -24,19 +27,13 @@ const ModalLogout = ({ isOpen, onClose }) => {
     const handleLogout = async () => {
         try {
             await axios.post(
-                `${API_URL}auth/logout`,
+                `${API_URL}api/auth/logout`,
                 {},
                 { withCredentials: true }
             );
 
-            document.cookie = "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT";
-            document.cookie = "refresh_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT";
-
-            // console.log("Logout successful");
-
             navigate("/login");
         } catch  {
-            // console.error("Logout failed:", error);
             navigate('/login')
         }
     };

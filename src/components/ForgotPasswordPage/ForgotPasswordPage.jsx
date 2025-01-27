@@ -24,19 +24,19 @@ const ForgotPasswordPage = () => {
         setError(null);
 
         try {
-            console.log("Simulating server request...");
+            // console.log("Simulating server request...");
             await new Promise((resolve) => setTimeout(resolve, 0));
 
             const mockResponse = {
                 message: "Инструкция по восстановлению пароля отправлена.",
             };
 
-            console.log("Mock response:", mockResponse);
+            // console.log("Mock response:", mockResponse);
             setMessage(
                 "Мы отправили подтверждение сброса пароля на ваш email. Перейдите по ссылке в письме, чтобы продолжить."
             );
-        } catch (error) {
-            console.error("Mock error:", error);
+        } catch {
+            // console.error("Mock error:", error);
             setError("Что-то пошло не так. Попробуйте ещё раз.");
         } finally {
             setLoading(false);

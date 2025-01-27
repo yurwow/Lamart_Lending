@@ -6,8 +6,11 @@ const AddTextBlockForm = () => {
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
     const [error, setError] = useState('');
-    const API_URL = "http://51.250.75.40:8000/api/"
+    // const API_URL = 'http://51.250.75.40:8000/';
+    // const API_URL = "http://51.250.75.40:8000/api/"
     // const API_URL = "http://89.169.147.237:8000/api/"
+    const API_URL = import.meta.env.VITE_API_URL;
+
 
     const handleContentChange = (e) => {
         setContent(e.target.value);
@@ -37,7 +40,7 @@ const AddTextBlockForm = () => {
 
         try {
             const response = await axios.post(
-                `${API_URL}text-blocks/add/`,
+                `${API_URL}api/text-blocks/add/`,
                 newTextBlock,
                 {
                     headers: {

@@ -10,18 +10,15 @@ import ReviewsFrame from "../Frames/ReviewsFrame/ReviewsFrame.jsx";
 import FAQFrame from "../Frames/FAQFrame/FAQFrame.jsx";
 import FooterFrame from "../Frames/FooterFrame/FooterFrame.jsx";
 import CookiesWidget from "./CookiesWidget/CookiesWidget.jsx";
-import styles from './LandingPage.module.css';
-import splashLogo from '../../public/splashLogo.png'
 
 const LandingPage = () => {
     const formRef = useRef(null);
-    const [textBlocks, setTextBlocks] = useState([]);
-    const [images, setImages] = useState([]);
     const [frames, setFrames] = useState([]);
 
     const scrollToForm = () => {
         formRef.current.scrollIntoView({ behavior: "smooth" });
     };
+
     useEffect(() => {
         const script = document.createElement("script");
         script.src = "https://embed.tawk.to/674ed4c14304e3196aebb871/1ie5uu539";
@@ -33,20 +30,6 @@ const LandingPage = () => {
             document.body.removeChild(script);
         };
     },[])
-
-    /*useEffect(() => {
-        if (window.innerWidth <= 768) {
-            const splashScreen = document.getElementById("splash-screen");
-
-            const timer = setTimeout(() => {
-                if (splashScreen) {
-                    splashScreen.style.display = "none";
-                }
-            }, 1000);
-
-            return () => clearTimeout(timer);
-        }
-    }, []);*/
 
     useEffect(() => {
         const fetchData = async () => {
@@ -62,8 +45,6 @@ const LandingPage = () => {
                 }));
 
                 setFrames(framesWithData);
-                setTextBlocks(textBlocksData);
-                setImages(imagesData);
             } catch (error) {
                 console.error("Ошибка при загрузке данных:", error);
             }
@@ -86,11 +67,6 @@ const LandingPage = () => {
 
     return (
         <>
-            {/*<div id="splash-screen" className={styles.splash_screen}>*/}
-            {/*    <img src={splashLogo} alt="Logo" className={styles.splashLogo}/>*/}
-            {/*    <span className={styles.span}>ОТКРЫТЫЕ<br/> ИДЕИ</span>*/}
-            {/*</div>*/}
-
             {frames
                 .filter((frame) => frame.enabled)
                 .map((frame) => {

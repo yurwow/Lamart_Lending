@@ -5,7 +5,7 @@ import Button from "../../Button/Button.jsx";
 
 const HeaderFrame = ({textBlocks, scrollToForm, images }) => {
     const isMobileDevice = window.innerWidth <= 768;
-    console.log(textBlocks)
+
     return (
         <div className={styles.header_background}>
             <header className={styles.header}>

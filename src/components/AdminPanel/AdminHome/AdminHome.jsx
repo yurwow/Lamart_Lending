@@ -16,8 +16,12 @@ const AdminHome = () => {
     const [username, setUsername] = useState("");
     const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
-    const API_URL = "http://51.250.75.40:8000/api/"
+    // const API_URL = "http://51.250.75.40:8000/api/"
     // const API_URL = 'http://89.169.147.237:8000/api/';
+    // const API_URL = 'http://51.250.75.40:8000/';
+    const API_URL = import.meta.env.VITE_API_URL;
+
+
     const clickMenu = () => {
         setOpenMenu((prev) => !prev);
     };
@@ -34,7 +38,7 @@ const AdminHome = () => {
             }
 
             const response = await axios.post(
-                `${API_URL}auth/refresh`,
+                `${API_URL}api/auth/refresh`,
                 {
                     refresh_token: refreshToken
                 },
@@ -67,7 +71,7 @@ const AdminHome = () => {
                 throw new Error("Access Token отсутствует.");
             }
 
-            const response = await axios.get(`${API_URL}auth/user`,
+            const response = await axios.get(`${API_URL}api/auth/user`,
                 {}, {
                 withCredentials: false
             });
