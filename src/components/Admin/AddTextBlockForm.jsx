@@ -11,7 +11,6 @@ const AddTextBlockForm = () => {
     // const API_URL = "http://89.169.147.237:8000/api/"
     const API_URL = import.meta.env.VITE_API_URL;
 
-
     const handleContentChange = (e) => {
         setContent(e.target.value);
     };
@@ -35,23 +34,19 @@ const AddTextBlockForm = () => {
             line_height: '1.5',
             text_align: 'left',
             list_type: 'none',
-            link: ''
+            link: '',
         };
 
         try {
-            const response = await axios.post(
-                `${API_URL}api/text-blocks/add/`,
-                newTextBlock,
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            );
+            const response = await axios.post(`${API_URL}api/text-blocks/add/`, newTextBlock, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
             setContent('');
             setTitle('');
             setError('');
-        } catch  {
+        } catch {
             // console.error('Ошибка при добавлении текстового блока:', err.response ? err.response.data : err);
             setError('Не удалось добавить текстовый блок');
         }
@@ -81,7 +76,9 @@ const AddTextBlockForm = () => {
                     />
                 </div>
                 {error && <p className={styles.error}>{error}</p>}
-                <button type="submit" className={styles.button}>Добавить</button>
+                <button type="submit" className={styles.button}>
+                    Добавить
+                </button>
             </form>
         </div>
     );

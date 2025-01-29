@@ -1,37 +1,40 @@
-import styles from './CookiesWidget.module.css'
-import cookiesIcon from '../../../public/cookies.png'
-import {useEffect, useState} from "react";
+import styles from './CookiesWidget.module.css';
+import cookiesIcon from '../../../public/cookies.png';
+import { useEffect, useState } from 'react';
 
 const CookiesWidget = () => {
-    const [isVisible, setIsVisible] = useState(false)
-    const [isLoaded, setIsLoaded] = useState(false)
+    const [isVisible, setIsVisible] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const cookieAccepted = localStorage.getItem('cookieAccepted')
+        const cookieAccepted = localStorage.getItem('cookieAccepted');
         if (!cookieAccepted) {
-            setIsVisible(true)
+            setIsVisible(true);
         }
-        setIsLoaded(true)
+        setIsLoaded(true);
     }, []);
 
     const handleAccept = () => {
-        localStorage.setItem("cookieAccepted", "true")
-        setIsVisible(false)
-    }
+        localStorage.setItem('cookieAccepted', 'true');
+        setIsVisible(false);
+    };
     if (!isLoaded) {
         return null;
     }
 
     return (
         <>
-            {isVisible &&
+            {isVisible && (
                 <div className={styles.container}>
-                    <span className={styles.text}>Мы используем файлы Cookie
-                        <img src={cookiesIcon} alt="cookies img"/></span>
-                    <button onClick={handleAccept} className={styles.btn}>Принять</button>
+                    <span className={styles.text}>
+                        Мы используем файлы Cookie
+                        <img src={cookiesIcon} alt="cookies img" />
+                    </span>
+                    <button onClick={handleAccept} className={styles.btn}>
+                        Принять
+                    </button>
                 </div>
-
-            }
+            )}
         </>
     );
 };

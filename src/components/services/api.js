@@ -31,7 +31,6 @@ export const deleteTextBlock = async (id) => {
     }
 };
 
-
 export const getImages = async () => {
     const response = await axios.get(`${API_URL}api/images/`);
     return response.data;
@@ -88,15 +87,15 @@ export const submitApplication = async (data) => {
     try {
         const response = await axios.post(`${API_URL}api/submit-application/`, data, {
             headers: {
-                "Content-Type": "application/json"
-            }
+                'Content-Type': 'application/json',
+            },
         });
         if (response.status === 200) {
-            return { message: response.data.message || "Заявка успешно отправлена!" };
+            return { message: response.data.message || 'Заявка успешно отправлена!' };
         }
     } catch (error) {
-        console.error("Error:", error);
-        throw new Error("Ошибка при отправке заявки.");
+        console.error('Error:', error);
+        throw new Error('Ошибка при отправке заявки.');
     }
 };
 
@@ -152,13 +151,12 @@ export const deleteFrame = async (id) => {
 
 export const fetchAiText = async (prompt) => {
     try {
-        const response = await axios.post(`${API_URL}api/generate-text/`, {prompt})
-        return response.data
+        const response = await axios.post(`${API_URL}api/generate-text/`, { prompt });
+        return response.data;
+    } catch (error) {
+        console.error(error);
     }
-    catch (error) {
-        console.error(error)
-    }
-}
+};
 
 /*export const fetchAiImage = async (prompt) => {
     try {

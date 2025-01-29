@@ -1,12 +1,12 @@
 import styles from './LoginPage.module.css';
 import loginLogo from '../../public/loginLogo.svg';
-import { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import {Link, useNavigate} from "react-router-dom";
+import { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const focusRef = useRef(null);
@@ -16,12 +16,9 @@ const LoginPage = () => {
     // const API_URL = 'http://51.250.75.40:8000/';
     const API_URL = import.meta.env.VITE_API_URL;
 
-
     useEffect(() => {
         focusRef.current.focus();
     }, []);
-
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,7 +35,7 @@ const LoginPage = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                }
+                },
             );
 
             const { access_token, refresh_token } = response.data;
@@ -48,15 +45,14 @@ const LoginPage = () => {
             document.cookie = `refresh=${refresh_token}; path=/`;
 
             // console.log("Login successful:", response.data);
-            navigate("/adminpanel");
+            navigate('/adminpanel');
         } catch (error) {
-            console.error("Login error:", error.response ? error.response.data : error.message);
-            setError("Неверные эл. почта или пароль");
+            console.error('Login error:', error.response ? error.response.data : error.message);
+            setError('Неверные эл. почта или пароль');
         } finally {
             setLoading(false);
         }
     };
-
 
     return (
         <div className={styles.background}>
@@ -84,10 +80,12 @@ const LoginPage = () => {
                     />
                     <div className={styles.btn_container}>
                         <button className={styles.btn} type="submit" disabled={loading}>
-                            {loading ? "Загрузка..." : "Войти"}
+                            {loading ? 'Загрузка...' : 'Войти'}
                         </button>
                     </div>
-                    <Link className={styles.forgot_pass} to="/forgot-password">Забыли пароль?</Link>
+                    <Link className={styles.forgot_pass} to="/forgot-password">
+                        Забыли пароль?
+                    </Link>
                 </form>
             </div>
         </div>

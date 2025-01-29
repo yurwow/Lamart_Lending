@@ -1,11 +1,11 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
 
 const RegisterUser = () => {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [password2, setPassword2] = useState("");
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [password2, setPassword2] = useState('');
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
 
@@ -15,7 +15,7 @@ const RegisterUser = () => {
         setError(null);
 
         if (password !== password2) {
-            setError("Пароли не совпадают!");
+            setError('Пароли не совпадают!');
             return;
         }
 
@@ -24,14 +24,14 @@ const RegisterUser = () => {
                 username,
                 email,
                 password,
-                password2
+                password2,
             });
 
             if (res.status === 201 || res.status === 200) {
-                setResponse("Пользователь успешно зарегистрирован!");
+                setResponse('Пользователь успешно зарегистрирован!');
             }
         } catch (err) {
-            setError(err.response?.data?.detail || "Ошибка при регистрации");
+            setError(err.response?.data?.detail || 'Ошибка при регистрации');
         }
     };
 
@@ -69,8 +69,8 @@ const RegisterUser = () => {
                 />
                 <button type="submit">Зарегистрировать</button>
             </form>
-            {response && <p style={{ color: "green" }}>{response}</p>}
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {response && <p style={{ color: 'green' }}>{response}</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     );
 };

@@ -1,7 +1,7 @@
-import styles from './Button.module.css'
-import {useState} from "react";
+import styles from './Button.module.css';
+import { useState } from 'react';
 
-const Button = ({text, onClick, type, scaleOnHover}) => {
+const Button = ({ text, onClick, type, scaleOnHover }) => {
     const [isHovered, setIsHovered] = useState(false);
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);

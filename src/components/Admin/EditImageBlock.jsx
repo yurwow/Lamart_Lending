@@ -14,8 +14,6 @@ const ImageUpload = () => {
     // const BASE_URL = 'http://51.250.75.40:8000/';
     const BASE_URL = import.meta.env.VITE_API_URL;
 
-
-
     useEffect(() => {
         fetchImages();
     }, []);
@@ -61,9 +59,7 @@ const ImageUpload = () => {
 
             try {
                 const updatedImage = await updateImage(editingImageId, formData);
-                setImages(images.map((image) =>
-                    image.id === editingImageId ? updatedImage : image
-                ));
+                setImages(images.map((image) => (image.id === editingImageId ? updatedImage : image)));
                 resetForm();
             } catch (error) {
                 console.error('Error updating image:', error);
@@ -87,7 +83,7 @@ const ImageUpload = () => {
         setEditingImageId(null);
     };
 
-    console.log("images", images);
+    console.log('images', images);
     return (
         <div className={styles.container}>
             <h3 className={styles.title}>Загрузить изображение</h3>
@@ -100,10 +96,7 @@ const ImageUpload = () => {
                     className={styles.descriptionInput}
                 />
                 {imageUrl && <img src={imageUrl} alt="Preview" className={styles.previewImage} />}
-                <button
-                    onClick={editingImageId ? handleEditImage : handleSaveImage}
-                    className={styles.saveButton}
-                >
+                <button onClick={editingImageId ? handleEditImage : handleSaveImage} className={styles.saveButton}>
                     {editingImageId ? 'Заменить изображение' : 'Сохранить изображение'}
                 </button>
             </div>
@@ -112,11 +105,7 @@ const ImageUpload = () => {
             <ul className={styles.imageList}>
                 {images.map((image) => (
                     <li key={image.id} className={styles.imageItem}>
-                        <img
-                            src={`${BASE_URL}${image.image}`}
-                            alt="Uploaded"
-                            className={styles.uploadedImage}
-                        />
+                        <img src={`${BASE_URL}${image.image}`} alt="Uploaded" className={styles.uploadedImage} />
                         <p className={styles.imageDescription}>{image.description}</p>
                         <button
                             onClick={() => {
@@ -127,10 +116,7 @@ const ImageUpload = () => {
                         >
                             Изменить
                         </button>
-                        <button
-                            onClick={() => handleDeleteImage(image.id)}
-                            className={styles.deleteButton}
-                        >
+                        <button onClick={() => handleDeleteImage(image.id)} className={styles.deleteButton}>
                             Удалить
                         </button>
                     </li>

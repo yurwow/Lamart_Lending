@@ -1,10 +1,10 @@
-import { useState, useRef } from "react";
-import styles from "./ComputerFrame.module.css";
-import megapolic from "@/megapolis.svg";
-import monitorIcon from "@/Celestial-Blue.svg";
-import video from "@/video.mp4";
+import { useState, useRef } from 'react';
+import styles from './ComputerFrame.module.css';
+import megapolic from '@/megapolis.svg';
+import monitorIcon from '@/Celestial-Blue.svg';
+import video from '@/video.mp4';
 
-const ComputerFrame = ({textBlocks, images}) => {
+const ComputerFrame = ({ textBlocks, images }) => {
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -38,44 +38,49 @@ const ComputerFrame = ({textBlocks, images}) => {
             <section className={styles.section_two}>
                 <div className={styles.section_two_container}>
                     {/*<div className={styles.h2}>ИТ-РЕШЕНИЕ ДЛЯ ВАШЕЙ КОМПАНИИ</div>*/}
-                    {(textBlocks?.length > 0 ? (
+                    {textBlocks?.length > 0 ? (
                         <span
                             style={{
-                                color: textBlocks[0].styles?.color || "#000000",
+                                color: textBlocks[0].styles?.color || '#000000',
                                 fontSize: isMobileDevice
-                                    ? (textBlocks[0]?.styles?.mobileFontSize ? `${textBlocks[0]?.styles?.mobileFontSize}px` : '14px')
-                                    : (textBlocks[0]?.styles?.fontSize ? `${textBlocks[0]?.styles?.fontSize}px` : '14px'),
-                                fontFamily: `${textBlocks[0]?.styles?.fontFamily}, sans-serif` || "Montserrat Alternates, sans-serif",
-                                fontWeight: textBlocks[0]?.styles?.fontWeight || "normal",
-                                fontStyle: textBlocks[0]?.styles?.fontStyle || "normal",
+                                    ? textBlocks[0]?.styles?.mobileFontSize
+                                        ? `${textBlocks[0]?.styles?.mobileFontSize}px`
+                                        : '14px'
+                                    : textBlocks[0]?.styles?.fontSize
+                                      ? `${textBlocks[0]?.styles?.fontSize}px`
+                                      : '14px',
+                                fontFamily:
+                                    `${textBlocks[0]?.styles?.fontFamily}, sans-serif` ||
+                                    'Montserrat Alternates, sans-serif',
+                                fontWeight: textBlocks[0]?.styles?.fontWeight || 'normal',
+                                fontStyle: textBlocks[0]?.styles?.fontStyle || 'normal',
                                 lineHeight: textBlocks[0]?.styles?.lineHeight || 1.5,
-                                textAlign: textBlocks[0]?.styles?.textAlign || "left",
-                                listStyleType: textBlocks[0]?.styles?.listType || "none",
+                                textAlign: textBlocks[0]?.styles?.textAlign || 'left',
+                                listStyleType: textBlocks[0]?.styles?.listType || 'none',
                                 display: 'inline-block',
                             }}
                         >
                             {textBlocks[0].content}
-                            </span>
+                        </span>
                     ) : (
                         <div className={styles.h2}>ИТ-РЕШЕНИЕ ДЛЯ ВАШЕЙ КОМПАНИИ</div>
-                    ))}
+                    )}
 
                     <div className={styles.text}>
                         С помощью этого решения, сотрудники могут предлагать идеи, рекомендации и предложения по
-                        улучшению работы
-                        компании, а экспертам и управляющим лицам предоставляется возможность эффективно оценивать и
-                        реализовывать
-                        эти предложения
+                        улучшению работы компании, а экспертам и управляющим лицам предоставляется возможность
+                        эффективно оценивать и реализовывать эти предложения
                     </div>
                 </div>
                 {/*<img className={styles.megapolis_icon} src={megapolic} alt="иконка здание"/>*/}
-                <img src={images?.[0]?.image ? `http://51.250.75.40:8000/${images[0].image}` : megapolic}
-                     alt="иконка здание"
-                     className={styles.megapolis_icon}
+                <img
+                    src={images?.[0]?.image ? `http://51.250.75.40:8000/${images[0].image}` : megapolic}
+                    alt="иконка здание"
+                    className={styles.megapolis_icon}
                 />
             </section>
             <div className={styles.monitorIcon_container}>
-                <img className={styles.monitorIcon} src={monitorIcon} alt="monitor icon"/>
+                <img className={styles.monitorIcon} src={monitorIcon} alt="monitor icon" />
                 <video
                     className={styles.video}
                     ref={videoRef}
@@ -89,7 +94,7 @@ const ComputerFrame = ({textBlocks, images}) => {
                 </video>
                 <div className={styles.controls}>
                     <button onClick={togglePlayPause} className={styles.controlButton}>
-                        {isPlaying ? "Пауза" : "Воспроизвести"}
+                        {isPlaying ? 'Пауза' : 'Воспроизвести'}
                     </button>
                     <input
                         type="range"

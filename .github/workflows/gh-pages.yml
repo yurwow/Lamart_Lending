@@ -2,28 +2,28 @@ name: GitHub Pages
 run-name: ${{ github.actor }} landing app 🚀
 
 on:
-  push:
-    branches:
-      - master
+    push:
+        branches:
+            - master
 
 jobs:
-  Build-and-Deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+    Build-and-Deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 18
 
-      - name: Install npm dependencies
-        run: npm ci
+            - name: Install npm dependencies
+              run: npm ci
 
-      - name: Build app
-        run: npm run build
+            - name: Build app
+              run: npm run build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+            - name: Deploy
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./dist

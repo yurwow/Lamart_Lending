@@ -1,13 +1,13 @@
-import styles from './Form.module.css'
-import Button from "../Button/Button.jsx";
-import {useState} from "react";
-import {submitApplication} from "../services/api.js";
+import styles from './Form.module.css';
+import Button from '../Button/Button.jsx';
+import { useState } from 'react';
+import { submitApplication } from '../services/api.js';
 
-const Form = ({classNameBtn}) => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [company, setCompany] = useState("");
-    const [message, setMessage] = useState("");
+const Form = ({ classNameBtn }) => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [company, setCompany] = useState('');
+    const [message, setMessage] = useState('');
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -15,7 +15,7 @@ const Form = ({classNameBtn}) => {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault()
+        event.preventDefault();
 
         if (!validateEmail(email)) {
             return;
@@ -26,7 +26,7 @@ const Form = ({classNameBtn}) => {
             phone_number: message,
             email: email,
             organization: company,
-        }
+        };
 
         try {
             const response = await submitApplication(data);
@@ -36,9 +36,9 @@ const Form = ({classNameBtn}) => {
             setCompany('');
             setMessage('');
         } catch (error) {
-            alert(error.message || "Ошибка при отправке заявки.");
+            alert(error.message || 'Ошибка при отправке заявки.');
         }
-    }
+    };
 
     return (
         <div className={styles.form_container}>
@@ -57,7 +57,6 @@ const Form = ({classNameBtn}) => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-
                 />
                 <input
                     className={styles.form_input}
@@ -73,9 +72,11 @@ const Form = ({classNameBtn}) => {
                     onChange={(e) => setMessage(e.target.value)}
                     required
                 />
-                <p className={styles.form_p}>*Отправляя форму заявки, вы соглашаетесь на обработку персональных данных</p>
+                <p className={styles.form_p}>
+                    *Отправляя форму заявки, вы соглашаетесь на обработку персональных данных
+                </p>
                 <div className={classNameBtn}>
-                    <Button text="ЗАПРОСИТЬ ДЕМОДОСТУП" type={"submit"}/>
+                    <Button text="ЗАПРОСИТЬ ДЕМОДОСТУП" type={'submit'} />
                 </div>
             </form>
         </div>

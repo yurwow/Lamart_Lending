@@ -25,17 +25,19 @@ function EditTextBlock() {
     const handleSelectBlock = (block) => {
         setSelectedBlock(block);
         setContent(block.content);
-        setBlockStyles(block.styles || {
-            color: '#000000',
-            fontSize: '14px',
-            fontFamily: 'Arial',
-            fontWeight: 'normal',
-            fontStyle: 'normal',
-            lineHeight: 1.5,
-            textAlign: 'left',
-            listType: 'none',
-            hyperlink: '',
-        });
+        setBlockStyles(
+            block.styles || {
+                color: '#000000',
+                fontSize: '14px',
+                fontFamily: 'Arial',
+                fontWeight: 'normal',
+                fontStyle: 'normal',
+                lineHeight: 1.5,
+                textAlign: 'left',
+                listType: 'none',
+                hyperlink: '',
+            },
+        );
     };
 
     const handleStyleChange = (key, value) => {
@@ -52,11 +54,7 @@ function EditTextBlock() {
                 styles: blockStyles,
             };
             updateTextBlock(selectedBlock.id, updatedData).then((updatedBlock) => {
-                setTextBlocks(
-                    textBlocks.map((block) =>
-                        block.id === updatedBlock.id ? updatedBlock : block
-                    )
-                );
+                setTextBlocks(textBlocks.map((block) => (block.id === updatedBlock.id ? updatedBlock : block)));
                 setSelectedBlock(null);
                 resetForm();
             });
@@ -98,16 +96,10 @@ function EditTextBlock() {
                 <ul className={styles.blockList}>
                     {textBlocks.map((block) => (
                         <li key={block.id} className={styles.blockItem}>
-                            <button
-                                className={styles.selectButton}
-                                onClick={() => handleSelectBlock(block)}
-                            >
+                            <button className={styles.selectButton} onClick={() => handleSelectBlock(block)}>
                                 {block.content.slice(0, 20)}...
                             </button>
-                            <button
-                                className={styles.deleteButton}
-                                onClick={() => handleDeleteBlock(block.id)}
-                            >
+                            <button className={styles.deleteButton} onClick={() => handleDeleteBlock(block.id)}>
                                 Удалить
                             </button>
                         </li>

@@ -1,26 +1,25 @@
-import styles from "./AdminPanel.module.css";
-import icon from "../../../public/landIcon.svg";
-import ellipse from "../../../public/Ellipse.svg";
-import search from "../../../public/ellipsepng.png";
-import plus from "../../../public/plus.png";
-import AdminHomeWidget from "../AdminHomeWidget/AdminHomeWidget.jsx";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import ProfileModal from "../ProfileModal/ProfileModal.jsx";
-import { useNavigate } from "react-router-dom";
-import miniPageIcon from "@/miniPage.png"
+import styles from './AdminPanel.module.css';
+import icon from '../../../public/landIcon.svg';
+import ellipse from '../../../public/Ellipse.svg';
+import search from '../../../public/ellipsepng.png';
+import plus from '../../../public/plus.png';
+import AdminHomeWidget from '../AdminHomeWidget/AdminHomeWidget.jsx';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import ProfileModal from '../ProfileModal/ProfileModal.jsx';
+import { useNavigate } from 'react-router-dom';
+import miniPageIcon from '@/miniPage.png';
 
 const AdminHome = () => {
     const [open, setOpen] = useState(false);
-    const [query, setQuery] = useState("");
-    const [username, setUsername] = useState("");
+    const [query, setQuery] = useState('');
+    const [username, setUsername] = useState('');
     const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
     // const API_URL = "http://51.250.75.40:8000/api/"
     // const API_URL = 'http://89.169.147.237:8000/api/';
     // const API_URL = 'http://51.250.75.40:8000/';
     const API_URL = import.meta.env.VITE_API_URL;
-
 
     const clickMenu = () => {
         setOpenMenu((prev) => !prev);
@@ -32,58 +31,60 @@ const AdminHome = () => {
 
     const refreshAccessToken = async () => {
         try {
-            const refreshToken = localStorage.getItem("refreshToken");
+            const refreshToken = localStorage.getItem('refreshToken');
             if (!refreshToken) {
-                throw new Error("Refresh Token отсутствует.");
+                throw new Error('Refresh Token отсутствует.');
             }
 
             const response = await axios.post(
                 `${API_URL}api/auth/refresh`,
                 {
-                    refresh_token: refreshToken
+                    refresh_token: refreshToken,
                 },
                 {
                     withCredentials: false,
                     headers: {
                         Authorization: `Bearer ${refreshToken}`,
-                        "Content-Type": "application/json"
-                    }
-                }
+                        'Content-Type': 'application/json',
+                    },
+                },
             );
 
             const { access } = response.data;
-            localStorage.setItem("accessToken", access);
+            localStorage.setItem('accessToken', access);
             return access;
-        } catch  {
+        } catch {
             // console.error("Ошибка обновления токена:", error.response?.data || error.message);
             // navigate("/login");
             return null;
         }
     };
 
-
     const fetchUserData = async () => {
         try {
-            const accessToken = localStorage.getItem("accessToken");
+            const accessToken = localStorage.getItem('accessToken');
             // const accessToken = document.cookie.getItem("accessToken");
 
             if (!accessToken) {
-                throw new Error("Access Token отсутствует.");
+                throw new Error('Access Token отсутствует.');
             }
 
-            const response = await axios.get(`${API_URL}api/auth/user`,
-                {}, {
-                withCredentials: false
-            });
+            const response = await axios.get(
+                `${API_URL}api/auth/user`,
+                {},
+                {
+                    withCredentials: false,
+                },
+            );
 
             setUsername(response.data.username);
-            console.log("Успешное получение данных пользователя");
-        } catch  {
+            console.log('Успешное получение данных пользователя');
+        } catch {
             // console.error("Ошибка получения данных пользователя:", error);
 
             const newAccessToken = await refreshAccessToken();
             if (newAccessToken) {
-                localStorage.setItem("accessToken", newAccessToken);
+                localStorage.setItem('accessToken', newAccessToken);
                 fetchUserData();
             } else {
                 // console.error("Не удалось обновить токен");
@@ -97,7 +98,7 @@ const AdminHome = () => {
             try {
                 await fetchUserData();
             } catch (error) {
-                console.error("Ошибка авторизации:", error);
+                console.error('Ошибка авторизации:', error);
                 // navigate("/login");
             }
         };
@@ -106,7 +107,7 @@ const AdminHome = () => {
     }, [navigate]);
 
     const handleClickToPage = () => {
-        navigate("/second");
+        navigate('/second');
     };
 
     return (
@@ -117,7 +118,7 @@ const AdminHome = () => {
                     <div className={styles.span}>ОТКРЫТЫЕ ИДЕИ</div>
                 </div>
                 <div className={styles.logo} onClick={clickMenu}>
-                    <span className={styles.name}>{username || "admin"}</span>
+                    <span className={styles.name}>{username || 'admin'}</span>
                     <img src={ellipse} alt="user icon" />
                 </div>
             </header>
@@ -149,14 +150,18 @@ const AdminHome = () => {
                         </div>
                     </div>
                     <div className={styles.container_pages}>
-                        <AdminHomeWidget text="Редактировано 5 минут назад" onClick={handleClickToPage} img={miniPageIcon}/>
-                        <AdminHomeWidget text="Редактировано неделю назад"/>
-                        <AdminHomeWidget text="Редактировано неделю назад"/>
-                        <AdminHomeWidget text="Редактировано неделю назад"/>
-                        <AdminHomeWidget text="Редактировано неделю назад"/>
-                        <AdminHomeWidget text="Редактировано неделю назад"/>
-                        <AdminHomeWidget text="Редактировано неделю назад"/>
-                        <AdminHomeWidget text="Редактировано неделю назад"/>
+                        <AdminHomeWidget
+                            text="Редактировано 5 минут назад"
+                            onClick={handleClickToPage}
+                            img={miniPageIcon}
+                        />
+                        <AdminHomeWidget text="Редактировано неделю назад" />
+                        <AdminHomeWidget text="Редактировано неделю назад" />
+                        <AdminHomeWidget text="Редактировано неделю назад" />
+                        <AdminHomeWidget text="Редактировано неделю назад" />
+                        <AdminHomeWidget text="Редактировано неделю назад" />
+                        <AdminHomeWidget text="Редактировано неделю назад" />
+                        <AdminHomeWidget text="Редактировано неделю назад" />
                     </div>
                 </section>
             </main>

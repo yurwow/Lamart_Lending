@@ -1,12 +1,11 @@
-import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import styles from "./ForgotPasswordPage.module.css";
-import loginLogo from "../../public/loginLogo.svg";
-import messageIcon from '../../public/messageEmail.png'
-
+import { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './ForgotPasswordPage.module.css';
+import loginLogo from '../../public/loginLogo.svg';
+import messageIcon from '../../public/messageEmail.png';
 
 const ForgotPasswordPage = () => {
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState('');
     const [message, setMessage] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -28,16 +27,16 @@ const ForgotPasswordPage = () => {
             await new Promise((resolve) => setTimeout(resolve, 0));
 
             const mockResponse = {
-                message: "Инструкция по восстановлению пароля отправлена.",
+                message: 'Инструкция по восстановлению пароля отправлена.',
             };
 
             // console.log("Mock response:", mockResponse);
             setMessage(
-                "Мы отправили подтверждение сброса пароля на ваш email. Перейдите по ссылке в письме, чтобы продолжить."
+                'Мы отправили подтверждение сброса пароля на ваш email. Перейдите по ссылке в письме, чтобы продолжить.',
             );
         } catch {
             // console.error("Mock error:", error);
-            setError("Что-то пошло не так. Попробуйте ещё раз.");
+            setError('Что-то пошло не так. Попробуйте ещё раз.');
         } finally {
             setLoading(false);
         }
@@ -55,19 +54,16 @@ const ForgotPasswordPage = () => {
                 {error ? (
                     <p className={styles.error}>{error}</p>
                 ) : (
-                    !message && (
-                        <p className={styles.title_email}>
-                            Введите email, который вам выдала компания.
-                        </p>
-                    )
+                    !message && <p className={styles.title_email}>Введите email, который вам выдала компания.</p>
                 )}
 
                 {message ? (
                     <div className={styles.succes_container}>
                         <p className={styles.succes}>{message}</p>
-                        <img className={styles.img} src={messageIcon} alt="msg icon"/>
-                        <Link className={styles.link_login} to="/login">Войти</Link>
-
+                        <img className={styles.img} src={messageIcon} alt="msg icon" />
+                        <Link className={styles.link_login} to="/login">
+                            Войти
+                        </Link>
                     </div>
                 ) : (
                     <form className={styles.form} onSubmit={handleSubmit}>
@@ -79,12 +75,8 @@ const ForgotPasswordPage = () => {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <div className={styles.btn_container}>
-                            <button
-                                className={styles.btn}
-                                type="submit"
-                                disabled={loading}
-                            >
-                                {loading ? "Загрузка..." : "Восстановить"}
+                            <button className={styles.btn} type="submit" disabled={loading}>
+                                {loading ? 'Загрузка...' : 'Восстановить'}
                             </button>
                         </div>
                         <Link className={styles.forgot_pass} to="/login">

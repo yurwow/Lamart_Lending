@@ -59,7 +59,7 @@ const ContentBlocks = () => {
                 name: updatedContent || selectedFrame.name,
                 content: updatedType || selectedFrame.content,
             });
-            setBlock(block.map(frame => (frame.id === updatedFrame.id ? updatedFrame : frame)));
+            setBlock(block.map((frame) => (frame.id === updatedFrame.id ? updatedFrame : frame)));
             setSelectedFrame(null);
             setUpdatedContent('');
             setUpdatedType('');
@@ -71,7 +71,7 @@ const ContentBlocks = () => {
     const handleDeleteFrame = async (id) => {
         try {
             await deleteFrame(id);
-            setBlock(block.filter(frame => frame.id !== id));
+            setBlock(block.filter((frame) => frame.id !== id));
         } catch (error) {
             console.error(`Error deleting frame with ID ${id}:`, error);
         }
@@ -80,7 +80,7 @@ const ContentBlocks = () => {
     const toggleFrameEnabled = async (id, currentEnabled) => {
         try {
             const updatedFrame = await updateFrame(id, { enabled: !currentEnabled });
-            setBlock(block.map(frame => (frame.id === updatedFrame.id ? updatedFrame : frame)));
+            setBlock(block.map((frame) => (frame.id === updatedFrame.id ? updatedFrame : frame)));
         } catch (error) {
             console.error(`Error toggling frame with ID ${id}:`, error);
         }
@@ -104,7 +104,7 @@ const ContentBlocks = () => {
                     onChange={(e) => setNewFrameType(e.target.value)}
                     className={styles.select}
                 >
-                    {frameTypes.map(type => (
+                    {frameTypes.map((type) => (
                         <option key={type} value={type}>
                             {type}
                         </option>
@@ -118,7 +118,7 @@ const ContentBlocks = () => {
             <div>
                 <h3 className={styles.subtitle}>Фреймы</h3>
                 <ul className={styles.blockList}>
-                    {block.map(frame => (
+                    {block.map((frame) => (
                         <li key={frame.id} className={styles.blockItem}>
                             <div>
                                 <strong>Frame ID:</strong> {frame.id}
@@ -138,17 +138,12 @@ const ContentBlocks = () => {
                                     {frame.enabled ? 'Disable' : 'Enable'}
                                 </button>
                                 <button
-                                    onClick={() =>
-                                        setSelectedFrame(selectedFrame?.id === frame.id ? null : frame)
-                                    }
+                                    onClick={() => setSelectedFrame(selectedFrame?.id === frame.id ? null : frame)}
                                     className={styles.viewButton}
                                 >
                                     {selectedFrame?.id === frame.id ? 'Collapse' : 'Edit'}
                                 </button>
-                                <button
-                                    onClick={() => handleDeleteFrame(frame.id)}
-                                    className={styles.deleteButton}
-                                >
+                                <button onClick={() => handleDeleteFrame(frame.id)} className={styles.deleteButton}>
                                     Delete
                                 </button>
                             </div>
@@ -166,7 +161,7 @@ const ContentBlocks = () => {
                                         onChange={(e) => setUpdatedType(e.target.value)}
                                         className={styles.select}
                                     >
-                                        {frameTypes.map(type => (
+                                        {frameTypes.map((type) => (
                                             <option key={type} value={type}>
                                                 {type}
                                             </option>

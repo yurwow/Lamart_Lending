@@ -4,25 +4,25 @@ import HeaderFrame from '../Frames/HeaderFrame/HeaderFrame';
 import WhyUsFrame from '../Frames/WhyUsFrame/WhyUsFrame';
 import FormFrame from '../Frames/FormFrame/FormFrame';
 import FooterFrame from '../Frames/FooterFrame/FooterFrame';
-import ComputerFrame from "../Frames/ComputerFrame/ComputerFrame";
-import PrivilegeFrame from "../Frames/PrivilegeFrame/PrivilegeFrame.jsx";
-import ClientsFrame from "../Frames/ClientsFrame/ClientsFrame.jsx";
-import ReviewsFrame from "../Frames/ReviewsFrame/ReviewsFrame.jsx";
-import FAQFrame from "../Frames/FAQFrame/FAQFrame.jsx";
+import ComputerFrame from '../Frames/ComputerFrame/ComputerFrame';
+import PrivilegeFrame from '../Frames/PrivilegeFrame/PrivilegeFrame.jsx';
+import ClientsFrame from '../Frames/ClientsFrame/ClientsFrame.jsx';
+import ReviewsFrame from '../Frames/ReviewsFrame/ReviewsFrame.jsx';
+import FAQFrame from '../Frames/FAQFrame/FAQFrame.jsx';
 import styles from './SecondAdmin.module.css';
-import Breadcrumbs from "./Breadcrumbs/Breadcrumbs.jsx";
-import birdIcon from "../../public/birdIcon.svg"
-import filterIcon from "../../public/filterIcon.png"
-import miniHeader from "../../public/miniHeader.png"
-import miniComputer from "../../public/miniComputerFrame.png"
-import miniPriv from "../../public/miniPrevilege.png"
-import miniWhyUs from "../../public/miniWhyUs.png"
-import miniForm from "../../public/miniForm.png"
-import miniClients from "../../public/miniClients.png"
-import miniReview from "../../public/miniReview.png"
-import miniFAQ from "../../public/miniFAQ.png"
-import miniFooter from "../../public/miniFooter.png"
-import {fetchAiText} from "../services/api.js";
+import Breadcrumbs from './Breadcrumbs/Breadcrumbs.jsx';
+import birdIcon from '../../public/birdIcon.svg';
+import filterIcon from '../../public/filterIcon.png';
+import miniHeader from '../../public/miniHeader.png';
+import miniComputer from '../../public/miniComputerFrame.png';
+import miniPriv from '../../public/miniPrevilege.png';
+import miniWhyUs from '../../public/miniWhyUs.png';
+import miniForm from '../../public/miniForm.png';
+import miniClients from '../../public/miniClients.png';
+import miniReview from '../../public/miniReview.png';
+import miniFAQ from '../../public/miniFAQ.png';
+import miniFooter from '../../public/miniFooter.png';
+import { fetchAiText } from '../services/api.js';
 
 const frameComponents = {
     Header: HeaderFrame,
@@ -51,7 +51,6 @@ const frameTemplates = [
 // const BASE_URL = 'http://51.250.75.40:8000/api';
 // const URL = 'http://51.250.75.40:8000/';
 const URL = import.meta.env.VITE_API_URL;
-
 
 const SecondAdmin = () => {
     const [selectedFrames, setSelectedFrames] = useState([]);
@@ -121,19 +120,19 @@ const SecondAdmin = () => {
     };
 
     const handleContentChange = (blockId, content) => {
-        setEditedContent(prev => ({
+        setEditedContent((prev) => ({
             ...prev,
-            [blockId]: content
+            [blockId]: content,
         }));
     };
 
     const handleStyleChange = (blockId, styleKey, value) => {
-        setEditedStyles(prev => ({
+        setEditedStyles((prev) => ({
             ...prev,
             [blockId]: {
                 ...(prev[blockId] || {}),
-                [styleKey]: value
-            }
+                [styleKey]: value,
+            },
         }));
     };
 
@@ -141,18 +140,18 @@ const SecondAdmin = () => {
         const newContent = editedContent[blockId] ?? originalContent;
         const newStyles = {
             ...originalStyles,
-            ...(editedStyles[blockId] || {})
+            ...(editedStyles[blockId] || {}),
         };
 
         try {
             await updateTextBlock(blockId, newContent, newStyles);
             setEditingTextBlockId(null);
-            setEditedContent(prev => {
+            setEditedContent((prev) => {
                 const newState = { ...prev };
                 delete newState[blockId];
                 return newState;
             });
-            setEditedStyles(prev => {
+            setEditedStyles((prev) => {
                 const newState = { ...prev };
                 delete newState[blockId];
                 return newState;
@@ -173,11 +172,9 @@ const SecondAdmin = () => {
                 prevFrames.map((frame) => ({
                     ...frame,
                     textBlocks: frame.textBlocks.map((block) =>
-                        block.id === blockId
-                            ? { ...block, content: updatedContent, styles: updatedStyles }
-                            : block
+                        block.id === blockId ? { ...block, content: updatedContent, styles: updatedStyles } : block,
                     ),
-                }))
+                })),
             );
         } catch (error) {
             console.error('Ошибка при обновлении текстового блока:', error);
@@ -194,10 +191,8 @@ const SecondAdmin = () => {
             setSelectedFrames((prevFrames) =>
                 prevFrames.map((frame) => ({
                     ...frame,
-                    images: frame.images.map((image) =>
-                        image.id === imageId ? response.data : image
-                    ),
-                }))
+                    images: frame.images.map((image) => (image.id === imageId ? response.data : image)),
+                })),
             );
         } catch (error) {
             console.error('Ошибка при обновлении изображения:', error);
@@ -205,8 +200,10 @@ const SecondAdmin = () => {
     };
 
     const filteredFrames = frameTemplates.filter((frame) => {
-        return frame.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            frame.description.toLowerCase().includes(searchQuery.toLowerCase());
+        return (
+            frame.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            frame.description.toLowerCase().includes(searchQuery.toLowerCase())
+        );
     });
 
     const handleAiPromptChange = (e) => {
@@ -219,22 +216,23 @@ const SecondAdmin = () => {
             const response = await fetchAiText(aiPrompt);
             setAiResponse(response);
         } catch {
-            setAiResponse("Произошла ошибка при запросе.");
+            setAiResponse('Произошла ошибка при запросе.');
         }
     };
 
     return (
         <div className={styles.adminPanel}>
             <header className={styles.header}>
-                <Breadcrumbs/>
+                <Breadcrumbs />
             </header>
             <div className={styles.container}>
                 <div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : styles.closed}`}>
-                    <button
-                        className={styles.toggleButton}
-                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                    >
-                        {isSidebarOpen ? <img src={birdIcon} alt="bird icon"/> : <img src={birdIcon} alt="bird icon"/>}
+                    <button className={styles.toggleButton} onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                        {isSidebarOpen ? (
+                            <img src={birdIcon} alt="bird icon" />
+                        ) : (
+                            <img src={birdIcon} alt="bird icon" />
+                        )}
                     </button>
                     {isSidebarOpen && (
                         <>
@@ -244,19 +242,15 @@ const SecondAdmin = () => {
                                     placeholder="Поиск..."
                                     className={styles.searchInput}
                                     value={searchQuery}
-                                    onChange={event => setSearchQuery(event.target.value)}
+                                    onChange={(event) => setSearchQuery(event.target.value)}
                                 />
-                                <img src={filterIcon} alt="filter icon"/>
+                                <img src={filterIcon} alt="filter icon" />
                             </div>
                             <ul className={styles.ul}>
                                 {(searchQuery ? filteredFrames : frameTemplates).map((frame) => (
-                                    <li
-                                        key={frame.id}
-                                        onClick={() => addFrame(frame)}
-                                        className={styles.frameItem}
-                                    >
+                                    <li key={frame.id} onClick={() => addFrame(frame)} className={styles.frameItem}>
                                         <div className={styles.framePreview}>
-                                            <img className={styles.miniIcon} src={frame?.image} alt="icon"/>
+                                            <img className={styles.miniIcon} src={frame?.image} alt="icon" />
                                             <strong>{frame.name}</strong>
                                             <p>{frame.description}</p>
                                         </div>
@@ -326,53 +320,108 @@ const SecondAdmin = () => {
                                                                     <div className={styles.textBlockEditor}>
                                                                         <textarea
                                                                             defaultValue={block.content}
-                                                                            onChange={(e) => handleContentChange(block.id, e.target.value)}
+                                                                            onChange={(e) =>
+                                                                                handleContentChange(
+                                                                                    block.id,
+                                                                                    e.target.value,
+                                                                                )
+                                                                            }
                                                                             className={styles.textarea}
                                                                         />
                                                                         <div className={styles.styleEditor}>
                                                                             <label>Шрифт:</label>
                                                                             <select
-                                                                                defaultValue={block.styles?.fontFamily || ''}
-                                                                                onChange={(e) => handleStyleChange(block.id, 'fontFamily', e.target.value)}
+                                                                                defaultValue={
+                                                                                    block.styles?.fontFamily || ''
+                                                                                }
+                                                                                onChange={(e) =>
+                                                                                    handleStyleChange(
+                                                                                        block.id,
+                                                                                        'fontFamily',
+                                                                                        e.target.value,
+                                                                                    )
+                                                                                }
                                                                             >
                                                                                 <option value="Poppins">Poppins</option>
-                                                                                <option value="Montserrat Alternates">Montserrat Alternates</option>
+                                                                                <option value="Montserrat Alternates">
+                                                                                    Montserrat Alternates
+                                                                                </option>
                                                                                 <option value="Arial">Arial</option>
-                                                                                <option value="Times New Roman">Times New Roman</option>
+                                                                                <option value="Times New Roman">
+                                                                                    Times New Roman
+                                                                                </option>
                                                                             </select>
                                                                             <label>Цвет текста:</label>
                                                                             <input
                                                                                 type="color"
-                                                                                defaultValue={block.styles?.color || '#000000'}
-                                                                                onChange={(e) => handleStyleChange(block.id, 'color', e.target.value)}
+                                                                                defaultValue={
+                                                                                    block.styles?.color || '#000000'
+                                                                                }
+                                                                                onChange={(e) =>
+                                                                                    handleStyleChange(
+                                                                                        block.id,
+                                                                                        'color',
+                                                                                        e.target.value,
+                                                                                    )
+                                                                                }
                                                                             />
                                                                             <label>Размер текста:</label>
                                                                             <input
                                                                                 type="text"
-                                                                                defaultValue={block.styles?.fontSize || ''}
-                                                                                onChange={(e) => handleStyleChange(block.id, 'fontSize', e.target.value)}
+                                                                                defaultValue={
+                                                                                    block.styles?.fontSize || ''
+                                                                                }
+                                                                                onChange={(e) =>
+                                                                                    handleStyleChange(
+                                                                                        block.id,
+                                                                                        'fontSize',
+                                                                                        e.target.value,
+                                                                                    )
+                                                                                }
                                                                             />
-                                                                            <label>Размер текста для мобильной
-                                                                                версии:</label>
+                                                                            <label>
+                                                                                Размер текста для мобильной версии:
+                                                                            </label>
                                                                             <input
                                                                                 type="text"
-                                                                                defaultValue={block.styles?.mobileFontSize || ''}
-                                                                                onChange={(e) => handleStyleChange(block.id, 'mobileFontSize', e.target.value)}
+                                                                                defaultValue={
+                                                                                    block.styles?.mobileFontSize || ''
+                                                                                }
+                                                                                onChange={(e) =>
+                                                                                    handleStyleChange(
+                                                                                        block.id,
+                                                                                        'mobileFontSize',
+                                                                                        e.target.value,
+                                                                                    )
+                                                                                }
                                                                             />
                                                                             <label>Толщина текста:</label>
                                                                             <select
-                                                                                defaultValue={block.styles?.fontWeight || 'normal'}
-                                                                                onChange={(e) => handleStyleChange(block.id, 'fontWeight', e.target.value)}
+                                                                                defaultValue={
+                                                                                    block.styles?.fontWeight || 'normal'
+                                                                                }
+                                                                                onChange={(e) =>
+                                                                                    handleStyleChange(
+                                                                                        block.id,
+                                                                                        'fontWeight',
+                                                                                        e.target.value,
+                                                                                    )
+                                                                                }
                                                                             >
                                                                                 <option value="normal">Обычный</option>
                                                                                 <option value="bold">Жирный</option>
                                                                                 <option value="lighter">Тонкий</option>
                                                                             </select>
-
                                                                         </div>
                                                                         <div className={styles.buttonContainer}>
                                                                             <button
-                                                                                onClick={() => handleSaveChanges(block.id, block.content, block.styles)}
+                                                                                onClick={() =>
+                                                                                    handleSaveChanges(
+                                                                                        block.id,
+                                                                                        block.content,
+                                                                                        block.styles,
+                                                                                    )
+                                                                                }
                                                                                 className={styles.saveButton}
                                                                             >
                                                                                 Сохранить изменения
@@ -389,7 +438,7 @@ const SecondAdmin = () => {
                                                         {frame.images.map((image) => (
                                                             <div key={image.id} className={styles.imageBlock}>
                                                                 <div className={styles.imagePreviewContainer}>
-                                                                <img
+                                                                    <img
                                                                         src={`${URL}${image.image}`}
                                                                         alt="Изображение"
                                                                         className={styles.imagePreview}
@@ -398,7 +447,11 @@ const SecondAdmin = () => {
                                                                 <input
                                                                     type="file"
                                                                     onChange={(e) =>
-                                                                        updateImage(image.id, e.target.files[0], image.description)
+                                                                        updateImage(
+                                                                            image.id,
+                                                                            e.target.files[0],
+                                                                            image.description,
+                                                                        )
                                                                     }
                                                                 />
                                                             </div>
@@ -414,8 +467,10 @@ const SecondAdmin = () => {
                                                             className={styles.aiInput}
                                                         />
                                                         <div>
-                                                            <button onClick={handleAiRequest}
-                                                                    className={styles.aiButton}>
+                                                            <button
+                                                                onClick={handleAiRequest}
+                                                                className={styles.aiButton}
+                                                            >
                                                                 Отправить запрос
                                                             </button>
                                                         </div>
