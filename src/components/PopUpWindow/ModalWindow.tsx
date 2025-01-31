@@ -5,8 +5,8 @@ import IphoneIcon from '../../public/IphoneIcon.svg';
 import closeOne from '../../public/closeOne.svg';
 
 interface IModalProps {
-    isOpen: boolean,
-    onClose: () => void
+    isOpen: boolean;
+    onClose: () => void;
 }
 
 const ModalWindow = ({ isOpen, onClose }: IModalProps) => {

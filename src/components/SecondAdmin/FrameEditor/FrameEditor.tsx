@@ -2,7 +2,7 @@ import { FC } from 'react';
 import TextBlockEditor from '../TextBlockEditor/TextBlockEditor';
 import ImageEditor from '../ImageEditor/ImageEditor';
 import AiSection from '../AiSection/AiSection';
-import styles from '../SecondAdmin.module.css'
+import styles from '../SecondAdmin.module.css';
 import { FrameAll, Styles } from '../types';
 
 interface FrameEditorProps {
@@ -16,14 +16,14 @@ interface FrameEditorProps {
 }
 
 const FrameEditor: FC<FrameEditorProps> = ({
-                                               frame,
-                                               editingTextBlockId,
-                                               onTextBlockToggle,
-                                               onContentChange,
-                                               onStyleChange,
-                                               onSaveChanges,
-                                               onImageChange
-                                           }) => {
+    frame,
+    editingTextBlockId,
+    onTextBlockToggle,
+    onContentChange,
+    onStyleChange,
+    onSaveChanges,
+    onImageChange,
+}) => {
     return (
         <div className={styles.editorContainer}>
             <h4>Редактирование</h4>
@@ -31,10 +31,7 @@ const FrameEditor: FC<FrameEditorProps> = ({
                 <h5>Тексты</h5>
                 {frame.textBlocks.map((block) => (
                     <div key={block.id} className={styles.textBlock}>
-                        <div
-                            className={styles.textPreview}
-                            onClick={() => onTextBlockToggle(block.id)}
-                        >
+                        <div className={styles.textPreview} onClick={() => onTextBlockToggle(block.id)}>
                             <p>{block.content}</p>
                         </div>
                         {editingTextBlockId === block.id && (
@@ -51,11 +48,7 @@ const FrameEditor: FC<FrameEditorProps> = ({
             <div className={styles.imageEditor}>
                 <h5>Изображения</h5>
                 {frame.images.map((image) => (
-                    <ImageEditor
-                        key={image.id}
-                        image={image}
-                        updateImage={onImageChange}
-                    />
+                    <ImageEditor key={image.id} image={image} updateImage={onImageChange} />
                 ))}
             </div>
             <AiSection />

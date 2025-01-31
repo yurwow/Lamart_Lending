@@ -3,7 +3,7 @@ import styles from '../SecondAdmin.module.css';
 import { fetchAiText } from '../../services/api';
 
 interface IAiResponse {
-    generated_text: string
+    generated_text: string;
 }
 
 const AiSection = () => {
@@ -38,10 +38,7 @@ const AiSection = () => {
                 className={styles.aiInput}
             />
             <div>
-                <button
-                    onClick={handleAiRequest}
-                    className={styles.aiButton}
-                >
+                <button onClick={handleAiRequest} className={styles.aiButton}>
                     Отправить запрос
                 </button>
             </div>

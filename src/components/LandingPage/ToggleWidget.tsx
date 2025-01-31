@@ -3,8 +3,8 @@ import React, { memo, useState } from 'react';
 import styles from './ToggleWidget.module.css';
 
 interface IWidget {
-    questions: string,
-    answer: string
+    questions: string;
+    answer: string;
 }
 
 // eslint-disable-next-line react/display-name

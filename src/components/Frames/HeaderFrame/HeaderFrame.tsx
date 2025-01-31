@@ -46,8 +46,8 @@ const HeaderFrame = ({ textBlocks = [], scrollToForm, images }: IHeaderFrame) =>
                             ? `${textBlock?.styles?.mobileFontSize}px`
                             : '14px'
                         : textBlock?.styles?.fontSize
-                            ? `${textBlock?.styles?.fontSize}px`
-                            : '14px',
+                          ? `${textBlock?.styles?.fontSize}px`
+                          : '14px',
                     fontFamily: `${textBlock?.styles?.fontFamily ?? 'Montserrat Alternates'}, sans-serif`,
                     fontWeight: textBlock?.styles?.fontWeight || 'normal',
                     fontStyle: textBlock?.styles?.fontStyle || 'normal',
@@ -71,9 +71,7 @@ const HeaderFrame = ({ textBlocks = [], scrollToForm, images }: IHeaderFrame) =>
                         alt="Landing icon"
                         className={styles.img}
                     />
-                    <div className={styles.header_span_container}>
-                        {renderTextBlock(0, 'ОТКРЫТЫЕ ИДЕИ')}
-                    </div>
+                    <div className={styles.header_span_container}>{renderTextBlock(0, 'ОТКРЫТЫЕ ИДЕИ')}</div>
                 </div>
                 <div className={styles.right_header_container}>
                     {renderTextBlock(1, 'inbox@aratrum.ru')}
@@ -88,7 +86,10 @@ const HeaderFrame = ({ textBlocks = [], scrollToForm, images }: IHeaderFrame) =>
                 <div className={styles.section_one}>
                     {renderTextBlock(2, 'ИТ-ПРОДУКТ ДЛЯ ПОДАЧИ ПРЕДЛОЖЕНИЙ')}
                     {renderTextBlock(3, 'ПО УЛУЧШЕНИЮ ПРОЦЕССОВ В КОМПАНИИ')}
-                    {renderTextBlock(4, 'Информационная система, разработанная для сбора, оценки и управления предложениями сотрудников по оптимизации различных процессов в компании')}
+                    {renderTextBlock(
+                        4,
+                        'Информационная система, разработанная для сбора, оценки и управления предложениями сотрудников по оптимизации различных процессов в компании',
+                    )}
                     <Button onClick={scrollToForm} text="ПОЛУЧИТЬ ДЕМОДОСТУП" scaleOnHover={1.2} type="button" />
                 </div>
             </section>

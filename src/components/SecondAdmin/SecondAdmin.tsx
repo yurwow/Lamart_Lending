@@ -58,7 +58,7 @@ const SecondAdmin: FC = () => {
     const [editingFrameId, setEditingFrameId] = useState<number | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [editingTextBlockId, setEditingTextBlockId] = useState<number | null>(null);
-    const [editedContent, setEditedContent] = useState<{[key:number]: string}>({});
+    const [editedContent, setEditedContent] = useState<{ [key: number]: string }>({});
     const [editedStyles, setEditedStyles] = useState<{ [key: number]: Styles }>({});
     const toggleTextBlockEditor = (blockId: number) => {
         setEditingTextBlockId((prevId) => (prevId === blockId ? null : blockId));
@@ -168,13 +168,13 @@ const SecondAdmin: FC = () => {
                 prevFrames.map((frame) => ({
                     ...frame,
                     textBlocks: frame.textBlocks.map((block) =>
-                        block.id === blockId ?
-                            { ...block, content: updatedContent, styles: updatedStyles } as UpdatedTextBlock
+                        block.id === blockId
+                            ? ({ ...block, content: updatedContent, styles: updatedStyles } as UpdatedTextBlock)
                             : block,
                     ),
                 })),
             );
-            console.log(selectedFrames, "selectedFrames")
+            console.log(selectedFrames, 'selectedFrames');
         } catch (error) {
             console.error('Ошибка при обновлении текстового блока:', error);
         }
@@ -225,7 +225,7 @@ const SecondAdmin: FC = () => {
                                     frame={frame}
                                     isEditing={editingFrameId === frame.id}
                                     onRemove={removeFrame}
-                                    onToggleEdit={(id) => setEditingFrameId(prev => prev === id ? null : id)}
+                                    onToggleEdit={(id) => setEditingFrameId((prev) => (prev === id ? null : id))}
                                 >
                                     <FrameEditor
                                         frame={frame}

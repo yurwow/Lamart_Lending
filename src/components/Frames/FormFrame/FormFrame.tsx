@@ -29,7 +29,6 @@ interface TextBlockStyles {
 
 type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end';
 
-
 const FormFrame = forwardRef<HTMLElement, FrameProps>((props, ref) => {
     const textBlocks = props.textBlocks || [];
     const isMobileDevice = window.innerWidth <= 768;

@@ -5,8 +5,8 @@ import axios, { AxiosResponse } from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
 interface IResponse {
-    access_token: string,
-    refresh_token: string
+    access_token: string;
+    refresh_token: string;
 }
 
 const LoginPage = () => {

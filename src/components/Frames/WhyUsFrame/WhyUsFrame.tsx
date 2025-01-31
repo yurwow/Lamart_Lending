@@ -38,8 +38,8 @@ const WhyUsFrame = ({ textBlocks = [] }: FrameProps) => {
                             ? `${textBlock?.styles?.mobileFontSize}px`
                             : '14px'
                         : textBlock?.styles?.fontSize
-                            ? `${textBlock?.styles?.fontSize}px`
-                            : '14px',
+                          ? `${textBlock?.styles?.fontSize}px`
+                          : '14px',
                     fontFamily: `${textBlock?.styles?.fontFamily ?? 'Montserrat Alternates'}, sans-serif`,
                     fontWeight: textBlock?.styles?.fontWeight || 'normal',
                     fontStyle: textBlock?.styles?.fontStyle || 'normal',

@@ -6,8 +6,8 @@ import video from '@/video.mp4';
 import { TextAlign } from '../ClientsFrame/ClientsFrame';
 
 interface IComputerFrame {
-    textBlocks: TextBlock[],
-    images: IImages[]
+    textBlocks: TextBlock[];
+    images: IImages[];
 }
 
 interface TextBlock {
@@ -28,7 +28,7 @@ interface TextBlockStyles {
 }
 
 interface IImages {
-    image: string
+    image: string;
 }
 
 const ComputerFrame = ({ textBlocks = [], images = [] }: IComputerFrame) => {
@@ -50,7 +50,7 @@ const ComputerFrame = ({ textBlocks = [], images = [] }: IComputerFrame) => {
 
     const handleSeek = (event: ChangeEvent<HTMLInputElement>) => {
         if (videoRef.current) {
-            const seekTime = (parseFloat(event.target.value) / 100) * duration;  // Преобразуем в число
+            const seekTime = (parseFloat(event.target.value) / 100) * duration; // Преобразуем в число
             videoRef.current.currentTime = seekTime;
             setCurrentTime(seekTime);
         }

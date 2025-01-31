@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import styles from '../SecondAdmin.module.css';
-import birdIcon from '../../../public/birdIcon.svg'
-import filterIcon from '../../../public/filterIcon.png'
+import birdIcon from '../../../public/birdIcon.svg';
+import filterIcon from '../../../public/filterIcon.png';
 import { FrameTemplate } from '../types';
 
 interface SidebarProps {
@@ -14,20 +14,23 @@ interface SidebarProps {
 }
 
 const Sidebar: FC<SidebarProps> = ({
-                                       isSidebarOpen,
-                                       setIsSidebarOpen,
-                                       searchQuery,
-                                       setSearchQuery,
-                                       addFrame,
-                                       frameTemplates,
-                                   }) => {
-
-    const filteredFrames = useMemo(() => frameTemplates.filter((frame) => {
-        return (
-            frame.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            frame.description.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-    }), [searchQuery, frameTemplates]);
+    isSidebarOpen,
+    setIsSidebarOpen,
+    searchQuery,
+    setSearchQuery,
+    addFrame,
+    frameTemplates,
+}) => {
+    const filteredFrames = useMemo(
+        () =>
+            frameTemplates.filter((frame) => {
+                return (
+                    frame.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    frame.description.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+            }),
+        [searchQuery, frameTemplates],
+    );
 
     return (
         <div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : styles.closed}`}>

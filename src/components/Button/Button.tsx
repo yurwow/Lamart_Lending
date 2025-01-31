@@ -2,10 +2,10 @@ import styles from './Button.module.css';
 import { useState } from 'react';
 
 interface IButton {
-    text: string,
-    onClick?: () => void,
-    type: 'submit' | 'reset' | 'button',
-    scaleOnHover?: number
+    text: string;
+    onClick?: () => void;
+    type: 'submit' | 'reset' | 'button';
+    scaleOnHover?: number;
 }
 
 const Button = ({ text, onClick, type, scaleOnHover }: IButton) => {

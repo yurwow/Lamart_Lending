@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from './ModalLogout.module.css';
 
 interface IModalLogout {
-    isOpen: boolean,
-    onClose: () => void
+    isOpen: boolean;
+    onClose: () => void;
 }
 
 const ModalLogout = ({ isOpen, onClose }: IModalLogout) => {

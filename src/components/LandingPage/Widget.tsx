@@ -3,10 +3,10 @@ import { useState } from 'react';
 import ModalWindow from '../PopUpWindow/ModalWindow';
 
 interface IWidget {
-    src: string,
-    srcHover: string | undefined,
-    title: string,
-    text: string
+    src: string;
+    srcHover: string | undefined;
+    title: string;
+    text: string;
 }
 
 const Widget = ({ src, srcHover, title, text }: IWidget) => {

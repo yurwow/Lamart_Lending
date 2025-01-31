@@ -23,16 +23,16 @@ export const getTextBlocks = async (): Promise<TextBlock[]> => {
 };
 
 interface Images {
-    description: string,
-    id: number,
-    image: string,
-    is_enabled: boolean,
-    styles: Styles
+    description: string;
+    id: number;
+    image: string;
+    is_enabled: boolean;
+    styles: Styles;
 }
 
 export const getImages = async (): Promise<Images[]> => {
     const response = await axios.get(`${API_URL}api/images/`);
-    console.log(response, "images")
+    console.log(response, 'images');
     return response.data;
 };
 
@@ -51,7 +51,6 @@ export const addImage = async (formData: FormData) => {
     });
     return response.data;
 };
-
 
 export const updateImage = async (id: number, formData: FormData) => {
     try {
@@ -79,10 +78,10 @@ export const deleteImage = async (id: number) => {
 };
 
 interface ISubmitApplication {
-    full_name: string,
-    phone_number: string,
-    email: string,
-    organization: string,
+    full_name: string;
+    phone_number: string;
+    email: string;
+    organization: string;
 }
 
 interface ISubmitApplicationResponse {
@@ -106,17 +105,17 @@ export const submitApplication = async (data: ISubmitApplication): Promise<ISubm
 };
 
 interface Frames {
-    content: string,
-    enabled: boolean,
-    id: number,
-    name: string,
-    order: number
+    content: string;
+    enabled: boolean;
+    id: number;
+    name: string;
+    order: number;
 }
 
 export const getFrames = async (): Promise<Frames[]> => {
     try {
         const response = await axios.get(`${API_URL}api/content-blocks/`);
-        console.log(response, "res")
+        console.log(response, 'res');
         return response.data;
     } catch (error) {
         console.error('Error fetching frames:', error);
@@ -136,5 +135,3 @@ export const fetchAiText = async (prompt: string): Promise<AiTextResponse | unde
         console.error(error);
     }
 };
-
-

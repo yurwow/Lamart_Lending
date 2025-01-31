@@ -2,8 +2,8 @@ import Arm from '../../public/Arm.svg';
 import styles from './SecondWidget.module.css';
 
 interface ISecondWidget {
-    title: string,
-    text: string
+    title: string;
+    text: string;
 }
 
 const SecondWidget = ({ title, text }: ISecondWidget) => {

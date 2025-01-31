@@ -3,21 +3,17 @@ import styles from '../SecondAdmin.module.css';
 import { Image } from '../types';
 
 interface Props {
-    image: Image,
+    image: Image;
     updateImage: (imageId: number, newImageFile: File, description: string) => void;
 }
 
 const URL = import.meta.env.VITE_API_URL;
 
-const ImageEditor = ({image, updateImage}: Props) => {
+const ImageEditor = ({ image, updateImage }: Props) => {
     return (
         <div key={image.id} className={styles.imageBlock}>
             <div className={styles.imagePreviewContainer}>
-                <img
-                    src={`${URL}${image.image}`}
-                    alt="Изображение"
-                    className={styles.imagePreview}
-                />
+                <img src={`${URL}${image.image}`} alt="Изображение" className={styles.imagePreview} />
             </div>
             <input
                 type="file"

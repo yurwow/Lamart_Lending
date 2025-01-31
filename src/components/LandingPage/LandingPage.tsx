@@ -11,48 +11,46 @@ import FAQFrame from '../Frames/FAQFrame/FAQFrame';
 import FooterFrame from '../Frames/FooterFrame/FooterFrame';
 import CookiesWidget from './CookiesWidget/CookiesWidget';
 
-
 interface IFrame {
-    content: string,
-    enabled: boolean,
-    id: number,
-    name: string,
-    order: number
+    content: string;
+    enabled: boolean;
+    id: number;
+    name: string;
+    order: number;
 }
 
 interface IFramesAll {
-    content: string,
-    enabled: boolean,
-    id: number,
-    images: IImages[],
-    name: string,
-    order: number,
-    textBlocks: ITextBlock[]
+    content: string;
+    enabled: boolean;
+    id: number;
+    images: IImages[];
+    name: string;
+    order: number;
+    textBlocks: ITextBlock[];
 }
 
-
 interface ITextBlock {
-    content: string,
-    id: number,
-    is_enabled: boolean,
-    styles: IStyles,
-    title: string
+    content: string;
+    id: number;
+    is_enabled: boolean;
+    styles: IStyles;
+    title: string;
 }
 
 interface IStyles {
-    color: string,
-    fontFamily: string,
-    fontSize: string,
-    fontWeight: string,
-    mobileFontSize: string
+    color: string;
+    fontFamily: string;
+    fontSize: string;
+    fontWeight: string;
+    mobileFontSize: string;
 }
 
 interface IImages {
-    description: string,
-    id: number,
-    image: string,
-    is_enabled: boolean,
-    styles: object
+    description: string;
+    id: number;
+    image: string;
+    is_enabled: boolean;
+    styles: object;
 }
 const LandingPage = () => {
     const formRef = useRef<HTMLElement | null>(null);
@@ -82,11 +80,11 @@ const LandingPage = () => {
                 const [framesData, textBlocksData, imagesData] = await Promise.all([
                     getFrames(),
                     getTextBlocks(),
-                    getImages()
+                    getImages(),
                 ]);
-                console.log(framesData, "framesData")
-                console.log(textBlocksData, "textBlocksData")
-                console.log(imagesData, "imagesData")
+                console.log(framesData, 'framesData');
+                console.log(textBlocksData, 'textBlocksData');
+                console.log(imagesData, 'imagesData');
 
                 const framesWithData = framesData.map((frame: IFrame) => ({
                     ...frame,
@@ -102,18 +100,20 @@ const LandingPage = () => {
         fetchData();
     }, []);
 
-
-    const frameComponents = useMemo(() => ({
-        Header: HeaderFrame,
-        Computer: ComputerFrame,
-        Privilege: PrivilegeFrame,
-        WhyUs: WhyUsFrame,
-        Form: FormFrame,
-        Clients: ClientsFrame,
-        Reviews: ReviewsFrame,
-        FAQ: FAQFrame,
-        Footer: FooterFrame,
-    }), []);
+    const frameComponents = useMemo(
+        () => ({
+            Header: HeaderFrame,
+            Computer: ComputerFrame,
+            Privilege: PrivilegeFrame,
+            WhyUs: WhyUsFrame,
+            Form: FormFrame,
+            Clients: ClientsFrame,
+            Reviews: ReviewsFrame,
+            FAQ: FAQFrame,
+            Footer: FooterFrame,
+        }),
+        [],
+    );
 
     return (
         <>

@@ -17,14 +17,10 @@ interface TextBlockData {
     link: string;
 }
 
-
 const AddTextBlockForm = () => {
     const [content, setContent] = useState<string>('');
     const [title, setTitle] = useState<string>('');
     const [error, setError] = useState<string>('');
-    // const API_URL = 'http://51.250.75.40:8000/';
-    // const API_URL = "http://51.250.75.40:8000/api/"
-    // const API_URL = "http://89.169.147.237:8000/api/"
     const API_URL = import.meta.env.VITE_API_URL;
 
     const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -38,7 +34,7 @@ const AddTextBlockForm = () => {
     const handleSubmit = async (e: ChangeEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
 
-        const newTextBlock:TextBlockData = {
+        const newTextBlock: TextBlockData = {
             title,
             content,
             is_enabled: true,
@@ -54,7 +50,7 @@ const AddTextBlockForm = () => {
         };
 
         try {
-            const response = await axios.post<{message: string}>(`${API_URL}api/text-blocks/add/`, newTextBlock, {
+            const response = await axios.post<{ message: string }>(`${API_URL}api/text-blocks/add/`, newTextBlock, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

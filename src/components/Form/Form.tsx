@@ -4,14 +4,14 @@ import { submitApplication } from '../services/api';
 import Button from '../Button/Button';
 
 interface IFormProps {
-    classNameBtn: string
+    classNameBtn: string;
 }
 
 interface IData {
-    full_name: string,
-    phone_number: string,
-    email: string,
-    organization: string,
+    full_name: string;
+    phone_number: string;
+    email: string;
+    organization: string;
 }
 
 const Form = ({ classNameBtn }: IFormProps) => {
@@ -50,7 +50,7 @@ const Form = ({ classNameBtn }: IFormProps) => {
             setEmail('');
             setCompany('');
             setMessage('');
-        } catch  {
+        } catch {
             alert('Ошибка при отправке заявки.');
         }
     };

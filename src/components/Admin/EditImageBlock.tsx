@@ -58,9 +58,7 @@ const ImageUpload = () => {
             try {
                 const updatedImage = await updateImage(editingImageId, formData);
                 setImages((prevImages) =>
-                    prevImages.map((image) =>
-                        image.id === editingImageId ? updatedImage : image
-                    )
+                    prevImages.map((image) => (image.id === editingImageId ? updatedImage : image)),
                 );
                 resetForm();
             } catch (error) {
