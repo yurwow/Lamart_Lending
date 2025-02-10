@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
-import styles from '../SecondAdmin.module.css';
 import { fetchAiText } from '../../services/api';
+import styles from './AiSection.module.css';
 
 interface IAiResponse {
     generated_text: string;

@@ -1,12 +1,12 @@
-import LandingPage from './components/LandingPage/LandingPage.tsx';
+import LandingPage from './components/LandingPage/LandingPage';
 import AdminPanel from './components/Admin/AdminPanel';
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import LoginPage from './components/LoginPage/LoginPage.tsx';
-import AdminHome from './components/AdminPanel/AdminHome/AdminHome.tsx';
-import NotFound from './components/NotFound/NotFound.tsx';
-import ForgotPasswordPage from './components/ForgotPasswordPage/ForgotPasswordPage.tsx';
-import SecondAdmin from './components/SecondAdmin/SecondAdmin.tsx';
-import FooterFrame from './components/Frames/FooterFrame/FooterFrame.tsx';
+import LoginPage from './components/LoginPage/LoginPage';
+import AdminHome from './components/AdminPanel/AdminHome/AdminHome';
+import NotFound from './components/NotFound/NotFound';
+import ForgotPasswordPage from './components/ForgotPasswordPage/ForgotPasswordPage';
+import SecondAdmin from './components/SecondAdmin/SecondAdmin';
+import FooterFrame from './components/Frames/FooterFrame/FooterFrame';
 
 function App() {
     return (

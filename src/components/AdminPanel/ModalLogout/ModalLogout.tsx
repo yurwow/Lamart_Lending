@@ -11,9 +11,6 @@ interface IModalLogout {
 const ModalLogout = ({ isOpen, onClose }: IModalLogout) => {
     const modalRef = useRef<HTMLDivElement | null>(null);
     const navigate = useNavigate();
-    // const API_URL = "http://51.250.75.40:8000/api/";
-    // const API_URL = 'http://89.169.147.237:8000/api/'
-    // const API_URL = 'http://51.250.75.40:8000/';
     const API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {

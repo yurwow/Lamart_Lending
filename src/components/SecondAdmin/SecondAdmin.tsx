@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import HeaderFrame from '../Frames/HeaderFrame/HeaderFrame';
 import WhyUsFrame from '../Frames/WhyUsFrame/WhyUsFrame';
@@ -89,7 +89,7 @@ const SecondAdmin: FC = () => {
         };
 
         fetchFramesAndData();
-    }, []);
+    }, [selectedFrames]);
 
     const addFrame = async (frame: FrameTemplate) => {
         try {
@@ -115,22 +115,28 @@ const SecondAdmin: FC = () => {
         }
     };
 
-    const handleContentChange = (blockId: number, content: string) => {
-        setEditedContent((prev) => ({
-            ...prev,
-            [blockId]: content,
-        }));
-    };
+    const handleContentChange = useCallback(
+        () => (blockId: number, content: string) => {
+            setEditedContent((prev) => ({
+                ...prev,
+                [blockId]: content,
+            }));
+        },
+        [],
+    );
 
-    const handleStyleChange = (blockId: number, styleKey: string, value: string) => {
-        setEditedStyles((prev) => ({
-            ...prev,
-            [blockId]: {
-                ...(prev[blockId] || {}),
-                [styleKey]: value,
-            },
-        }));
-    };
+    const handleStyleChange = useCallback(
+        () => (blockId: number, styleKey: string, value: string) => {
+            setEditedStyles((prev) => ({
+                ...prev,
+                [blockId]: {
+                    ...(prev[blockId] || {}),
+                    [styleKey]: value,
+                },
+            }));
+        },
+        [],
+    );
 
     const handleSaveChanges = async (blockId: number, originalContent: string, originalStyles: Styles) => {
         const newContent = editedContent[blockId] ?? originalContent;

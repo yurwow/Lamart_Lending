@@ -16,9 +16,6 @@ const LoginPage = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const focusRef = useRef<HTMLInputElement | null>(null);
     const navigate = useNavigate();
-    // const API_URL = "http://51.250.75.40:8000/api/"
-    // const API_URL = 'http://89.169.147.237:8000/api/';
-    // const API_URL = 'http://51.250.75.40:8000/';
     const API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
@@ -69,7 +66,6 @@ const LoginPage = () => {
                     <span className={styles.title}>ОТКРЫТЫЕ ИДЕИ</span>
                 </div>
                 {error && <p className={styles.error}>{error}</p>}
-
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <input
                         ref={focusRef}

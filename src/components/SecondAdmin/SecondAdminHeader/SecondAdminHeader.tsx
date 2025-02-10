@@ -1,8 +1,7 @@
-import { FC } from 'react';
 import styles from '../SecondAdmin.module.css';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
-const SecondAdminHeader: FC = () => (
+const SecondAdminHeader = () => (
     <header className={styles.header}>
         <Breadcrumbs />
     </header>
